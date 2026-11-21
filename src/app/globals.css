@@ -210,7 +210,10 @@ a.side-item:hover {
   margin-top: 0;
 }
 .def .spot-def {
-  margin-top: 6px;
+  margin-top: 8px;
+}
+.def .spot-def + .spot-def {
+  margin-top: 10px;
 }
 .spot-sub {
   font-family: var(--serif);

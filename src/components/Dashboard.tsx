@@ -28,8 +28,14 @@ export function Dashboard({ meta, tracks }: Dataset) {
             <h1 className="card-title">Fast takeoff</h1>
             <p className="spot-sub">noun</p>
             <p className="spot-def">
-              AI going from human level to far beyond it in months, days or less.{" "}
-              <a href="https://www.lesswrong.com/w/ai-takeoff">More on LessWrong</a>
+              The point where AI becomes smart enough to improve itself, and every improvement makes the next one come
+              sooner. Once that loop starts, AI could go from about as capable as a person to far beyond any person in a
+              few months, or even a few days.
+            </p>
+            <p className="spot-def">
+              The alternative is a slow takeoff: the same climb spread over years or decades, with time for people to
+              adjust along the way. This site tracks how quickly AI is making real discoveries, to show which one we are
+              in.
             </p>
           </section>
 
