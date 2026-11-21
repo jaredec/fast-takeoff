@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { BASE_PATH } from "@/lib/basePath";
+import { CARD_SIZE } from "@/lib/card";
 import "./globals.css";
 
 const etBook = localFont({
@@ -11,12 +13,18 @@ const etBook = localFont({
   ],
 });
 
+const card = {
+  url: `https://www.jaredconnolly.com${BASE_PATH}/card/breakthroughs/month`,
+  width: CARD_SIZE.width,
+  height: CARD_SIZE.height,
+  alt: "The Fast Takeoff Index: how many AI breakthroughs a month",
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.jaredconnolly.com"),
   title: "Fast Takeoff: how fast is AI moving?",
   description: "Every AI breakthrough and model release, and how fast they're arriving now.",
-  openGraph: { title: "Fast Takeoff", description: "How fast is AI moving? Tracked daily." },
-  twitter: { card: "summary_large_image", site: "@thefasttakeoff" },
+  openGraph: { title: "Fast Takeoff", description: "How fast is AI moving? Tracked daily.", images: [card] },
+  twitter: { card: "summary_large_image", site: "@thefasttakeoff", images: [card] },
 };
 
 export const viewport: Viewport = {

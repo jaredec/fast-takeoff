@@ -22,8 +22,7 @@ const fonts = Promise.all(
   ["et-book-roman.ttf", "et-book-italic.ttf", "et-book-bold.ttf"].map((f) => readFile(join(fontDir, f))),
 );
 
-export const POST_SIZE = { width: 1200, height: 675 };
-export const OG_SIZE = { width: 1200, height: 630 };
+export const CARD_SIZE = { width: 1200, height: 675 };
 
 const INK = "#2b2b2b";
 const META = "#757575";
@@ -73,7 +72,7 @@ function BarsPanel({ track }: { track: Track }) {
   );
 }
 
-export async function renderCard(track: Track, unit: Unit, size = POST_SIZE) {
+export async function renderCard(track: Track, unit: Unit) {
   const series = loadSeries(track);
   const r = reading(series);
   const [roman, italic, bold] = await fonts;
@@ -124,7 +123,7 @@ export async function renderCard(track: Track, unit: Unit, size = POST_SIZE) {
       </div>
     ),
     {
-      ...size,
+      ...CARD_SIZE,
       fonts: [
         { name: "ET Book", data: roman, weight: 400, style: "normal" },
         { name: "ET Book", data: italic, weight: 400, style: "italic" },
