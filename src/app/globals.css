@@ -211,11 +211,7 @@ a.side-item:hover {
 }
 .def .spot-def {
   margin-top: 8px;
-}
-.def .spot-def + .spot-def {
-  margin-top: 10px;
-}
-.spot-sub {
+}.spot-sub {
   font-family: var(--serif);
   font-style: italic;
   font-size: 15px;

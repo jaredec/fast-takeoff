@@ -29,14 +29,9 @@ export function Dashboard({ meta, tracks }: Dataset) {
             <h1 className="card-title">Fast takeoff</h1>
             <p className="spot-sub">noun</p>
             <p className="spot-def">
-              The point where AI becomes smart enough to improve itself, and every improvement makes the next one come
-              sooner. Once that loop starts, AI could go from about as capable as a person to far beyond any person in a
-              few months, or even a few days.
-            </p>
-            <p className="spot-def">
-              The alternative is a slow takeoff: the same climb spread over years or decades, with time for people to
-              adjust along the way. This site tracks how quickly AI is making real discoveries, to show which one we are
-              in.
+              The jump from AI about as smart as a person to AI far smarter than any person, happening in days or even
+              hours rather than years. It usually comes from AI improving itself, with each improvement making the next
+              one come faster.
             </p>
           </section>
 
