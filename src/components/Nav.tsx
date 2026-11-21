@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, CalendarDays, ChartScatter, Clock, Gauge, Layers, Menu, type LucideIcon } from "lucide-react";
+import { ChartScatter, Clock, Gauge, Layers, Menu, type LucideIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { BASE_PATH } from "@/lib/basePath";
 import { formatDay, TRACK_INFO, TRACKS, type Series, type Track } from "@/lib/metrics";
@@ -8,8 +8,6 @@ import { formatDay, TRACK_INFO, TRACKS, type Series, type Track } from "@/lib/me
 export const SECTIONS: { id: string; label: string; icon: LucideIcon }[] = [
   { id: "index", label: "Index", icon: Gauge },
   { id: "timeline", label: "Timeline", icon: ChartScatter },
-  { id: "speed", label: "Speed", icon: Activity },
-  { id: "every-day", label: "Every day", icon: CalendarDays },
 ];
 
 export function Header({ onMenu }: { onMenu: () => void }) {

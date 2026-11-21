@@ -4,18 +4,22 @@ import { useEffect, useMemo, useRef, type CSSProperties, type PointerEvent } fro
 import { BASE_PATH } from "@/lib/basePath";
 import { useMediaQuery } from "@/lib/hooks";
 import { logosFor } from "@/lib/logos";
-import { formatDay, fromDay, toDay, type DayEvent, type Series } from "@/lib/metrics";
+import { formatDay, fromDay, isUntracked, toDay, type DayEvent, type Series } from "@/lib/metrics";
 import { useTip } from "./Tip";
 
 const GAP = 3;
-const AXIS = 34;
 /** AlexNet, where the deep learning era starts. Both tracks share this axis. */
 const START = toDay("2012-09-30");
 
-/** Each event sits at its true date on a fixed scale; events that would overlap stack upward. */
+/**
+ * Each event sits at its true date; events that would overlap stack upward. Under the axis, one
+ * square per day in week columns, on the same scale so a column sits under its week.
+ */
 function layout(s: Series, narrow: boolean) {
   const size = narrow ? 28 : 34;
-  const perDay = (narrow ? 170 : 300) / 365.25;
+  const cell = narrow ? 7 : 10;
+  const pitch = cell + 2;
+  const perDay = pitch / 7;
   const pad = size + 24;
   const x = (day: number) => pad + (day - START) * perDay;
   const width = x(s.asOf) + 80;
@@ -39,9 +43,21 @@ function layout(s: Series, narrow: boolean) {
     .filter(([a, b]) => b >= START && a <= s.asOf)
     .map(([a, b]) => ({ left: x(Math.max(a, START)), right: x(Math.min(b, s.asOf)) }));
 
-  const height = (Math.max(...levels) + 1) * (size + GAP) + AXIS + 22;
+  // Week columns start on the Sunday on or before START.
+  const gridStart = START - fromDay(START).getUTCDay();
+  const days: { day: number; cls: string }[] = [];
+  for (let d = gridStart; d <= s.asOf; d++) {
+    const list = d >= START ? s.byDay.get(d) : undefined;
+    const cls =
+      d < START ? "blank" : list ? `hit l${Math.min(3, list.length)}` : isUntracked(s, d) ? "un" : "";
+    days.push({ day: d, cls });
+  }
+
+  const gridHeight = 7 * pitch;
+  const axis = gridHeight + 34;
+  const height = (Math.max(0, ...levels) + 1) * (size + GAP) + axis + 18;
   const marks = events.map((e, i) => ({ e, x: x(e.day), level: levels[i], logos: logosFor(e) }));
-  return { size, width, marks, years, bands, height, now: x(s.asOf) };
+  return { size, cell, width, marks, years, bands, days, gridLeft: x(gridStart), axis, height, now: x(s.asOf) };
 }
 
 export function Timeline({ series }: { series: Series }) {
@@ -89,6 +105,19 @@ export function Timeline({ series }: { series: Series }) {
   const leave = (ev: PointerEvent) => {
     if (ev.pointerType === "mouse") tip.hide();
   };
+  const showDay = (target: EventTarget, x: number, y: number) => {
+    const day = Number((target as HTMLElement).dataset.day);
+    if (!day) return tip.hide();
+    const list = series.byDay.get(day);
+    tip.show(
+      <>
+        <time>{formatDay(day, { weekday: "short", month: "short", day: "numeric", year: "numeric" })}</time>
+        {list ? list.map((e) => <b key={e.title} style={{ display: "block" }}>{e.title}</b>) : isUntracked(series, day) ? "Not backfilled yet" : "Nothing"}
+      </>,
+      x,
+      y,
+    );
+  };
 
   return (
     <div className="swarm" ref={ref}>
@@ -97,18 +126,18 @@ export function Timeline({ series }: { series: Series }) {
           <div
             key={i}
             className="swarm-gap"
-            style={{ left: b.left, width: b.right - b.left, bottom: AXIS }}
+            style={{ left: b.left, width: b.right - b.left, bottom: view.axis }}
             onPointerMove={(ev) => tip.show(<b>Not backfilled yet</b>, ev.clientX, ev.clientY)}
             onPointerLeave={leave}
           />
         ))}
-        <div className="swarm-axis" style={{ bottom: AXIS }} />
+        <div className="swarm-axis" style={{ bottom: view.axis }} />
         {view.years.map((y) => (
-          <div key={y.year} className="swarm-year" style={{ left: y.x, bottom: AXIS - 4 }}>
+          <div key={y.year} className="swarm-year" style={{ left: y.x, bottom: view.axis - 4 }}>
             <span>{y.year}</span>
           </div>
         ))}
-        <div className="swarm-now" style={{ left: view.now, bottom: AXIS }}>
+        <div className="swarm-now" style={{ left: view.now, bottom: view.axis }}>
           <i />
           <span>Now</span>
         </div>
@@ -120,7 +149,7 @@ export function Timeline({ series }: { series: Series }) {
             style={
               {
                 left: x - view.size / 2,
-                bottom: AXIS + 5 + level * (view.size + GAP),
+                bottom: view.axis + 5 + level * (view.size + GAP),
                 width: view.size,
                 height: view.size,
                 "--t": Math.min(1, x / 1400).toFixed(3),
@@ -142,6 +171,17 @@ export function Timeline({ series }: { series: Series }) {
             )}
           </button>
         ))}
+        <div
+          className="days"
+          style={{ left: view.gridLeft, "--cell": `${view.cell}px` } as CSSProperties}
+          onPointerOver={(ev) => ev.pointerType === "mouse" && showDay(ev.target, ev.clientX, ev.clientY)}
+          onPointerLeave={leave}
+          onClick={(ev) => showDay(ev.target, ev.clientX, ev.clientY)}
+        >
+          {view.days.map((d) => (
+            <i key={d.day} data-day={d.cls === "blank" ? undefined : d.day} className={d.cls || undefined} />
+          ))}
+        </div>
       </div>
     </div>
   );
