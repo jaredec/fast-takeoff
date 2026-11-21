@@ -2,7 +2,7 @@ import { z } from "zod";
 import breakthroughs from "../../data/breakthroughs.json";
 import releases from "../../data/releases.json";
 import meta from "../../data/meta.json";
-import { LOGOS } from "./logos";
+import { FIELDS } from "./logos";
 import { makeSeries, type AiEvent, type Meta, type Series, type Track } from "./metrics";
 
 const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
@@ -13,7 +13,7 @@ export const eventsSchema = z.array(
     title: z.string().min(1),
     org: z.string().min(1),
     why: z.string().min(1),
-    image: z.enum(LOGOS).optional(),
+    field: z.enum(FIELDS).optional(),
   }),
 );
 

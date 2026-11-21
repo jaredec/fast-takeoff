@@ -1,9 +1,13 @@
 import type { AiEvent } from "./metrics";
 
-/** Files in public/logos. Real marks only: an event with no company gets a pictogram via `image`. */
+/** A breakthrough's field, shown as its icon. Each has a file at public/logos/field-<name>.svg. */
+export const FIELDS = ["math", "biology", "medicine", "chemistry", "physics", "weather", "games", "vision"] as const;
+export type Field = (typeof FIELDS)[number];
+
+/** Lab marks in public/logos, for releases. Real marks only. */
 export const LOGOS = [
   "anthropic", "claude", "copilot", "deepmind", "deepseek", "gemini", "gemma", "google", "grok", "ibm", "kimi",
-  "meta", "microsoft", "midjourney", "mistral", "openai", "pill", "qwen", "stability", "vision", "xai",
+  "meta", "microsoft", "midjourney", "mistral", "openai", "qwen", "stability", "xai",
 ] as const;
 export type Logo = (typeof LOGOS)[number];
 
@@ -24,12 +28,8 @@ const BY_ORG: Record<string, Logo[]> = {
   Google: ["google"],
   DeepMind: ["deepmind"],
   "Google DeepMind": ["deepmind"],
-  "DeepMind and EMBL": ["deepmind"],
-  "DeepMind and EPFL": ["deepmind"],
-  "Google DeepMind and Isomorphic Labs": ["deepmind"],
-  "OpenAI and Google DeepMind": ["openai", "deepmind"],
   IBM: ["ibm"],
-  "Microsoft Research": ["microsoft"],
+  Microsoft: ["microsoft"],
   Meta: ["meta"],
   xAI: ["xai"],
   Mistral: ["mistral"],
@@ -40,9 +40,9 @@ const BY_ORG: Record<string, Logo[]> = {
   "Stability AI": ["stability"],
 };
 
-/** The marks shown for an event, most important first. Empty if nothing fits. */
-export function logosFor(e: AiEvent): Logo[] {
-  if (e.image) return [e.image as Logo];
+/** The image files (without .svg) shown for an event, most important first. Empty if nothing fits. */
+export function logosFor(e: AiEvent): string[] {
+  if (e.field) return [`field-${e.field}`];
   const product = BY_PRODUCT.find(([re]) => re.test(e.title));
   if (product) return [product[1]];
   return BY_ORG[e.org] ?? [];
