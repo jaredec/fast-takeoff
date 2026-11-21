@@ -1,76 +1,29 @@
-/**
- * Validates every file in data/days against the shared schema, and that the archive has no
- * empty days: every date from the first day file to the last features one item per platform it covers, and every
- * picks file lists at least one story. Used in CI.
- */
-import fs from "node:fs";
-import path from "node:path";
-import { addDays, isValidIsoDate } from "../src/lib/dates";
-import { dayFileSchema } from "../src/lib/schema";
-import { PICKS_DIR } from "./lib/picks";
-import { DAYS_DIR } from "./lib/store";
+import { loadDataset } from "../src/lib/data";
+import { TRACKS, toDay } from "../src/lib/metrics";
 
-let errors = 0;
-const files = fs.existsSync(DAYS_DIR) ? fs.readdirSync(DAYS_DIR).filter((f) => f.endsWith(".json")) : [];
+const { meta, tracks } = loadDataset();
+const asOf = toDay(meta.asOf);
+const untracked = meta.untracked.map(([a, b]) => [toDay(a), toDay(b)] as const);
+const problems: string[] = [];
 
-for (const file of files) {
-  const report = (msg: string) => {
-    errors++;
-    console.error(`${file}: ${msg}`);
-  };
-  let raw: unknown;
-  try {
-    raw = JSON.parse(fs.readFileSync(path.join(DAYS_DIR, file), "utf8"));
-  } catch (err) {
-    report(`invalid JSON (${(err as Error).message})`);
-    continue;
-  }
-  const parsed = dayFileSchema.safeParse(raw);
-  if (!parsed.success) {
-    report(parsed.error.message);
-    continue;
-  }
-  const day = parsed.data;
-  if (`${day.date}.json` !== file) report(`date field ${day.date} does not match filename`);
-  if (!isValidIsoDate(day.date)) report(`invalid calendar date ${day.date}`);
-  const ids = new Set<string>();
-  for (const item of day.items) {
-    if (ids.has(item.id)) report(`duplicate item id ${item.id}`);
-    ids.add(item.id);
-    if (!item.id.startsWith(day.date)) report(`item id ${item.id} should start with ${day.date}`);
-  }
-  if (day.items.length === 0) report("day has no items");
-  const platforms = new Set<string>();
-  for (const item of day.items) {
-    if (platforms.has(item.platform)) report(`day features more than one ${item.platform} item`);
-    platforms.add(item.platform);
-    if (item.rank !== 1) report(`the ${item.platform} item must have rank 1`);
+for (const [a, b] of untracked) if (a > b) problems.push(`meta: untracked range ${a} is backwards`);
+
+for (const track of TRACKS) {
+  const seen = new Set<string>();
+  for (const e of tracks[track]) {
+    const day = toDay(e.date);
+    const where = `${track}: ${e.date} ${e.title}`;
+    if (Number.isNaN(day)) problems.push(`${where}: invalid date`);
+    if (day > asOf) problems.push(`${where}: after asOf ${meta.asOf}`);
+    if (untracked.some(([a, b]) => day >= a && day <= b)) problems.push(`${where}: inside an untracked range`);
+    const key = `${e.date}|${e.title}`;
+    if (seen.has(key)) problems.push(`${where}: duplicate`);
+    seen.add(key);
   }
 }
 
-const dates = files.map((f) => f.replace(/\.json$/, "")).filter(isValidIsoDate).sort();
-const archived = new Set(dates);
-if (dates.length > 0) {
-  for (let d = dates[0]; d < dates[dates.length - 1]; d = addDays(d, 1)) {
-    if (!archived.has(d)) {
-      errors++;
-      console.error(`${d}.json: missing, every day between the first and last archived day needs a pick`);
-    }
-  }
+if (problems.length) {
+  console.error(problems.join("\n"));
+  process.exit(1);
 }
-
-const pickFiles = fs.existsSync(PICKS_DIR) ? fs.readdirSync(PICKS_DIR).filter((f) => f.endsWith(".json")) : [];
-for (const file of pickFiles) {
-  const picks = JSON.parse(fs.readFileSync(path.join(PICKS_DIR, file), "utf8")) as { stories?: unknown[] };
-  if (!picks.stories?.length) {
-    errors++;
-    console.error(`picks/${file}: lists no stories, every day needs at least one`);
-  }
-  if (!archived.has(file.replace(/\.json$/, ""))) {
-    errors++;
-    console.error(`picks/${file}: no matching day file, run npm run curate on it`);
-  }
-}
-
-console.log(`Checked ${files.length} day files, ${errors} problems.`);
-process.exit(errors > 0 ? 1 : 0);
+console.log(`ok: ${TRACKS.map((t) => `${tracks[t].length} ${t}`).join(", ")}, as of ${meta.asOf}`);

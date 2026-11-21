@@ -1,116 +1,15 @@
-# capsule
+# Fast Takeoff
 
-An archive of the internet's daily pulse. Capsule is a calendar where every day holds what controlled the feed that day: the meme, clip or moment a normal person would have seen reposted or heard about. For now every pick is an X post; the platform dropdown is ready for TikTok, Instagram, Reddit and YouTube.
+How fast is AI moving? A daily index of AI breakthroughs and model releases, served at [jaredconnolly.com/fasttakeoff](https://www.jaredconnolly.com/fasttakeoff).
 
-## Quick start
+- `data/breakthroughs.json` and `data/releases.json` hold the events. `data/meta.json` holds the last curated day and the ranges not backfilled yet.
+- The page shows the index (breakthroughs a month over the trailing 90 days), a timeline of each track, the speed over time, a day-by-day grid, and the card for the daily post on X.
+- Cards are generated at `/fasttakeoff/card/<breakthroughs|releases>/<day|week|month>`.
 
-```bash
-npm install
-npm run dev        # http://localhost:3000/capsule
+```sh
+npm run dev            # http://localhost:3000/fasttakeoff
+npm run validate-data
+npm run lint && npm run typecheck
 ```
 
-Days run midnight to midnight US Pacific time. The home page shows the latest archived month, with each day's pick shown as an image filling its cell, cropped to the part that matters; the author and title appear on hover. The grid's first and last weeks are filled out with the neighboring months' days when those are archived. Every day features exactly one pick. Click a day to see its headline and X post, or go to `/day/YYYY-MM-DD`. When the post went up before the day it blew up, a footnote says so ("Originally posted Oct 8, peaked Oct 10."). Month pages live at `/YYYY/MM`, and `?platform=x` filters any calendar view.
-
-## Layout
-
-```
-data/days/<date>.json      the published picks, one file per Pacific day
-data/signals/<date>.json   raw daily signals the picks were made from
-data/picks/<date>.json     editor picks (input to `npm run curate`)
-public/media/<date>/       self-hosted WebP image for each pick
-scripts/collect.ts         automated pipeline: gather -> pick -> enrich -> write
-scripts/curate.ts          editor override: you pick, the pipeline enriches
-src/                       Next.js app; every page is prerendered from data/days
-.github/workflows/         twice-daily collection, manual backfill, CI
-```
-
-New data lands as a git commit, and the host (Vercel, Netlify, etc.) redeploys on push.
-
-## What counts as "the pulse"
-
-Every candidate gets three 1–10 scores:
-
-| Score | Question |
-| --- | --- |
-| reach | Did it escape its niche and reach normies? 10 = your aunt saw it. |
-| dominance | How hard did it take over feeds: reposts, quote-posts, duets, outlets covering the reaction itself? |
-| memeability | Did it spawn remixes, templates, catchphrases, reaction images? |
-
-`pulse = 0.4·reach + 0.35·dominance + 0.25·memeability`. Sports, tech and news are multiplied by 0.55, or by 0.9 when they crossed over into general meme culture. Politics is multiplied by 0.4 unless it crossed over *and* scored 9 or more on reach: political clips get boosted by partisan accounts without reaching normal people, so only mega-viral memes everyone remixed qualify. Celebrities count when they became the joke or did something non-fans reposted for the laugh, not for fan-account fare like red carpets, lip-syncs or thirst clips. The rule lives in `scoreStory()` in `scripts/lib/pick.ts`, and the editorial prompt sits next to it.
-
-## The automated pipeline (cheap by design)
-
-`npm run collect` doesn't pay for X API reads. Only step 2 below costs money; the rest is free.
-
-1. **Gather (free).** Google News RSS searches for "went viral", memes, "the internet reacts" and similar, limited to the target day and the day after. Junk like meme-coin prices and evergreen listicles is filtered out. It also pulls the most-read Wikipedia pages and flags *breakouts*: pages that weren't in the top 1000 on the prior three days, a good "normies looked this up" signal. For recent days it adds Google's trending searches. Everything is saved to `data/signals/`. All of these sources take a date, which is what makes backfills cheap.
-2. **Pick (one cheap LLM call).** About 12k tokens of headlines go to a small model, which clusters them into stories and scores them with the rubric. It can only cite headline IDs from the snapshot, so references can't be invented. The day features the strongest candidate that peaked that day (or the strongest overall if none did), and when it has no usable source the next candidate replaces it. `npm run validate-data` fails on any empty or missing day between the first and last archived day, and on any day with more than one item.
-3. **Enrich (free).** Resolves the real article URLs, pulls the X posts embedded in those articles, and reads likes and replies from X's public embed endpoint. The featured post is the most-liked one from that day in English, then posts with no text, and posts in other languages only when nothing else is there, unless the editor pinned one. A quote post is swapped for the post it quotes, even when the quote got more likes, since quotes pile on rather than being the moment (pin the rare exception with `sourceUrl`). When a model key is set and the coverage embeds several posts, the model picks the one that is the moment itself, such as an actual instance of the meme or the clip, over posts commenting on the trend ("does he know he's having a moment").
-4. **Media (free).** Each pick gets a still: the X post's photo (two photos are placed side by side as X shows them, since that's usually a before-and-after), else a frame from its video, else (for a text-only post) an image of the post itself, laid out like it appears on X with avatar, name, verified badge, text and time, else a YouTube thumbnail (`maxresdefault` when the upload is HD) or the coverage's og:image (generic logos are skipped). For videos, ffmpeg samples 12 frames across the clip, drops blurred and blank ones, and asks the model (if a key is set) which frame shows the moment; without a key it takes the frame most like the rest, which skips title cards and cutaways. Stills are resized to a 720px WebP with sharp under `public/media/`. The image can record a `crop` region (fractions of the image): the subject every frame, from the 3:4 calendar cells to the day card, keeps whole. Without one the frames centre the picture; on the archive that matched editors' crops better than sharp's attention strategy, smartcrop or a person detector. It also stores a snapshot of the post (name, handle, verified, avatar, text) so the calendar renders without X's embed script, and nothing breaks when X rotates CDN URLs. `npm run media -- 2026-10-05` (or no dates for all days, `--redo` to replace images) backfills existing days.
-
-Cost per day is one call of roughly 12k input and 1k output tokens:
-
-| Model | Approx. per day | Full-year backfill |
-| --- | --- | --- |
-| `gemini-3.5-flash-lite` (default if `GEMINI_API_KEY` is set) | free tier, or ~$0.006 paid | ~$2 |
-| `grok-4.3` (`XAI_API_KEY`) | ~$0.018 | ~$7 |
-
-```bash
-cp .env.example .env.local      # add one key
-set -a; . ./.env.local; set +a
-
-npm run collect                                         # the last two complete days (Pacific)
-npm run collect -- --date 2026-10-05
-npm run collect -- --from 2026-01-01 --to 2026-09-30    # backfill; skips days already done
-npm run collect -- --date 2026-10-05 --gather-only      # signals only, no key needed
-```
-
-Options:
-
-- `--refresh` redoes days that already have automated picks.
-- `--force` also replaces curated days.
-- `--regather` refetches signals even if a snapshot exists.
-- `--dry-run` prints results without writing.
-
-Any OpenAI-compatible endpoint works. Set `LLM_PROVIDER=gemini|xai|openai`, or `LLM_BASE_URL` with `LLM_MODEL` and `LLM_API_KEY`.
-
-### Editor overrides
-
-Write `data/picks/<date>.json` with your story (same fields the model returns, citing headline IDs from that day's signals), then run `npm run curate -- data/picks/<date>.json`. A story can also set `sourceUrl` to pin the X post to feature, `imageUrl` to use a better still than the post's media (a photo instead of a screenshot of text, say), `frameAt` (seconds) to pick the exact video frame, and `crop` (`{ "x", "y", "w", "h" }` as fractions of the image) to choose what the calendar shows. `npm run crop -- <date>` renders the image with a coordinate grid beside every frame it appears in; add `--crop x,y,w,h` (and `--bounds`, or `--image <file|url>` for a candidate picture) to try a crop before writing it. `npm run media` also applies these, replacing the image when `imageUrl` or `frameAt` changes. Curated days (those with a picks file or items whose `collectedBy` isn't `pulse:*`) are never overwritten by the collector. A picks file must list at least one story; curate refuses an empty one, since no day is left blank. Only the first story with a usable source is featured, so any listed after it are fallbacks.
-
-### GitHub Actions
-
-Add one model key as a repository secret (`GEMINI_API_KEY`, `XAI_API_KEY` or `OPENAI_API_KEY`). You can optionally set `LLM_PROVIDER` and `LLM_MODEL` as repository variables.
-
-- **Collect daily pulse** runs at 09:17 and 21:17 UTC (just after Pacific midnight, and mid-afternoon PT) and re-settles the last two complete days, because coverage trails the moment.
-- **Backfill pulse** is manual and takes a `from`/`to` range.
-- **CI** validates data, then lints, typechecks and builds.
-
-## Data format
-
-```jsonc
-{
-  "date": "2026-10-07",
-  "items": [
-    {
-      "id": "2026-10-07-x-short-slug",
-      "platform": "x",              // x | tiktok | instagram | reddit | youtube
-      "rank": 1,
-      "title": "Short punchy title",
-      "summary": "What happened and why it blew up.",
-      "kind": "image",              // video | image | phrase | audio | moment
-      "tags": ["amazon"],
-      "author": "@handle",
-      "sourceUrl": "https://x.com/handle/status/123",   // embedded on the site
-      "metrics": { "likes": "72K", "replies": "377" },
-      "references": [{ "title": "Article", "url": "https://..." }],
-      "image": { "src": "/media/2026-10-07/2026-10-07-x-short-slug.webp", "width": 720, "height": 900, "from": "https://pbs.twimg.com/...", "crop": { "x": 0.2, "y": 0, "w": 0.6, "h": 1 } },
-      "post": { "name": "Display Name", "handle": "@handle", "verified": true, "avatar": "/media/avatars/handle.webp", "text": "The post text" },
-      "pulse": { "score": 8.4, "reach": 9, "dominance": 8, "memeability": 8, "category": "brands", "crossover": false },
-      "collectedBy": "pulse:gemini-3.5-flash-lite",
-      "collectedAt": "2026-10-08T06:17:00Z"
-    }
-  ]
-}
-```
-
-The schema lives in `src/lib/schema.ts` and is enforced by `npm run validate-data`.
+Capsule, the project this repo used to hold, is archived on the `archive/capsule` branch.
