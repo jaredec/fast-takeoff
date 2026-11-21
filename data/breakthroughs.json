@@ -16,6 +16,10 @@
   { "date": "2024-07-25", "title": "AlphaProof wins IMO silver", "org": "Google DeepMind", "why": "AI solves olympiad math problems at the level of the world's best high school students.", "field": "math" },
   { "date": "2025-05-14", "title": "AlphaEvolve breaks a 56-year-old record", "org": "Google DeepMind", "why": "AI finds a faster way to multiply matrices than the method mathematicians had used since 1969.", "field": "math" },
   { "date": "2025-07-19", "title": "AI wins IMO gold", "org": "OpenAI and Google DeepMind", "why": "AI scores gold at the International Math Olympiad, the hardest math contest for students.", "field": "math" },
+  { "date": "2026-05-20", "title": "Erdős unit distance conjecture disproved", "org": "OpenAI", "why": "An AI finds what mathematicians missed for 80 years: points can have far more pairs exactly one unit apart than anyone believed.", "field": "math" },
+  { "date": "2026-07-10", "title": "Cycle double cover conjecture proved", "org": "OpenAI", "why": "An AI proves a 50-year-old conjecture about networks in under an hour, checked by computer.", "field": "math" },
+  { "date": "2026-07-19", "title": "Jacobian conjecture disproved", "org": "Anthropic", "why": "With Claude's help, a mathematician finds a one-line counterexample to an 87-year-old conjecture.", "field": "math" },
+  { "date": "2026-08-01", "title": "Ten open math problems settled", "org": "OpenAI", "why": "An AI resolves ten long-open problems at once, including whether every group can be approximated by finite ones.", "field": "math" },
   { "date": "2026-09-08", "title": "Navier–Stokes solution claimed", "org": "OpenAI", "why": "About 10,000 AI agents produce a checked solution to one of the seven Millennium Prize problems.", "field": "math" },
   { "date": "2026-10-12", "title": "700+ AI-written math papers", "org": "OpenAI", "why": "A Fields Medalist says it \"annihilated my research area.\"", "field": "math" }
 ]

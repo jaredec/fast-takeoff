@@ -7,7 +7,7 @@ export type Field = (typeof FIELDS)[number];
 /** Lab marks in public/logos, for releases. Real marks only. */
 export const LOGOS = [
   "anthropic", "claude", "copilot", "deepmind", "deepseek", "gemini", "gemma", "google", "grok", "ibm", "kimi",
-  "meta", "microsoft", "midjourney", "mistral", "openai", "qwen", "stability", "xai",
+  "meta", "microsoft", "midjourney", "mistral", "openai", "qwen", "stability", "xai", "zhipu",
 ] as const;
 export type Logo = (typeof LOGOS)[number];
 
@@ -37,6 +37,7 @@ const BY_ORG: Record<string, Logo[]> = {
   Alibaba: ["qwen"],
   DeepSeek: ["deepseek"],
   "Moonshot AI": ["kimi"],
+  "Zhipu AI": ["zhipu"],
   "Stability AI": ["stability"],
 };
 
