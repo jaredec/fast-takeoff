@@ -14,6 +14,7 @@ export const eventsSchema = z.array(
     org: z.string().min(1),
     why: z.string().min(1),
     field: z.enum(FIELDS).optional(),
+    icon: z.string().regex(/^[a-z0-9-]+$/).optional(),
   }),
 );
 

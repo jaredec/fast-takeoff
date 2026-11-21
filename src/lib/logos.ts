@@ -1,8 +1,23 @@
 import type { AiEvent } from "./metrics";
 
-/** A breakthrough's field, shown as its icon. Each has a file at public/logos/field-<name>.svg. */
+/** A breakthrough's field. */
 export const FIELDS = ["math", "biology", "medicine", "chemistry", "physics", "weather", "games", "vision"] as const;
 export type Field = (typeof FIELDS)[number];
+
+/**
+ * Each breakthrough has its own icon at public/logos/bt-<icon>.svg: a Lucide or Tabler icon that fits that
+ * breakthrough, stroked at 1.75 in its field's color.
+ */
+export const FIELD_COLORS: Record<Field, string> = {
+  math: "#3f63a0",
+  biology: "#3f8a4a",
+  medicine: "#c0463a",
+  chemistry: "#2a8a8a",
+  physics: "#d07a34",
+  weather: "#3b8bbf",
+  games: "#424242",
+  vision: "#6a5d8f",
+};
 
 /** Lab marks in public/logos, for releases. Real marks only. */
 export const LOGOS = [
@@ -43,7 +58,7 @@ const BY_ORG: Record<string, Logo[]> = {
 
 /** The image files (without .svg) shown for an event, most important first. Empty if nothing fits. */
 export function logosFor(e: AiEvent): string[] {
-  if (e.field) return [`field-${e.field}`];
+  if (e.icon) return [`bt-${e.icon}`];
   const product = BY_PRODUCT.find(([re]) => re.test(e.title));
   if (product) return [product[1]];
   return BY_ORG[e.org] ?? [];
