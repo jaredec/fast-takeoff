@@ -47,7 +47,7 @@ export function SpeedChart({ series, track }: { series: Series; track: Track }) 
   if (!width) return <div className="chart" ref={box} style={{ height }} />;
 
   const maxRate = Math.max(...samples.map((s) => s.perMonth ?? 0));
-  const yMax = Math.max(3, Math.ceil(maxRate * 1.15));
+  const yMax = Math.max(1, Math.ceil(maxRate * 1.15));
   const X = (d: number) => PAD.l + ((d - START) / (series.asOf - START)) * (width - PAD.l - PAD.r);
   const Y = (v: number) => height - PAD.b - (v / yMax) * (height - PAD.t - PAD.b);
 

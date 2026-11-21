@@ -2,8 +2,8 @@ import type { AiEvent } from "./metrics";
 
 /** Files in public/logos. Real marks only: an event with no company gets a pictogram via `image`. */
 export const LOGOS = [
-  "anthropic", "claude", "copilot", "deepmind", "deepseek", "gan", "gemini", "gemma", "google", "grok", "ibm",
-  "kimi", "meta", "microsoft", "midjourney", "mistral", "nobel", "openai", "qwen", "stability", "vision", "xai",
+  "anthropic", "claude", "copilot", "deepmind", "deepseek", "gemini", "gemma", "google", "grok", "ibm", "kimi",
+  "meta", "microsoft", "midjourney", "mistral", "openai", "pill", "qwen", "stability", "vision", "xai",
 ] as const;
 export type Logo = (typeof LOGOS)[number];
 
@@ -25,6 +25,8 @@ const BY_ORG: Record<string, Logo[]> = {
   DeepMind: ["deepmind"],
   "Google DeepMind": ["deepmind"],
   "DeepMind and EMBL": ["deepmind"],
+  "DeepMind and EPFL": ["deepmind"],
+  "Google DeepMind and Isomorphic Labs": ["deepmind"],
   "OpenAI and Google DeepMind": ["openai", "deepmind"],
   IBM: ["ibm"],
   "Microsoft Research": ["microsoft"],

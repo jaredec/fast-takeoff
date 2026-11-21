@@ -18,9 +18,8 @@ The site is served at jaredconnolly.com/fasttakeoff through a routing rule on th
 
 Events live in `data/breakthroughs.json` and `data/releases.json`. `data/meta.json` sets the last curated day (`asOf`) and the ranges not backfilled yet. Run `npm run validate-data` after any edit.
 
-- A breakthrough is something AI could not do before, shown in public for the first time, that clearly beats the previous best or opens a new category, and that people outside AI talked about. Funding, minor updates and hires don't count.
-- A release is a new model from a major lab that people can use by app, API or open weights. New versions count; price cuts and renamed tiers don't.
-- A model can be in both files when its launch was itself a breakthrough.
+- A breakthrough is a first for humankind made by AI: new science, math or medicine (protein folding, a new antibiotic, a solved open problem), or a historic first the whole world noticed (Deep Blue, AlexNet, AlphaGo). Model launches, products, benchmarks and demos are never breakthroughs, however impressive.
+- A release is a new model or AI product from a major lab that people can use by app, API or open weights (GPT-5, Claude Code, Deep Research). New versions count; price cuts and renamed tiers don't.
 - Date an event by the day it was first shown or shipped in US time, not when coverage peaked.
 - Never invent an event or a date. Leave a gap and mark the range in `meta.json` instead.
 - `why` is one plain sentence a non-expert would understand.
