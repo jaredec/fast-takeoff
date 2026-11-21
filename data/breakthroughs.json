@@ -2,6 +2,7 @@
   { "date": "1997-05-11", "title": "Deep Blue beats Kasparov", "org": "IBM", "why": "The first computer to beat a reigning world chess champion in a match.", "field": "games" },
   { "date": "2012-09-30", "title": "AlexNet wins ImageNet", "org": "University of Toronto", "why": "A neural net learns to recognize images far better than anything before it, and the deep learning era starts.", "field": "vision" },
   { "date": "2016-03-12", "title": "AlphaGo beats Lee Sedol", "org": "DeepMind", "why": "A machine wins at Go, the hardest board game, a decade before experts expected.", "field": "games" },
+  { "date": "2017-12-05", "title": "AlphaZero beats Stockfish", "org": "DeepMind", "why": "Teaches itself chess from scratch in hours, then beats Stockfish, the strongest chess engine.", "field": "games" },
   { "date": "2018-12-02", "title": "AlphaFold wins CASP13", "org": "DeepMind", "why": "AI predicts the shapes of proteins better than any lab method in the field's main contest.", "field": "biology" },
   { "date": "2020-02-20", "title": "AI finds a new antibiotic", "org": "MIT", "why": "A neural network discovers halicin, which kills bacteria that resist existing drugs.", "field": "medicine" },
   { "date": "2020-11-30", "title": "AlphaFold 2 solves protein folding", "org": "DeepMind", "why": "Predicting a protein's shape from its sequence, a 50-year-old problem in biology, is effectively solved.", "field": "biology" },

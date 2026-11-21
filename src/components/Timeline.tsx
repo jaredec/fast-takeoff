@@ -7,32 +7,53 @@ import { logosFor } from "@/lib/logos";
 import { formatDay, fromDay, isUntracked, toDay, type DayEvent, type Series } from "@/lib/metrics";
 import { useTip } from "./Tip";
 
-const GAP = 3;
+const GAP = 2;
+/** Half the height of the band around the axis that holds the year labels. */
+const BAND = 11;
 /** AlexNet, where the deep learning era starts. Both tracks share this axis. */
 const START = toDay("2012-09-30");
 
 /**
- * Each event sits at its true date; events that would overlap stack upward. Under the axis, one
- * square per day in week columns, on the same scale so a column sits under its week.
+ * Each event sits at its true date, on whichever side of the axis has room closest to it. Circles
+ * shrink where events crowd. Under it all, one square per day in week columns, on the same scale.
  */
 function layout(s: Series, narrow: boolean) {
-  const size = narrow ? 28 : 34;
+  const maxSize = narrow ? 28 : 34;
+  const minSize = narrow ? 10 : 12;
   const cell = narrow ? 7 : 10;
   const pitch = cell + 2;
   const perDay = pitch / 7;
-  const pad = size + 24;
+  const pad = maxSize + 24;
   const x = (day: number) => pad + (day - START) * perDay;
-  const width = x(s.asOf) + 80;
+  const width = x(s.asOf) + 110;
 
   const events = s.events.filter((e) => e.day >= START);
-  const right: number[] = [];
-  const levels = events.map((e) => {
-    const at = x(e.day);
-    let level = right.findIndex((r) => at - r >= size + GAP);
-    if (level < 0) level = right.length;
-    right[level] = at;
-    return level;
+  const xs = events.map((e) => x(e.day));
+  const sizes = xs.map((xi) => {
+    const crowd = xs.filter((xj) => Math.abs(xj - xi) <= maxSize * 1.5).length;
+    return crowd <= 2 ? maxSize : Math.max(minSize, Math.round(maxSize * Math.sqrt(2 / crowd)));
   });
+
+  // Beeswarm: each circle takes the spot nearest the axis that touches nothing placed before it.
+  const placed: { x: number; y: number; r: number }[] = [];
+  const ys = xs.map((xi, i) => {
+    const r = sizes[i] / 2;
+    const clear = (p: (typeof placed)[number]) => p.r + r + GAP;
+    const near = placed.filter((p) => Math.abs(p.x - xi) < clear(p));
+    const base = BAND + r;
+    const options = [base, -base];
+    for (const p of near) {
+      const dy = Math.sqrt(Math.max(0, clear(p) ** 2 - (xi - p.x) ** 2));
+      options.push(p.y + dy, p.y - dy);
+    }
+    const y = options
+      .filter((o) => Math.abs(o) >= base - 0.01 && near.every((p) => (p.x - xi) ** 2 + (p.y - o) ** 2 >= clear(p) ** 2 - 0.01))
+      .sort((a, b) => Math.abs(a) - Math.abs(b) || b - a)[0];
+    placed.push({ x: xi, y, r });
+    return y;
+  });
+  const above = Math.max(BAND, ...placed.map((p) => p.y + p.r));
+  const below = Math.max(BAND, ...placed.map((p) => -p.y + p.r));
 
   const years: { year: number; x: number }[] = [];
   for (let year = fromDay(START).getUTCFullYear() + 1; year <= fromDay(s.asOf).getUTCFullYear(); year++) {
@@ -54,10 +75,10 @@ function layout(s: Series, narrow: boolean) {
   }
 
   const gridHeight = 7 * pitch;
-  const axis = gridHeight + 34;
-  const height = (Math.max(0, ...levels) + 1) * (size + GAP) + axis + 18;
-  const marks = events.map((e, i) => ({ e, x: x(e.day), level: levels[i], logos: logosFor(e) }));
-  return { size, cell, width, marks, years, bands, days, gridLeft: x(gridStart), axis, height, now: x(s.asOf) };
+  const axis = gridHeight + 22 + below;
+  const height = axis + above + 14;
+  const marks = events.map((e, i) => ({ e, x: xs[i], y: ys[i], size: sizes[i], logos: logosFor(e) }));
+  return { cell, width, marks, years, bands, days, gridLeft: x(gridStart), axis, above, below, height, now: x(s.asOf) };
 }
 
 export function Timeline({ series }: { series: Series }) {
@@ -83,8 +104,8 @@ export function Timeline({ series }: { series: Series }) {
 
   const first = view.marks[0]?.x ?? 0;
   useEffect(() => {
-    if (ref.current) ref.current.scrollLeft = first - view.size - 24;
-  }, [first, view.size]);
+    if (ref.current) ref.current.scrollLeft = first - 60;
+  }, [first]);
 
   const show = (e: DayEvent, x: number, y: number) =>
     tip.show(
@@ -126,33 +147,34 @@ export function Timeline({ series }: { series: Series }) {
           <div
             key={i}
             className="swarm-gap"
-            style={{ left: b.left, width: b.right - b.left, bottom: view.axis }}
+            style={{ left: b.left, width: b.right - b.left, bottom: view.axis - view.below, height: view.above + view.below }}
             onPointerMove={(ev) => tip.show(<b>Not backfilled yet</b>, ev.clientX, ev.clientY)}
             onPointerLeave={leave}
           />
         ))}
         <div className="swarm-axis" style={{ bottom: view.axis }} />
         {view.years.map((y) => (
-          <div key={y.year} className="swarm-year" style={{ left: y.x, bottom: view.axis - 4 }}>
-            <span>{y.year}</span>
-          </div>
+          <span key={y.year} className="swarm-year" style={{ left: y.x, bottom: view.axis }}>
+            {y.year}
+          </span>
         ))}
         <div className="swarm-now" style={{ left: view.now, bottom: view.axis }}>
           <i />
           <span>Now</span>
         </div>
-        {view.marks.map(({ e, x, level, logos }, i) => (
+        {view.marks.map(({ e, x, y, size, logos }, i) => (
           <button
             key={`${e.date}-${i}`}
             className="mark"
             aria-label={`${e.title}, ${formatDay(e.day)}`}
             style={
               {
-                left: x - view.size / 2,
-                bottom: view.axis + 5 + level * (view.size + GAP),
-                width: view.size,
-                height: view.size,
+                left: x - size / 2,
+                bottom: view.axis + y - size / 2,
+                width: size,
+                height: size,
                 "--t": Math.min(1, x / 1400).toFixed(3),
+                "--grow": Math.max(1.3, 30 / size).toFixed(2),
               } as CSSProperties
             }
             onPointerMove={(ev) => ev.pointerType === "mouse" && show(e, ev.clientX, ev.clientY)}
