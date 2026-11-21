@@ -2,9 +2,10 @@
 
 import { useMemo, useState } from "react";
 import type { Dataset } from "@/lib/data";
-import { formatDay, makeSeries, toDay, TRACK_INFO, TRACKS, type Track, type Unit } from "@/lib/metrics";
+import { makeSeries, TRACK_INFO, TRACKS, type Track, type Unit } from "@/lib/metrics";
 import { DayGrid } from "./DayGrid";
 import { Index } from "./Index";
+import { Header, Sidebar } from "./Nav";
 import { SpeedChart } from "./SpeedChart";
 import { Timeline } from "./Timeline";
 import { TipProvider } from "./Tip";
@@ -12,51 +13,45 @@ import { TipProvider } from "./Tip";
 export function Dashboard({ meta, tracks }: Dataset) {
   const [unit, setUnit] = useState<Unit>("month");
   const [track, setTrack] = useState<Track>("breakthroughs");
+  const [toggled, setToggled] = useState(false);
   const series = useMemo(
     () => ({ breakthroughs: makeSeries(tracks.breakthroughs, meta), releases: makeSeries(tracks.releases, meta) }),
     [meta, tracks],
   );
   const s = series[track];
 
-  const head = (title: string) => (
-    <div className="section-head">
-      <h2>{title}</h2>
-      <span className="tabs">
-        {TRACKS.map((t) => (
-          <button key={t} aria-pressed={t === track} onClick={() => setTrack(t)}>
-            {TRACK_INFO[t].label}
-          </button>
-        ))}
-      </span>
-    </div>
-  );
-
   return (
     <TipProvider>
-      <main className="page" data-track={track}>
-        <h1>Fast Takeoff</h1>
-        <p className="lede">How fast is AI moving? Updated {formatDay(toDay(meta.asOf))}.</p>
+      <Header onMenu={() => setToggled((t) => !t)} />
+      <div className="layout" data-track={track} data-toggled={toggled}>
+        <Sidebar onClose={() => setToggled(false)} track={track} onTrack={setTrack} series={s} />
+        <main className="main">
+          <Index series={series.breakthroughs} unit={unit} onUnit={setUnit} />
 
-        <Index breakthroughs={series.breakthroughs} releases={series.releases} unit={unit} onUnit={setUnit} />
-
-        <section className="section">
-          {head("Timeline")}
-          <div className="wide">
-            <Timeline key={track} series={s} />
+          <div className="tabs" role="tablist">
+            {TRACKS.map((t) => (
+              <button key={t} role="tab" aria-selected={t === track} onClick={() => setTrack(t)}>
+                {TRACK_INFO[t].label}
+              </button>
+            ))}
           </div>
-        </section>
 
-        <section className="section">
-          {head("Speed")}
-          <SpeedChart series={s} track={track} />
-        </section>
+          <section id="timeline" className="card">
+            <h2 className="card-title">Timeline</h2>
+            <Timeline key={track} series={s} />
+          </section>
 
-        <section className="section">
-          {head("Every day")}
-          <DayGrid key={track} series={s} />
-        </section>
+          <section id="speed" className="card">
+            <h2 className="card-title">Speed</h2>
+            <SpeedChart series={s} track={track} />
+          </section>
 
-      </main>
+          <section id="every-day" className="card">
+            <h2 className="card-title">Every day</h2>
+            <DayGrid key={track} series={s} />
+          </section>
+        </main>
+      </div>
     </TipProvider>
   );
 }

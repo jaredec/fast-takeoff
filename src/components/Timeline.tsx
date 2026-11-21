@@ -65,6 +65,11 @@ export function Timeline({ series }: { series: Series }) {
     return () => el.removeEventListener("wheel", onWheel);
   }, []);
 
+  const first = view.marks[0]?.x ?? 0;
+  useEffect(() => {
+    if (ref.current) ref.current.scrollLeft = first - view.size - 24;
+  }, [first, view.size]);
+
   const show = (e: DayEvent, x: number, y: number) =>
     tip.show(
       <>
