@@ -12,6 +12,7 @@ export function Dashboard({ meta, tracks }: Dataset) {
   const [unit, setUnit] = useState<Unit>("month");
   const [track, setTrack] = useState<Track>("breakthroughs");
   const [toggled, setToggled] = useState(false);
+  const [zoomedOut, setZoomedOut] = useState(false);
   const series = useMemo(
     () => ({ breakthroughs: makeSeries(tracks.breakthroughs, meta), releases: makeSeries(tracks.releases, meta) }),
     [meta, tracks],
@@ -51,7 +52,7 @@ export function Dashboard({ meta, tracks }: Dataset) {
 
           <section id="timeline" className="card">
             <h2 className="card-title">Timeline</h2>
-            <Timeline key={track} series={s} />
+            <Timeline key={track} series={s} zoomedOut={zoomedOut} onZoom={setZoomedOut} />
           </section>
         </main>
       </div>

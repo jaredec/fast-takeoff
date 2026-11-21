@@ -332,8 +332,31 @@ a.side-item:hover {
   scrollbar-width: thin;
   mask-image: linear-gradient(to right, transparent, #000 1.5rem, #000 calc(100% - 4rem), transparent);
 }
+.swarm[data-fit] {
+  mask-image: none;
+}
 .swarm-track {
   position: relative;
+}
+#timeline {
+  position: relative;
+}
+.zoom {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  color: var(--meta);
+}
+.zoom:hover,
+.zoom:focus-visible {
+  color: var(--ink);
+  background: rgba(0, 0, 0, 0.05);
+  outline: none;
 }
 .swarm-axis {
   position: absolute;
@@ -403,7 +426,11 @@ a.side-item:hover {
   transition:
     scale 0.18s ease,
     opacity 0.18s ease,
-    box-shadow 0.18s ease;
+    box-shadow 0.18s ease,
+    left 0.4s ease,
+    bottom 0.4s ease,
+    width 0.4s ease,
+    height 0.4s ease;
   animation: drop 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.15) backwards;
   animation-delay: calc(var(--t) * 1.1s);
 }
@@ -487,6 +514,35 @@ a.side-item:hover {
   cursor: pointer;
 }
 .days i:hover {
+  outline: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+/* Zoomed out, one square per month. */
+.months {
+  position: absolute;
+  inset: auto 0 4px;
+  height: 10px;
+}
+.months i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: 1px;
+  background: #ebedf0;
+}
+.months i.l1 {
+  background: var(--c1);
+}
+.months i.l2 {
+  background: var(--c2);
+}
+.months i.l3 {
+  background: var(--c3);
+}
+.months i.un {
+  background: repeating-linear-gradient(135deg, #e2e3df 0 2px, transparent 2px 4px);
+}
+.months i:hover {
   outline: 1px solid rgba(0, 0, 0, 0.5);
 }
 
