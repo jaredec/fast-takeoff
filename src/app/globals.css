@@ -206,8 +206,11 @@ a.side-item:hover {
   color: #000;
   line-height: 1.2;
 }
-.spot {
+.def {
   margin-top: 0;
+}
+.def .spot-def {
+  margin-top: 6px;
 }
 .spot-sub {
   font-family: var(--serif);

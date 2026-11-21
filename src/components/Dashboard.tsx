@@ -24,6 +24,15 @@ export function Dashboard({ meta, tracks }: Dataset) {
       <div className="layout" data-track={track} data-toggled={toggled}>
         <Sidebar onClose={() => setToggled(false)} track={track} onTrack={setTrack} series={s} />
         <main className="main">
+          <section className="card def">
+            <h1 className="card-title">Fast takeoff</h1>
+            <p className="spot-sub">noun</p>
+            <p className="spot-def">
+              AI going from human level to far beyond it in months, days or less.{" "}
+              <a href="https://www.lesswrong.com/w/ai-takeoff">More on LessWrong</a>
+            </p>
+          </section>
+
           <Index series={series.breakthroughs} unit={unit} onUnit={setUnit} />
 
           <div className="tabs" role="tablist">
