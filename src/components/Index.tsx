@@ -11,6 +11,10 @@ export function Index({ series, unit, onUnit }: { series: Series; unit: Unit; on
     <section id="index" className="card spot">
       <h1 className="card-title">The Fast Takeoff Index</h1>
       <p className="spot-sub">Updated {formatDay(r.asOf)}</p>
+      <p className="spot-def">
+        A <a href="https://www.lesswrong.com/w/ai-takeoff">fast takeoff</a> is AI going from human level to far beyond
+        it in months, days or less. This tracks how fast we&rsquo;re heading there.
+      </p>
       <div className="index">
         <Gauge fraction={r.fraction} />
         <div>

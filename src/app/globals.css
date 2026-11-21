@@ -216,6 +216,13 @@ a.side-item:hover {
   color: rgba(0, 0, 0, 0.6);
   margin-top: 2px;
 }
+.spot-def {
+  max-width: 36rem;
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: rgba(0, 0, 0, 0.75);
+}
 .tabs {
   display: flex;
   gap: 6px;
