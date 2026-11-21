@@ -24,3 +24,4 @@ Events live in `data/breakthroughs.json` and `data/releases.json`. `data/meta.js
 - Date an event by the day it was first shown or shipped in US time, not when coverage peaked.
 - Never invent an event or a date. Leave a gap and mark the range in `meta.json` instead.
 - `why` is one plain sentence a non-expert would understand.
+- The timeline shows each event's logo, picked by `src/lib/logos.ts` from the title or org. A new lab needs its real mark in `public/logos`. An event with no company gets a pictogram through `image`. Never draw or invent a logo.

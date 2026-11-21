@@ -22,7 +22,7 @@ export function Index({
     <section id="index" className="index">
       <Gauge fraction={r.fraction} />
       <div>
-        <p className="kicker">As of {formatDay(r.asOf)}, AI is moving at</p>
+        <p className="kicker">AI is moving at</p>
         <p className="big">{formatRate(value)}</p>
         <div className="unitline">
           <span>breakthroughs a {unit}</span>
@@ -45,7 +45,7 @@ export function Index({
           <dd>{r.rate && r.rate.perDay > 0 ? formatInterval(1 / r.rate.perDay) : "n/a"}</dd>
         </div>
         <div>
-          <dt>vs. ten years ago</dt>
+          <dt>vs. 10 years ago</dt>
           <dd>{r.vsTenYears ? `${Math.round(r.vsTenYears)}× faster` : "n/a"}</dd>
         </div>
         <div>
@@ -53,7 +53,7 @@ export function Index({
           <dd>{rel.rate ? `${formatRate(rel.rate.perDay * MONTH)} a month` : "n/a"}</dd>
         </div>
         <div>
-          <dt>Latest breakthrough</dt>
+          <dt>Latest</dt>
           <dd>{r.latest ? `${r.latest.title}, ${formatDay(r.latest.day, { month: "short", day: "numeric" })}` : "n/a"}</dd>
         </div>
       </dl>

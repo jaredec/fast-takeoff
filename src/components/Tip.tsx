@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 
 type TipApi = { show: (content: ReactNode, x: number, y: number) => void; hide: () => void };
 
@@ -16,6 +16,17 @@ export function TipProvider({ children }: { children: ReactNode }) {
     () => ({ show: (content, x, y) => setTip({ content, x, y }), hide: () => setTip(null) }),
     [],
   );
+  const open = tip !== null;
+  useEffect(() => {
+    if (!open) return;
+    const hide = () => setTip(null);
+    addEventListener("pointerdown", hide, true);
+    addEventListener("scroll", hide, true);
+    return () => {
+      removeEventListener("pointerdown", hide, true);
+      removeEventListener("scroll", hide, true);
+    };
+  }, [open]);
   return (
     <TipContext.Provider value={api}>
       {children}

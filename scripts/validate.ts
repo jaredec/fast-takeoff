@@ -1,4 +1,5 @@
 import { loadDataset } from "../src/lib/data";
+import { logosFor } from "../src/lib/logos";
 import { TRACKS, toDay } from "../src/lib/metrics";
 
 const { meta, tracks } = loadDataset();
@@ -16,6 +17,7 @@ for (const track of TRACKS) {
     if (Number.isNaN(day)) problems.push(`${where}: invalid date`);
     if (day > asOf) problems.push(`${where}: after asOf ${meta.asOf}`);
     if (untracked.some(([a, b]) => day >= a && day <= b)) problems.push(`${where}: inside an untracked range`);
+    if (!logosFor(e).length) problems.push(`${where}: no logo for "${e.org}"; add one to src/lib/logos.ts or set "image"`);
     const key = `${e.date}|${e.title}`;
     if (seen.has(key)) problems.push(`${where}: duplicate`);
     seen.add(key);

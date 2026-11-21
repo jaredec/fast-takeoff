@@ -1,7 +1,7 @@
 export type Track = "breakthroughs" | "releases";
 export const TRACKS: Track[] = ["breakthroughs", "releases"];
 
-export type AiEvent = { date: string; title: string; org: string; why: string };
+export type AiEvent = { date: string; title: string; org: string; why: string; image?: string };
 export type Meta = { asOf: string; untracked: [string, string][] };
 export type DayEvent = AiEvent & { day: number };
 
@@ -114,15 +114,6 @@ export function formatInterval(days: number) {
   return `${(days / 365.25).toFixed(days < 3650 ? 1 : 0)} years`;
 }
 
-export function formatGap(days: number) {
-  if (days === 0) return "same day";
-  if (days === 1) return "1 day";
-  if (days < 21) return `${days} days`;
-  if (days < 75) return `${Math.round(days / 7)} wks`;
-  if (days < 700) return `${Math.round(days / MONTH)} mo`;
-  return `${(days / 365.25).toFixed(days < 3650 ? 1 : 0)} yrs`;
-}
-
 export type Reading = {
   asOf: number;
   rate: Rate | null;
@@ -156,21 +147,4 @@ export function countsByYear(s: Series, from: number, to: number) {
     out.push({ year: y, count: countIn(s, toDay(`${y}-01-01`), Math.min(s.asOf, toDay(`${y}-12-31`))) });
   }
   return out;
-}
-
-/** The text of the daily post on X. */
-export function postText(track: Track, r: Reading, unit: Unit) {
-  const value = formatRate(r.rate ? r.rate.perDay * UNITS[unit] : 0);
-  const every = r.rate && r.rate.perDay > 0 ? formatInterval(1 / r.rate.perDay) : null;
-  const lines =
-    track === "breakthroughs"
-      ? [`AI is now moving at ${value} breakthroughs a ${unit}.`]
-      : [`AI labs are shipping ${value} new models a ${unit}.`];
-  if (every) {
-    const faster = r.vsTenYears && r.vsTenYears >= 1.5 ? `, ${Math.round(r.vsTenYears)}× faster than ten years ago` : "";
-    lines.push(`That's one every ${every}${faster}.`);
-  }
-  if (track === "breakthroughs") lines.push(`Zone: ${r.zone.name}`);
-  lines.push("thefasttakeoff.com");
-  return lines.join("\n\n");
 }
