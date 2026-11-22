@@ -55,7 +55,7 @@ export function Dashboard({ meta, tracks }: Dataset) {
                 ))}
               </div>
             </div>
-            <Timeline key={track} series={s} range={range} />
+            <Timeline series={s} range={range} />
           </section>
         </main>
       </div>

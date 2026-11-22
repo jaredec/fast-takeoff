@@ -349,7 +349,6 @@ a.side-item:hover {
 .swarm {
   position: relative;
   margin-top: 22px;
-  transition: height 0.4s ease;
 }
 .swarm-axis {
   position: absolute;
@@ -422,8 +421,7 @@ a.side-item:hover {
     bottom 0.45s ease,
     width 0.45s ease,
     height 0.45s ease;
-  animation: drop 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.15) backwards;
-  animation-delay: calc(var(--t) * 0.9s);
+  animation: appear 0.25s ease backwards;
 }
 .mark-icon,
 .feed-icon {
@@ -468,10 +466,9 @@ a.side-item:hover {
     0 0 0 1.5px var(--accent),
     0 6px 14px rgba(0, 0, 0, 0.14);
 }
-@keyframes drop {
+@keyframes appear {
   from {
     opacity: 0;
-    transform: translateY(-18px) scale(0.5);
   }
 }
 @media (prefers-reduced-motion: reduce) {

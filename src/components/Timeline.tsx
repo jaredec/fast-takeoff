@@ -24,6 +24,8 @@ export const RANGES = [
 export type Range = (typeof RANGES)[number]["id"];
 
 const keyOf = (e: DayEvent) => `${e.date} ${e.title}`;
+/** How tall the swarm may grow, axis centered. */
+const roomFor = (narrow: boolean) => (narrow ? 190 : 260);
 
 /** Beeswarm: each circle takes the spot nearest the axis that touches nothing placed before it. */
 function swarm(xs: number[], size: number) {
@@ -51,12 +53,13 @@ function swarm(xs: number[], size: number) {
 
 /**
  * Every event in the range at its true date, fitted to `width`, on whichever side of the axis has room
- * closest to it. All circles share the largest size that keeps the swarm within `room` pixels tall.
+ * closest to it. All circles share the largest size that keeps each side of the axis within half of
+ * `room`, so the axis sits at the same height whatever the track or range.
  */
 function layout(s: Series, from: number, width: number, narrow: boolean) {
   const maxSize = narrow ? 24 : 30;
   const minSize = narrow ? 5 : 6;
-  const room = narrow ? 190 : 270;
+  const room = roomFor(narrow);
   const pad = maxSize / 2 + 6;
   const perDay = (width - pad - 44) / (s.asOf - from);
   const x = (day: number) => pad + (day - from) * perDay;
@@ -65,8 +68,10 @@ function layout(s: Series, from: number, width: number, narrow: boolean) {
   const xs = events.map((e) => x(e.day));
   let size = maxSize;
   let swarmed = swarm(xs, size);
-  while (size > minSize && swarmed.above + swarmed.below > room) swarmed = swarm(xs, --size);
-  const { ys, above, below } = swarmed;
+  while (size > minSize && Math.max(swarmed.above, swarmed.below) > room / 2) swarmed = swarm(xs, --size);
+  const { ys } = swarmed;
+  const above = room / 2;
+  const below = room / 2;
 
   // Years across long ranges, months across short ones, with the year on each January.
   const ticks: { key: number; x: number; label: string }[] = [];
@@ -162,7 +167,7 @@ export function Timeline({ series, range }: { series: Series; range: Range }) {
 
   return (
     <>
-      <div className="swarm" ref={ref} style={{ height: view?.height ?? 200 }} data-active={active ? "" : undefined}>
+      <div className="swarm" ref={ref} style={{ height: roomFor(narrow) + 24 }} data-active={active ? "" : undefined}>
         {view && (
           <>
             {view.bands.map((b, i) => (
@@ -196,7 +201,6 @@ export function Timeline({ series, range }: { series: Series; range: Range }) {
                     bottom: view.axis + y - view.size / 2,
                     width: view.size,
                     height: view.size,
-                    "--t": (x / width).toFixed(3),
                     "--grow": Math.max(1.3, 30 / view.size).toFixed(2),
                   } as CSSProperties
                 }
