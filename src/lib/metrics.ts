@@ -7,7 +7,7 @@ export type DayEvent = AiEvent & { day: number };
 
 export const TRACK_INFO: Record<Track, { label: string; noun: string; color: string; rgb: [number, number, number] }> = {
   breakthroughs: { label: "Breakthroughs", noun: "breakthroughs", color: "#5f9b65", rgb: [75, 143, 58] },
-  releases: { label: "Releases", noun: "model releases", color: "#4a6fa5", rgb: [63, 99, 160] },
+  releases: { label: "Frontier releases", noun: "frontier releases", color: "#4a6fa5", rgb: [63, 99, 160] },
 };
 
 export const DAY_MS = 864e5;

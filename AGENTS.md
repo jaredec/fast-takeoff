@@ -19,7 +19,7 @@ The site is served at jaredconnolly.com/fasttakeoff through a routing rule on th
 Events live in `data/breakthroughs.json` and `data/releases.json`. `data/meta.json` sets the last curated day (`asOf`) and the ranges not backfilled yet. Run `npm run validate-data` after any edit.
 
 - A breakthrough is a first for humankind made by AI: new science, math or medicine (protein folding, a new antibiotic, a solved open problem), or a historic first the whole world noticed (Deep Blue, AlexNet, AlphaGo). Model launches, products, benchmarks and demos are never breakthroughs, however impressive.
-- A release is a new model or AI product from a major lab that people can use by app, API or open weights (GPT-5, Claude Code, Deep Research). New versions count; price cuts and renamed tiers don't.
+- A release is a frontier release: a lab's new most capable model, shipped so people can use it by app, API or open weights (GPT-5, Claude Fable 5.2, Gemini 4 Carbon). Cheaper or smaller tiers (Flash under a newer Pro, Sonnet under Opus, mini models), image, video and voice models, coding spin-offs and apps don't count. Date it by the day people could first use it.
 - Date an event by the day it was first shown or shipped in US time, not when coverage peaked.
 - Never invent an event or a date. Leave a gap and mark the range in `meta.json` instead.
 - A breakthrough's `title` leads with the result and why it matters ("Protein folding solved", "Riemann hypothesis proved"), not with "AI did X" and not with a version name ("AlphaFold 3"). Iconic names can stand alone ("AlexNet"). Name the system in `why`.

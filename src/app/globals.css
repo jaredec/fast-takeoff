@@ -231,7 +231,7 @@ a.side-item:hover {
   margin-top: 32px;
 }
 .tabs button {
-  width: 120px;
+  min-width: 120px;
   height: 31px;
   padding: 4px 8px;
   border-radius: 3px;
