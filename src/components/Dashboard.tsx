@@ -26,13 +26,11 @@ export function Dashboard({ meta, tracks }: Dataset) {
         <Sidebar onClose={() => setToggled(false)} track={track} onTrack={setTrack} series={s} />
         <main className="main">
           <section className="card def">
-            <h1 className="card-title">Fast takeoff</h1>
-            <p className="spot-sub">noun</p>
-            <p className="spot-def">
-              The jump from AI about as smart as a person to AI far smarter than any person, happening in days or even
-              hours rather than years. It usually comes from AI improving itself, with each improvement making the next
-              one come faster.
-            </p>
+            <h1 className="spot-def">
+              <dfn>Fast takeoff</dfn> refers to a scenario in which an AI transitions rapidly from roughly human-level
+              intelligence to vastly superhuman intelligence, with the change occurring over a very short
+              period&mdash;potentially days or even hours.
+            </h1>
           </section>
 
           <Index series={series.breakthroughs} unit={unit} onUnit={setUnit} />

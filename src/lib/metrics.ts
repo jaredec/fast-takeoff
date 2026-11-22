@@ -71,8 +71,10 @@ export function rateAt(s: Series, asOf: number, window = 90): Rate | null {
 }
 
 export const ZONES = [
+  { name: "AI winter", max: 0.1, color: "#9db3c9" },
   { name: "Slow takeoff", max: 1, color: "#e2c06a" },
-  { name: "Fast takeoff", max: 6, color: "#c4513b" },
+  { name: "Fast takeoff", max: 6, color: "#df7a45" },
+  { name: "Singularity", max: 30, color: "#b8392c" },
 ] as const;
 export type Zone = (typeof ZONES)[number];
 

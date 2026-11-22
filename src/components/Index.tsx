@@ -12,7 +12,7 @@ export function Index({ series, unit, onUnit }: { series: Series; unit: Unit; on
       <h2 className="card-title">The Fast Takeoff Index</h2>
       <p className="spot-sub">Updated {formatDay(r.asOf)}</p>
       <div className="index">
-        <Gauge fraction={r.fraction} />
+        <Gauge fraction={r.fraction} value={formatRate(value)} zone={r.zone.name} />
         <div>
           <p className="kicker">AI is moving at</p>
           <p className="big">{formatRate(value)}</p>
