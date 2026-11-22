@@ -16,7 +16,9 @@ The site is served at jaredconnolly.com/fasttakeoff through a routing rule on th
 
 ## The index
 
-The Fast Takeoff Index reads `data/takeoff.json`: METR's time horizon doubling time, its confidence range and the best public model's time horizon, copied from METR's latest update. Update it when METR publishes a new one, never estimate it. Zones are set in `src/lib/takeoff.ts`.
+The Fast Takeoff Index is our own 0–100 estimate, built like CNN's Fear & Greed Index: each signal scores 50 at its old pace and 25 points more for every eightfold speedup, and the index is their plain average (`readIndex` in `src/lib/takeoff.ts`). The signals are METR's time horizon doubling time, Epoch AI's Capabilities Index trend, the Metaculus community date for general AI, and the average gap between breakthroughs and between frontier releases from our own data.
+
+The sourced figures live in `data/takeoff.json`, copied from each source's latest update with its date and link. Update them when a source publishes, never estimate them. For Metaculus, record the date you read the median and keep a reading from about a year earlier in `before`.
 
 ## Curating events
 

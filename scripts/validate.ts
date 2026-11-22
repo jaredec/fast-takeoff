@@ -10,8 +10,13 @@ const problems: string[] = [];
 const icons = new Set<string>();
 
 for (const [a, b] of untracked) if (a > b) problems.push(`meta: untracked range ${a} is backwards`);
-if (!(takeoff.low <= takeoff.doublingMonths && takeoff.doublingMonths <= takeoff.high))
-  problems.push("takeoff: doublingMonths must sit between low and high");
+const { metr, epoch, metaculus } = takeoff;
+if (!(metr.low <= metr.doublingMonths && metr.doublingMonths <= metr.high))
+  problems.push("takeoff: metr.doublingMonths must sit between low and high");
+if (!(epoch.low <= epoch.perYear && epoch.perYear <= epoch.high))
+  problems.push("takeoff: epoch.perYear must sit between low and high");
+if (toDay(metaculus.before.read) >= toDay(metaculus.now.read))
+  problems.push("takeoff: metaculus.before must be read before metaculus.now");
 
 for (const track of TRACKS) {
   const seen = new Set<string>();

@@ -41,7 +41,7 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
             even hours.
           </p>
 
-          <Index takeoff={takeoff} />
+          <Index takeoff={takeoff} series={series} />
 
           <Gaps series={series} />
 

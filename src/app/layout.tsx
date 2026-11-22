@@ -10,12 +10,12 @@ const card = {
   url: `https://www.jaredconnolly.com${BASE_PATH}/card/breakthroughs/month`,
   width: CARD_SIZE.width,
   height: CARD_SIZE.height,
-  alt: "The Fast Takeoff Index: how often the length of task AI can finish alone doubles",
+  alt: "The Fast Takeoff Index: how fast AI is moving, out of 100",
 };
 
 export const metadata: Metadata = {
   title: "Fast Takeoff: how fast is AI moving?",
-  description: "How fast AI is improving, from METR's time horizon trend, with every AI breakthrough and frontier release.",
+  description: "How fast AI is moving, out of 100, from METR, Epoch AI, Metaculus forecasters and every AI breakthrough and frontier release.",
   openGraph: { title: "Fast Takeoff", description: "How fast is AI moving? Tracked daily.", images: [card] },
   twitter: { card: "summary_large_image", site: "@thefasttakeoff", images: [card] },
 };

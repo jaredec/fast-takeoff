@@ -10,13 +10,12 @@ import {
   formatRate,
   fromDay,
   rateAt,
-  toDay,
   TRACK_INFO,
   UNITS,
   type Track,
   type Unit,
 } from "./metrics";
-import { formatMonths, gaugeFraction, loadTakeoff, zoneFor } from "./takeoff";
+import { loadTakeoff, readIndex, zoneFor } from "./takeoff";
 
 const fontDir = join(process.cwd(), "assets/fonts");
 const fonts = Promise.all(
@@ -29,15 +28,15 @@ const INK = "#2b2b2b";
 const META = "#757575";
 const RULE = "rgba(0,0,0,.12)";
 
-function GaugePanel({ months }: { months: number }) {
-  const zone = zoneFor(months);
+function GaugePanel({ score }: { score: number }) {
+  const zone = zoneFor(score);
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
       <svg width={460} height={258} viewBox="0 0 300 168">
         {zoneArcs(150, 150, 116).map(({ zone, d }) => (
           <path key={zone.name} d={d} stroke={zone.color} strokeWidth={22} fill="none" />
         ))}
-        <polygon points={needlePoints(150, 150, 88, gaugeFraction(months), 4.5)} fill="#424242" />
+        <polygon points={needlePoints(150, 150, 88, score / 100, 4.5)} fill="#424242" />
         <circle cx={150} cy={150} r={9} fill="#424242" />
         <circle cx={150} cy={150} r={3.5} fill="#fff" />
       </svg>
@@ -76,16 +75,15 @@ function BarsPanel({ track }: { track: Track }) {
 
 export async function renderCard(track: Track, unit: Unit) {
   const series = loadSeries(track);
-  const t = loadTakeoff();
   const [roman, italic, bold] = await fonts;
   const index = track === "breakthroughs";
   const rate = rateAt(series, series.asOf, 90);
-  const value = index ? formatMonths(t.doublingMonths) : formatRate(rate ? rate.perDay * UNITS[unit] : 0);
-  const lines = index
-    ? [
-        `${t.source}, ${formatDay(toDay(t.date), { month: "short", day: "numeric", year: "numeric" })}`,
-        `Best model: ${t.frontier.hours}-hour tasks (${t.frontier.model})`,
-      ]
+  const reading = index
+    ? readIndex(loadTakeoff(), { breakthroughs: loadSeries("breakthroughs"), releases: loadSeries("releases") })
+    : null;
+  const value = reading ? String(Math.round(reading.score)) : formatRate(rate ? rate.perDay * UNITS[unit] : 0);
+  const lines = reading
+    ? ["From METR, Epoch AI and Metaculus", "and the pace of breakthroughs and releases"]
     : [rate && rate.perDay > 0 ? `One every ${formatInterval(1 / rate.perDay)}` : ""];
 
   return new ImageResponse(
@@ -105,20 +103,20 @@ export async function renderCard(track: Track, unit: Unit) {
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, letterSpacing: 4, color: META }}>
           <div>{index ? "FAST TAKEOFF INDEX" : "FAST TAKEOFF · FRONTIER RELEASES"}</div>
           <div>
-            {formatDay(index ? toDay(t.date) : series.asOf, { month: "long", day: "numeric", year: "numeric" }).toUpperCase()}
+            {formatDay(series.asOf, { month: "long", day: "numeric", year: "numeric" }).toUpperCase()}
           </div>
         </div>
         <div style={{ height: 1, background: RULE, marginTop: 18 }} />
 
         <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          {index ? <GaugePanel months={t.doublingMonths} /> : <BarsPanel track={track} />}
+          {reading ? <GaugePanel score={reading.score} /> : <BarsPanel track={track} />}
           <div style={{ display: "flex", flexDirection: "column", width: 540 }}>
             <div style={{ fontSize: 40, fontStyle: "italic", color: META }}>
-              {index ? "The length of task AI can finish alone doubles every" : "AI labs are shipping"}
+              {index ? "How fast AI is moving" : "AI labs are shipping"}
             </div>
             <div style={{ fontSize: 200, lineHeight: 1, marginTop: 4, letterSpacing: -4 }}>{value}</div>
             <div style={{ fontSize: 48, marginTop: 4 }}>
-              {index ? "months" : `frontier models a ${unit}`}
+              {index ? "out of 100" : `frontier models a ${unit}`}
             </div>
             {lines.map((line, i) => (
               <div key={i} style={{ fontSize: 30, color: META, marginTop: i ? 4 : 22 }}>

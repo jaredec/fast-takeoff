@@ -1,9 +1,31 @@
 {
-  "source": "METR",
-  "url": "https://metr.org/blog/2026-11-20-q4-2026-capability-update/",
-  "date": "2026-11-20",
-  "doublingMonths": 3.61,
-  "low": 2.08,
-  "high": 4.94,
-  "frontier": { "model": "GPT-6 Astra", "hours": 40 }
+  "metr": {
+    "source": "METR",
+    "url": "https://metr.org/blog/2026-11-20-q4-2026-capability-update/",
+    "date": "2026-11-20",
+    "doublingMonths": 3.61,
+    "low": 2.08,
+    "high": 4.94,
+    "baselineMonths": 7,
+    "frontier": { "model": "GPT-6 Astra", "hours": 40 }
+  },
+  "epoch": {
+    "source": "Epoch AI",
+    "url": "https://epoch.ai/trends",
+    "date": "2026-11-05",
+    "perYear": 14,
+    "low": 12,
+    "high": 17,
+    "baselinePerYear": 6
+  },
+  "metaculus": {
+    "source": "Metaculus",
+    "url": "https://www.metaculus.com/questions/5121/date-of-general-ai/",
+    "now": { "read": "2026-11-21", "median": "2030-05-23" },
+    "before": {
+      "read": "2025-11-01",
+      "median": "2033-05-23",
+      "url": "https://intelligenceprogress.com/superintelligence"
+    }
+  }
 }
