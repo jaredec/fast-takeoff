@@ -22,6 +22,7 @@ Events live in `data/breakthroughs.json` and `data/releases.json`. `data/meta.js
 - A release is a new model or AI product from a major lab that people can use by app, API or open weights (GPT-5, Claude Code, Deep Research). New versions count; price cuts and renamed tiers don't.
 - Date an event by the day it was first shown or shipped in US time, not when coverage peaked.
 - Never invent an event or a date. Leave a gap and mark the range in `meta.json` instead.
+- A breakthrough's `title` names the breakthrough itself in plain words ("Protein folding solved", "Riemann hypothesis proved"), never just the system ("AlphaFold 3"). Name the system in `why`.
 - `why` is one plain sentence a non-expert would understand.
 - Every breakthrough has a `field` (see `FIELDS` in `src/lib/logos.ts`) and its own `icon`: a Lucide or Tabler icon that fits that breakthrough (a Go board for AlphaGo), saved as `public/logos/bt-<icon>.svg` in the field's color from `FIELD_COLORS`. No two breakthroughs share an icon.
 - Releases show their lab's logo, picked by `src/lib/logos.ts` from the title or org. A new lab needs its real mark in `public/logos`. Never draw or invent a logo.
