@@ -12,18 +12,15 @@ export function Gauge({ fraction }: { fraction: number }) {
     return <line key={k} x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(0,0,0,.2)" strokeWidth={k % 10 ? 0.7 : 1.1} />;
   });
   return (
-    <svg className="gauge" viewBox="0 0 300 168" aria-hidden="true">
-      {zoneArcs(CX, CY, R).map(({ zone, d, mid }) => {
-        const [lx, ly] = polar(CX, CY, R + 24, mid);
-        return (
-          <g key={zone.name}>
-            <path d={d} stroke={zone.color} strokeWidth={20} fill="none" />
-            <text x={lx} y={ly + 3} textAnchor="middle" className="zone-label">
-              {zone.name}
-            </text>
-          </g>
-        );
-      })}
+    <svg className="gauge" viewBox="0 0 300 174" aria-hidden="true">
+      {zoneArcs(CX, CY, R).map(({ zone, d }, i) => (
+        <g key={zone.name}>
+          <path d={d} stroke={zone.color} strokeWidth={20} fill="none" />
+          <text x={i ? CX + R + 10 : CX - R - 10} y={CY + 18} textAnchor={i ? "end" : "start"} className="zone-label">
+            {zone.name}
+          </text>
+        </g>
+      ))}
       {ticks}
       <g className="needle" style={{ transform: `rotate(${-90 + fraction * 180}deg)` }}>
         <path d={`M${CX - 4} ${CY} L${CX} ${CY - R + 30} L${CX + 4} ${CY} Z`} fill="#424242" />
