@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { BASE_PATH } from "@/lib/basePath";
 import type { Dataset } from "@/lib/data";
 import { formatDay, makeSeries, TRACK_INFO, TRACKS, type Track } from "@/lib/metrics";
+import { Gaps } from "./Gaps";
 import { Index } from "./Index";
 import { RANGES, Timeline, type Range } from "./Timeline";
 import { TipProvider } from "./Tip";
@@ -26,6 +27,7 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
           </h1>
           <nav className="toc">
             <a href="#index">Index</a>
+            <a href="#gaps">Time between</a>
             <a href="#timeline">Timeline</a>
             <a href={`${BASE_PATH}/card/${track}/month`}>Today&rsquo;s card</a>
             <a href="https://x.com/thefasttakeoff">Follow</a>
@@ -40,6 +42,8 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
           </p>
 
           <Index takeoff={takeoff} />
+
+          <Gaps series={series} />
 
           <section id="timeline">
             <h2>Timeline</h2>

@@ -212,6 +212,67 @@ h2 {
   text-decoration: underline;
 }
 
+/* Time between events, for each track. */
+.gaps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+}
+.gap {
+  padding: 18px 20px 16px;
+  border-radius: 16px;
+  background: var(--tile);
+}
+.gap-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--meta);
+}
+.gap-label::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.gap-value {
+  margin-top: 8px;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  color: var(--strong);
+}
+.gap-sub {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--body);
+}
+.gap dl {
+  display: grid;
+  gap: 4px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 13.5px;
+}
+.gap dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.gap dt {
+  color: var(--meta);
+}
+.gap dd {
+  font-weight: 500;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
 /* Timeline: every event in the range at its true date, fitted to the column. */
 .tl-controls {
   display: flex;
@@ -518,8 +579,11 @@ h2 {
   main section {
     margin-top: 52px;
   }
-  .index {
+  .index,
+  .gaps {
     grid-template-columns: minmax(0, 1fr);
+  }
+  .index {
     gap: 1rem;
   }
   .feed li {

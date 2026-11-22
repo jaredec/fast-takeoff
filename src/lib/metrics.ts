@@ -91,6 +91,22 @@ export function formatInterval(days: number) {
   return `${(days / 365.25).toFixed(days < 3650 ? 1 : 0)} years`;
 }
 
+/** Average days between events over the tracked days of [from, to], or null with fewer than two events. */
+export function averageGap(s: Series, from: number, to: number) {
+  const count = countIn(s, from, to);
+  return count < 2 ? null : trackedDays(s, from, to) / count;
+}
+
+/** The average gap over the last year and over the five years before it. */
+export function gaps(s: Series) {
+  const year = 365;
+  return {
+    recent: averageGap(s, s.asOf - year + 1, s.asOf),
+    before: averageGap(s, s.asOf - 6 * year + 1, s.asOf - year),
+    latest: s.events.length > 1 ? s.events.at(-1)!.day - s.events.at(-2)!.day : null,
+  };
+}
+
 export function countsByYear(s: Series, from: number, to: number) {
   const out: { year: number; count: number }[] = [];
   for (let y = from; y <= to; y++) {
