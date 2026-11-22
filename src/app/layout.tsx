@@ -1,17 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
+import { IBM_Plex_Mono, Schibsted_Grotesk } from "next/font/google";
 import { BASE_PATH } from "@/lib/basePath";
 import { CARD_SIZE } from "@/lib/card";
 import "./globals.css";
 
-const etBook = localFont({
-  variable: "--font-serif",
-  src: [
-    { path: "../../assets/fonts/et-book-roman.ttf", weight: "400", style: "normal" },
-    { path: "../../assets/fonts/et-book-italic.ttf", weight: "400", style: "italic" },
-    { path: "../../assets/fonts/et-book-bold.ttf", weight: "700", style: "normal" },
-  ],
-});
+const sans = Schibsted_Grotesk({ subsets: ["latin"], variable: "--font-sans" });
+const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: "400", variable: "--font-mono" });
 
 const card = {
   url: `https://www.jaredconnolly.com${BASE_PATH}/card/breakthroughs/month`,
@@ -33,7 +27,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={etBook.variable}>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body>{children}</body>
     </html>
   );

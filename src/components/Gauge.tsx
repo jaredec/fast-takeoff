@@ -34,9 +34,9 @@ export function Gauge({ fraction, value, zone }: { fraction: number; value: stri
       ))}
       {ticks}
       <g className="needle" style={{ transform: `rotate(${-90 + fraction * 180}deg)` }}>
-        <path d={`M${CX - 5} ${CY} L${CX} ${CY - R + 30} L${CX + 5} ${CY} Z`} fill="#424242" />
+        <path d={`M${CX - 5} ${CY} L${CX} ${CY - R + 30} L${CX + 5} ${CY} Z`} fill="#111" />
       </g>
-      <circle cx={CX} cy={CY} r={HUB} fill="#424242" />
+      <circle cx={CX} cy={CY} r={HUB} fill="#111" />
       <text x={CX} y={CY} className="gauge-value" textAnchor="middle" dominantBaseline="central">
         {value}
       </text>
