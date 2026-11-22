@@ -9,6 +9,7 @@
   --rule: rgba(0, 0, 0, 0.1);
   --hair: rgba(0, 0, 0, 0.06);
   --link: #327e09;
+  --bg: #f8f4ee;
 }
 
 [data-track="breakthroughs"] {
@@ -30,7 +31,7 @@
   box-sizing: border-box;
 }
 html {
-  background: #f8f4ee;
+  background: var(--bg);
   color: var(--ink);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -57,7 +58,7 @@ button {
   cursor: pointer;
 }
 
-/* Layout, after LessWrong: a translucent app bar, a 250px left nav and a 765px column of white cards. */
+/* Layout: a translucent app bar, a 250px left nav and a 765px column of sections split by hairlines. */
 .bar {
   position: sticky;
   top: 0;
@@ -191,11 +192,9 @@ a.side-item:hover {
 }
 
 .card {
-  margin-top: 16px;
-  padding: 16px 18px 18px;
-  background: #fff;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.024);
-  scroll-margin-top: 80px;
+  padding: 30px 0 34px;
+  border-top: 1px solid var(--rule);
+  scroll-margin-top: 64px;
 }
 .card-title {
   font-family: var(--serif);
@@ -207,11 +206,13 @@ a.side-item:hover {
   line-height: 1.2;
 }
 .def {
-  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
 }
 .def .spot-def {
   margin-top: 8px;
-}.spot-sub {
+}
+.spot-sub {
   font-family: var(--serif);
   font-style: italic;
   font-size: 15px;
@@ -224,25 +225,6 @@ a.side-item:hover {
   font-size: 15px;
   line-height: 1.45;
   color: rgba(0, 0, 0, 0.75);
-}
-.tabs {
-  display: flex;
-  gap: 6px;
-  margin-top: 32px;
-}
-.tabs button {
-  min-width: 120px;
-  height: 31px;
-  padding: 4px 8px;
-  border-radius: 3px;
-  background: #fff;
-  font-size: 14px;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.45);
-}
-.tabs button[aria-selected="true"] {
-  background: #7faf83;
-  color: #fff;
 }
 
 /* The index */
@@ -319,40 +301,55 @@ a.side-item:hover {
   border-radius: 50%;
   background: var(--zc);
 }
-/* Timeline: every event at its true date, stacking where they crowd. */
-.swarm {
-  margin-top: 1.4rem;
-  overflow-x: auto;
-  overflow-y: hidden;
-  overscroll-behavior-x: contain;
-  scrollbar-width: thin;
-  mask-image: linear-gradient(to right, transparent, #000 1.5rem, #000 calc(100% - 4rem), transparent);
+/* Timeline: every event in the range at its true date, fitted to the column. */
+.tl-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 18px;
+  margin-top: 12px;
 }
-.swarm[data-fit] {
-  mask-image: none;
+.tabs {
+  display: flex;
+  gap: 18px;
 }
-.swarm-track {
-  position: relative;
+.tabs button {
+  padding: 2px 0 4px;
+  border-bottom: 2px solid transparent;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.45);
 }
-#timeline {
-  position: relative;
+.tabs button:hover {
+  color: var(--ink);
 }
-.zoom {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 4px;
+.tabs button[aria-selected="true"] {
+  border-color: var(--accent);
+  color: var(--ink);
+  font-weight: 600;
+}
+.ranges {
+  display: flex;
+  gap: 2px;
+}
+.ranges button {
+  padding: 3px 9px;
+  border-radius: 3px;
+  font-size: 13px;
   color: var(--meta);
 }
-.zoom:hover,
-.zoom:focus-visible {
+.ranges button:hover {
   color: var(--ink);
-  background: rgba(0, 0, 0, 0.05);
-  outline: none;
+}
+.ranges button[aria-pressed="true"] {
+  background: rgba(0, 0, 0, 0.07);
+  color: var(--ink);
+  font-weight: 600;
+}
+.swarm {
+  position: relative;
+  margin-top: 22px;
+  transition: height 0.4s ease;
 }
 .swarm-axis {
   position: absolute;
@@ -365,7 +362,7 @@ a.side-item:hover {
   position: absolute;
   translate: -50% 50%;
   padding: 0 5px;
-  background: #fff;
+  background: var(--bg);
   font-size: 0.7rem;
   line-height: 1;
   color: var(--meta);
@@ -412,8 +409,6 @@ a.side-item:hover {
 }
 .mark {
   position: absolute;
-  display: grid;
-  place-items: center;
   border-radius: 50%;
   background: #fff;
   box-shadow:
@@ -423,14 +418,23 @@ a.side-item:hover {
     scale 0.18s ease,
     opacity 0.18s ease,
     box-shadow 0.18s ease,
-    left 0.4s ease,
-    bottom 0.4s ease,
-    width 0.4s ease,
-    height 0.4s ease;
+    left 0.45s ease,
+    bottom 0.45s ease,
+    width 0.45s ease,
+    height 0.45s ease;
   animation: drop 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.15) backwards;
-  animation-delay: calc(var(--t) * 1.1s);
+  animation-delay: calc(var(--t) * 0.9s);
 }
-.mark img {
+.mark-icon,
+.feed-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+.mark-icon > img,
+.feed-icon > img {
   width: 58%;
   height: 58%;
   object-fit: contain;
@@ -452,10 +456,10 @@ a.side-item:hover {
   width: 62%;
   height: 62%;
 }
-.swarm-track:has(.mark:hover) .mark:not(:hover) {
-  opacity: 0.4;
+.swarm[data-active] .mark:not([aria-current]) {
+  opacity: 0.35;
 }
-.mark:hover,
+.mark[aria-current],
 .mark:focus-visible {
   z-index: 2;
   scale: var(--grow, 1.3);
@@ -477,70 +481,61 @@ a.side-item:hover {
   }
 }
 
-/* One square per day under the timeline, in week columns like a GitHub graph. */
-.days {
-  position: absolute;
-  bottom: 4px;
+/* The events in the range, newest first. */
+.feed {
+  list-style: none;
+  margin-top: 26px;
+  border-top: 1px solid var(--hair);
+}
+.feed li {
   display: grid;
-  grid-template-rows: repeat(7, var(--cell));
-  grid-auto-flow: column;
-  grid-auto-columns: var(--cell);
-  gap: 2px;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: start;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--hair);
 }
-.days i {
-  border-radius: 2px;
-  background: #ebedf0;
+.feed li[aria-current] b {
+  color: var(--accent);
 }
-.days i.blank {
-  background: none;
+.feed-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.09);
 }
-.days i.l1 {
-  background: var(--c1);
+.feed b {
+  display: block;
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 400;
+  color: #000;
+  line-height: 1.25;
+  transition: color 0.15s;
 }
-.days i.l2 {
-  background: var(--c2);
+.feed p {
+  margin-top: 2px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.62);
 }
-.days i.l3 {
-  background: var(--c3);
+.feed time {
+  font-size: 12.5px;
+  color: var(--meta);
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
-.days i.un {
-  background: repeating-linear-gradient(135deg, #e2e3df 0 2px, transparent 2px 4px);
+.feed time small {
+  display: block;
+  font-size: 12px;
+  color: var(--faint);
 }
-.days i.hit {
-  cursor: pointer;
-}
-.days i.hit:hover,
-.days i.un:hover {
-  outline: 1px solid rgba(0, 0, 0, 0.5);
-}
-
-/* Zoomed out, one square per month. */
-.months {
-  position: absolute;
-  inset: auto 0 4px;
-  height: 10px;
-}
-.months i {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  border-radius: 1px;
-  background: #ebedf0;
-}
-.months i.l1 {
-  background: var(--c1);
-}
-.months i.l2 {
-  background: var(--c2);
-}
-.months i.l3 {
-  background: var(--c3);
-}
-.months i.un {
-  background: repeating-linear-gradient(135deg, #e2e3df 0 2px, transparent 2px 4px);
-}
-.months i.hit:hover {
-  outline: 1px solid rgba(0, 0, 0, 0.5);
+.feed-more {
+  margin-top: 12px;
+  font-size: 13.5px;
+  color: var(--link);
 }
 
 .tip {
@@ -621,14 +616,34 @@ a.side-item:hover {
     padding: 12px 0 80px;
   }
   .card {
-    padding: 14px 12px 14px;
+    padding: 24px 4px 28px;
+  }
+  .feed li {
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 12px;
+  }
+  .feed-icon {
+    grid-row: 1 / span 2;
+    width: 26px;
+    height: 26px;
+  }
+  .feed li > div {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .feed time {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+  }
+  .feed time small {
+    display: inline;
+  }
+  .feed time small::before {
+    content: " · ";
   }
   .index {
     grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
-  }
-  .tabs button {
-    flex: 1;
-    width: auto;
   }
 }

@@ -5,14 +5,14 @@ import type { Dataset } from "@/lib/data";
 import { makeSeries, TRACK_INFO, TRACKS, type Track, type Unit } from "@/lib/metrics";
 import { Index } from "./Index";
 import { Header, Sidebar } from "./Nav";
-import { Timeline } from "./Timeline";
+import { RANGES, Timeline, type Range } from "./Timeline";
 import { TipProvider } from "./Tip";
 
 export function Dashboard({ meta, tracks }: Dataset) {
   const [unit, setUnit] = useState<Unit>("month");
   const [track, setTrack] = useState<Track>("breakthroughs");
   const [toggled, setToggled] = useState(false);
-  const [zoomedOut, setZoomedOut] = useState(false);
+  const [range, setRange] = useState<Range>("all");
   const series = useMemo(
     () => ({ breakthroughs: makeSeries(tracks.breakthroughs, meta), releases: makeSeries(tracks.releases, meta) }),
     [meta, tracks],
@@ -37,17 +37,25 @@ export function Dashboard({ meta, tracks }: Dataset) {
 
           <Index series={series.breakthroughs} unit={unit} onUnit={setUnit} />
 
-          <div className="tabs" role="tablist">
-            {TRACKS.map((t) => (
-              <button key={t} role="tab" aria-selected={t === track} onClick={() => setTrack(t)}>
-                {TRACK_INFO[t].label}
-              </button>
-            ))}
-          </div>
-
           <section id="timeline" className="card">
             <h2 className="card-title">Timeline</h2>
-            <Timeline key={track} series={s} zoomedOut={zoomedOut} onZoom={setZoomedOut} />
+            <div className="tl-controls">
+              <div className="tabs" role="tablist">
+                {TRACKS.map((t) => (
+                  <button key={t} role="tab" aria-selected={t === track} onClick={() => setTrack(t)}>
+                    {TRACK_INFO[t].label}
+                  </button>
+                ))}
+              </div>
+              <div className="ranges">
+                {RANGES.map((r) => (
+                  <button key={r.id} aria-pressed={r.id === range} onClick={() => setRange(r.id)}>
+                    {r.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <Timeline key={track} series={s} range={range} />
           </section>
         </main>
       </div>

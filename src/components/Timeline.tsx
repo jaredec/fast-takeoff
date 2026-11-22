@@ -1,148 +1,144 @@
 "use client";
 
-import { ZoomIn, ZoomOut } from "lucide-react";
-import { useEffect, useMemo, useRef, type CSSProperties, type PointerEvent } from "react";
+import { useMemo, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { BASE_PATH } from "@/lib/basePath";
 import { useElementWidth, useMediaQuery } from "@/lib/hooks";
 import { logosFor } from "@/lib/logos";
-import { formatDay, fromDay, isUntracked, toDay, type DayEvent, type Series } from "@/lib/metrics";
+import { formatDay, fromDay, toDay, type DayEvent, type Series } from "@/lib/metrics";
 import { useTip } from "./Tip";
 
 const GAP = 2;
-/** Half the height of the band around the axis that holds the year labels. */
+/** Half the height of the band around the axis that holds the tick labels. */
 const BAND = 11;
 /** AlexNet, where the deep learning era starts. Both tracks share this axis. */
 const START = toDay("2012-09-30");
+/** How many events the list shows before "Show all". */
+const LIST = 6;
+
+export const RANGES = [
+  { id: "all", label: "All", days: 0 },
+  { id: "5y", label: "5 years", days: 1826 },
+  { id: "1y", label: "Year", days: 365 },
+  { id: "90d", label: "90 days", days: 90 },
+] as const;
+export type Range = (typeof RANGES)[number]["id"];
+
+const keyOf = (e: DayEvent) => `${e.date} ${e.title}`;
 
 /** Beeswarm: each circle takes the spot nearest the axis that touches nothing placed before it. */
-function swarm(xs: number[], sizes: number[]) {
-  const placed: { x: number; y: number; r: number }[] = [];
-  const ys = xs.map((xi, i) => {
-    const r = sizes[i] / 2;
-    const clear = (p: (typeof placed)[number]) => p.r + r + GAP;
-    const near = placed.filter((p) => Math.abs(p.x - xi) < clear(p));
+function swarm(xs: number[], size: number) {
+  const r = size / 2;
+  const clear = 2 * r + GAP;
+  const placed: { x: number; y: number }[] = [];
+  const ys = xs.map((xi) => {
+    const near = placed.filter((p) => Math.abs(p.x - xi) < clear);
     const base = BAND + r;
     const options = [base, -base];
     for (const p of near) {
-      const dy = Math.sqrt(Math.max(0, clear(p) ** 2 - (xi - p.x) ** 2));
+      const dy = Math.sqrt(Math.max(0, clear ** 2 - (xi - p.x) ** 2));
       options.push(p.y + dy, p.y - dy);
     }
     const y = options
-      .filter((o) => Math.abs(o) >= base - 0.01 && near.every((p) => (p.x - xi) ** 2 + (p.y - o) ** 2 >= clear(p) ** 2 - 0.01))
+      .filter((o) => Math.abs(o) >= base - 0.01 && near.every((p) => (p.x - xi) ** 2 + (p.y - o) ** 2 >= clear ** 2 - 0.01))
       .sort((a, b) => Math.abs(a) - Math.abs(b) || b - a)[0];
-    placed.push({ x: xi, y, r });
+    placed.push({ x: xi, y });
     return y;
   });
-  const above = Math.max(BAND, ...placed.map((p) => p.y + p.r));
-  const below = Math.max(BAND, ...placed.map((p) => -p.y + p.r));
+  const above = Math.max(BAND, ...ys.map((y) => y + r));
+  const below = Math.max(BAND, ...ys.map((y) => -y + r));
   return { ys, above, below };
 }
 
 /**
- * Each event sits at its true date, on whichever side of the axis has room closest to it. Circles
- * shrink where events crowd. Under it all, one square per day in week columns, on the same scale.
- * Given `fit`, everything squeezes into that many pixels and the squares become one per month.
+ * Every event in the range at its true date, fitted to `width`, on whichever side of the axis has room
+ * closest to it. All circles share the largest size that keeps the swarm within `room` pixels tall.
  */
-function layout(s: Series, narrow: boolean, fit: number) {
-  const maxSize = fit ? (narrow ? 20 : 26) : narrow ? 28 : 34;
-  const minSize = fit ? (narrow ? 5 : 6) : narrow ? 10 : 12;
-  const cell = narrow ? 7 : 10;
-  const pitch = cell + 2;
-  const pad = fit ? maxSize / 2 + 6 : maxSize + 24;
-  const perDay = fit ? (fit - pad - 44) / (s.asOf - START) : pitch / 7;
-  const x = (day: number) => pad + (day - START) * perDay;
-  const width = fit || x(s.asOf) + 110;
+function layout(s: Series, from: number, width: number, narrow: boolean) {
+  const maxSize = narrow ? 24 : 30;
+  const minSize = narrow ? 5 : 6;
+  const room = narrow ? 190 : 270;
+  const pad = maxSize / 2 + 6;
+  const perDay = (width - pad - 44) / (s.asOf - from);
+  const x = (day: number) => pad + (day - from) * perDay;
 
-  const events = s.events.filter((e) => e.day >= START);
+  const events = s.events.filter((e) => e.day >= from && e.day <= s.asOf);
   const xs = events.map((e) => x(e.day));
-  // Zoomed in, circles shrink where events crowd. Zoomed out, they share the largest size that fits.
-  let sizes = xs.map((xi) => {
-    const crowd = xs.filter((xj) => Math.abs(xj - xi) <= maxSize * 1.5).length;
-    return crowd <= 2 ? maxSize : Math.max(minSize, Math.round(maxSize * Math.sqrt(2 / crowd)));
-  });
-  let swarmed = swarm(xs, sizes);
-  for (let size = maxSize; fit && size >= minSize; size--) {
-    sizes = xs.map(() => size);
-    swarmed = swarm(xs, sizes);
-    if (swarmed.above + swarmed.below <= (narrow ? 150 : 190)) break;
-  }
+  let size = maxSize;
+  let swarmed = swarm(xs, size);
+  while (size > minSize && swarmed.above + swarmed.below > room) swarmed = swarm(xs, --size);
   const { ys, above, below } = swarmed;
 
-  const years: { year: number; x: number }[] = [];
-  const yearStep = perDay * 365 < 40 ? 2 : 1;
-  for (let year = fromDay(START).getUTCFullYear() + 1; year <= fromDay(s.asOf).getUTCFullYear(); year++) {
-    const at = x(toDay(`${year}-01-01`));
-    if (year % yearStep === 0 && x(s.asOf) - at > 40) years.push({ year, x: at });
+  // Years across long ranges, months across short ones, with the year on each January.
+  const ticks: { key: number; x: number; label: string }[] = [];
+  const first = fromDay(from);
+  if (s.asOf - from > 3 * 365) {
+    const step = perDay * 365 < 40 ? 2 : 1;
+    for (let year = first.getUTCFullYear() + 1; year <= fromDay(s.asOf).getUTCFullYear(); year++) {
+      if (year % step === 0) ticks.push({ key: year, x: x(toDay(`${year}-01-01`)), label: String(year) });
+    }
+  } else {
+    const step = perDay * 30.4 < 36 ? 3 : 1;
+    for (let m = first.getUTCMonth() + 1, y = first.getUTCFullYear(); ; m++) {
+      const day = Date.UTC(y, m, 1) / 864e5;
+      if (day > s.asOf) break;
+      const d = fromDay(day);
+      if (d.getUTCMonth() % step) continue;
+      const label = d.getUTCMonth() ? d.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" }) : String(d.getUTCFullYear());
+      ticks.push({ key: day, x: x(day), label });
+    }
   }
 
   const bands = s.untracked
-    .filter(([a, b]) => b >= START && a <= s.asOf)
-    .map(([a, b]) => ({ left: x(Math.max(a, START)), right: x(Math.min(b, s.asOf)) }));
+    .filter(([a, b]) => b >= from && a <= s.asOf)
+    .map(([a, b]) => ({ left: x(Math.max(a, from)), right: x(Math.min(b, s.asOf)) }));
 
-  // Week columns start on the Sunday on or before START.
-  const gridStart = START - fromDay(START).getUTCDay();
-  const days: { day: number; cls: string }[] = [];
-  for (let d = gridStart; !fit && d <= s.asOf; d++) {
-    const list = d >= START ? s.byDay.get(d) : undefined;
-    const cls =
-      d < START ? "blank" : list ? `hit l${Math.min(3, list.length)}` : isUntracked(s, d) ? "un" : "";
-    days.push({ day: d, cls });
-  }
-
-  const months: { day: number; left: number; width: number; cls: string }[] = [];
-  for (let m = fromDay(START).getUTCMonth(), y = fromDay(START).getUTCFullYear(); fit; m++) {
-    const a = Math.max(START, Date.UTC(y, m, 1) / 864e5);
-    const b = Math.min(s.asOf, Date.UTC(y, m + 1, 1) / 864e5 - 1);
-    if (a > s.asOf) break;
-    const n = s.events.filter((e) => e.day >= a && e.day <= b).length;
-    const cls = n ? `hit l${n >= 4 ? 3 : n >= 2 ? 2 : 1}` : isUntracked(s, a) && isUntracked(s, b) ? "un" : "";
-    months.push({ day: a, left: x(a), width: Math.max(1, x(b + 1) - x(a) - 1), cls });
-  }
-
-  const gridHeight = fit ? 10 : 7 * pitch;
-  const axis = gridHeight + 22 + below;
-  const height = axis + above + 14;
-  const marks = events.map((e, i) => ({ e, x: xs[i], y: ys[i], size: sizes[i], logos: logosFor(e) }));
-  return { cell, width, marks, years, bands, days, months, gridLeft: x(gridStart), axis, above, below, height, now: x(s.asOf) };
+  const axis = 12 + below;
+  const marks = events.map((e, i) => ({ e, x: xs[i], y: ys[i], logos: logosFor(e) }));
+  return {
+    size,
+    marks,
+    ticks: ticks.filter((t) => t.x > 16 && x(s.asOf) - t.x > 40),
+    bands,
+    axis,
+    above,
+    below,
+    height: axis + above + 12,
+    now: x(s.asOf),
+  };
 }
 
-export function Timeline({
-  series,
-  zoomedOut,
-  onZoom,
-}: {
-  series: Series;
-  zoomedOut: boolean;
-  onZoom: (zoomedOut: boolean) => void;
-}) {
+function Icon({ e, className }: { e: DayEvent; className?: string }) {
+  const logos = logosFor(e);
+  return (
+    <span className={className}>
+      {/* eslint-disable-next-line @next/next/no-img-element -- tiny static SVGs */}
+      <img src={`${BASE_PATH}/logos/${logos[0]}.svg`} alt="" />
+      {logos[1] && (
+        <span className="mark-2">
+          {/* eslint-disable-next-line @next/next/no-img-element -- tiny static SVGs */}
+          <img src={`${BASE_PATH}/logos/${logos[1]}.svg`} alt="" />
+        </span>
+      )}
+    </span>
+  );
+}
+
+export function Timeline({ series, range }: { series: Series; range: Range }) {
   const ref = useRef<HTMLDivElement>(null);
   const narrow = useMediaQuery("(max-width: 640px)");
-  const avail = useElementWidth(ref);
-  const fit = zoomedOut ? avail : 0;
-  const view = useMemo(() => layout(series, narrow, fit), [series, narrow, fit]);
+  const width = useElementWidth(ref);
+  const days = RANGES.find((r) => r.id === range)!.days;
+  const from = days ? series.asOf - days + 1 : START;
+  const view = useMemo(() => (width ? layout(series, from, width, narrow) : null), [series, from, width, narrow]);
+  const [active, setActive] = useState<string | null>(null);
+  const [all, setAll] = useState(false);
   const tip = useTip();
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    // A vertical wheel scrolls the timeline sideways until it reaches either end.
-    const onWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-      const max = el.scrollWidth - el.clientWidth;
-      if ((e.deltaY > 0 && el.scrollLeft >= max - 1) || (e.deltaY < 0 && el.scrollLeft <= 0)) return;
-      e.preventDefault();
-      el.scrollLeft += e.deltaY;
-    };
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
-  }, []);
+  const inRange = series.events.filter((e) => e.day >= from && e.day <= series.asOf).reverse();
+  const list = all ? inRange : inRange.slice(0, LIST);
 
-  const first = view.marks[0]?.x ?? 0;
-  useEffect(() => {
-    if (ref.current) ref.current.scrollLeft = first - 60;
-  }, [first]);
-
-  const show = (e: DayEvent, x: number, y: number) =>
+  const show = (e: DayEvent, x: number, y: number) => {
+    setActive(keyOf(e));
     tip.show(
       <>
         <time>
@@ -154,137 +150,97 @@ export function Timeline({
       x,
       y,
     );
+  };
   const showAt = (e: DayEvent, el: HTMLElement) => {
     const r = el.getBoundingClientRect();
     show(e, r.right, r.top + r.height / 2);
   };
   const leave = (ev: PointerEvent) => {
+    setActive(null);
     if (ev.pointerType === "mouse") tip.hide();
-  };
-  const showMonth = (target: EventTarget, x: number, y: number) => {
-    const day = Number((target as HTMLElement).dataset.day);
-    if (!day) return tip.hide();
-    const d = fromDay(day);
-    const end = Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1) / 864e5;
-    const list = series.events.filter((e) => e.day >= day && e.day < end);
-    if (!list.length) return tip.hide();
-    tip.show(
-      <>
-        <time>{formatDay(day, { month: "long", year: "numeric" })}</time>
-        {list.map((e) => (
-          <b key={e.title} style={{ display: "block" }}>
-            {e.title}
-          </b>
-        ))}
-      </>,
-      x,
-      y,
-    );
-  };
-  const showDay = (target: EventTarget, x: number, y: number) => {
-    const day = Number((target as HTMLElement).dataset.day);
-    if (!day) return tip.hide();
-    const list = series.byDay.get(day);
-    if (!list && !isUntracked(series, day)) return tip.hide();
-    tip.show(
-      <>
-        <time>{formatDay(day, { weekday: "short", month: "short", day: "numeric", year: "numeric" })}</time>
-        {list ? list.map((e) => <b key={e.title} style={{ display: "block" }}>{e.title}</b>) : "Not backfilled yet"}
-      </>,
-      x,
-      y,
-    );
   };
 
   return (
     <>
-      <button
-        className="zoom"
-        onClick={() => onZoom(!zoomedOut)}
-        aria-pressed={zoomedOut}
-        aria-label={zoomedOut ? "Zoom in" : "Zoom out to see it all"}
-        title={zoomedOut ? "Zoom in" : "Zoom out to see it all"}
-      >
-        {zoomedOut ? <ZoomIn size={18} /> : <ZoomOut size={18} />}
-      </button>
-      <div className="swarm" ref={ref} data-fit={fit ? "" : undefined}>
-        <div className="swarm-track" style={{ width: view.width, height: view.height }}>
-          {view.bands.map((b, i) => (
-            <div
-              key={i}
-              className="swarm-gap"
-              style={{ left: b.left, width: b.right - b.left, bottom: view.axis - view.below, height: view.above + view.below }}
-              onPointerMove={(ev) => tip.show(<b>Not backfilled yet</b>, ev.clientX, ev.clientY)}
-              onPointerLeave={leave}
-            />
-          ))}
-          <div className="swarm-axis" style={{ bottom: view.axis }} />
-          {view.years.map((y) => (
-            <span key={y.year} className="swarm-year" style={{ left: y.x, bottom: view.axis }}>
-              {y.year}
-            </span>
-          ))}
-          <div className="swarm-now" style={{ left: view.now, bottom: view.axis }}>
-            <i />
-            <span>Now</span>
-          </div>
-          {view.marks.map(({ e, x, y, size, logos }, i) => (
-            <button
-              key={`${e.date}-${i}`}
-              className="mark"
-              aria-label={`${e.title}, ${formatDay(e.day)}`}
-              style={
-                {
-                  left: x - size / 2,
-                  bottom: view.axis + y - size / 2,
-                  width: size,
-                  height: size,
-                  "--t": Math.min(1, x / 1400).toFixed(3),
-                  "--grow": Math.max(1.3, 30 / size).toFixed(2),
-                } as CSSProperties
-              }
-              onPointerMove={(ev) => ev.pointerType === "mouse" && show(e, ev.clientX, ev.clientY)}
-              onPointerLeave={leave}
-              onClick={(ev) => showAt(e, ev.currentTarget)}
-              onFocus={(ev) => showAt(e, ev.currentTarget)}
-              onBlur={tip.hide}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element -- tiny static SVGs */}
-              <img src={`${BASE_PATH}/logos/${logos[0]}.svg`} alt="" />
-              {logos[1] && (
-                <span className="mark-2">
-                  {/* eslint-disable-next-line @next/next/no-img-element -- tiny static SVGs */}
-                  <img src={`${BASE_PATH}/logos/${logos[1]}.svg`} alt="" />
-                </span>
-              )}
-            </button>
-          ))}
-          {fit ? (
-            <div
-              className="months"
-              onPointerOver={(ev) => ev.pointerType === "mouse" && showMonth(ev.target, ev.clientX, ev.clientY)}
-              onPointerLeave={leave}
-              onClick={(ev) => showMonth(ev.target, ev.clientX, ev.clientY)}
-            >
-              {view.months.map((m) => (
-                <i key={m.day} data-day={m.day} className={m.cls || undefined} style={{ left: m.left, width: m.width }} />
-              ))}
+      <div className="swarm" ref={ref} style={{ height: view?.height ?? 200 }} data-active={active ? "" : undefined}>
+        {view && (
+          <>
+            {view.bands.map((b, i) => (
+              <div
+                key={i}
+                className="swarm-gap"
+                style={{ left: b.left, width: b.right - b.left, bottom: view.axis - view.below, height: view.above + view.below }}
+                onPointerMove={(ev) => tip.show(<b>Not backfilled yet</b>, ev.clientX, ev.clientY)}
+                onPointerLeave={leave}
+              />
+            ))}
+            <div className="swarm-axis" style={{ bottom: view.axis }} />
+            {view.ticks.map((t) => (
+              <span key={t.key} className="swarm-year" style={{ left: t.x, bottom: view.axis }}>
+                {t.label}
+              </span>
+            ))}
+            <div className="swarm-now" style={{ left: view.now, bottom: view.axis }}>
+              <i />
+              <span>Now</span>
             </div>
-          ) : (
-            <div
-              className="days"
-              style={{ left: view.gridLeft, "--cell": `${view.cell}px` } as CSSProperties}
-              onPointerOver={(ev) => ev.pointerType === "mouse" && showDay(ev.target, ev.clientX, ev.clientY)}
-              onPointerLeave={leave}
-              onClick={(ev) => showDay(ev.target, ev.clientX, ev.clientY)}
-            >
-              {view.days.map((d) => (
-                <i key={d.day} data-day={d.cls === "blank" ? undefined : d.day} className={d.cls || undefined} />
-              ))}
-            </div>
-          )}
-        </div>
+            {view.marks.map(({ e, x, y }) => (
+              <button
+                key={keyOf(e)}
+                className="mark"
+                aria-label={`${e.title}, ${formatDay(e.day)}`}
+                aria-current={active === keyOf(e) || undefined}
+                style={
+                  {
+                    left: x - view.size / 2,
+                    bottom: view.axis + y - view.size / 2,
+                    width: view.size,
+                    height: view.size,
+                    "--t": (x / width).toFixed(3),
+                    "--grow": Math.max(1.3, 30 / view.size).toFixed(2),
+                  } as CSSProperties
+                }
+                onPointerMove={(ev) => ev.pointerType === "mouse" && show(e, ev.clientX, ev.clientY)}
+                onPointerLeave={leave}
+                onClick={(ev) => showAt(e, ev.currentTarget)}
+                onFocus={(ev) => showAt(e, ev.currentTarget)}
+                onBlur={() => {
+                  setActive(null);
+                  tip.hide();
+                }}
+              >
+                <Icon e={e} className="mark-icon" />
+              </button>
+            ))}
+          </>
+        )}
       </div>
+
+      <ol className="feed">
+        {list.map((e) => (
+          <li
+            key={keyOf(e)}
+            aria-current={active === keyOf(e) || undefined}
+            onPointerEnter={() => setActive(keyOf(e))}
+            onPointerLeave={() => setActive(null)}
+          >
+            <Icon e={e} className="feed-icon" />
+            <div>
+              <b>{e.title}</b>
+              <p>{e.why}</p>
+            </div>
+            <time>
+              {formatDay(e.day, { month: "short", day: "numeric", year: "numeric" })}
+              <small>{e.org}</small>
+            </time>
+          </li>
+        ))}
+      </ol>
+      {inRange.length > LIST && (
+        <button className="feed-more" onClick={() => setAll(!all)}>
+          {all ? "Show fewer" : `Show all ${inRange.length}`}
+        </button>
+      )}
     </>
   );
 }
