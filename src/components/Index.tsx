@@ -12,7 +12,7 @@ export function Index({ takeoff: t }: { takeoff: Takeoff }) {
       <div className="index">
         <Gauge fraction={gaugeFraction(t.doublingMonths)} value={months} zone={zone.name} />
         <div>
-          <p className="kicker mono">The length of task AI can finish alone doubles every</p>
+          <p className="kicker">The length of task AI can finish alone doubles every</p>
           <p className="big">{months}</p>
           <p className="unitline">months</p>
           <p className="zone" style={{ "--zc": zone.color } as CSSProperties}>

@@ -1,11 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, Schibsted_Grotesk } from "next/font/google";
+import { Geist } from "next/font/google";
 import { BASE_PATH } from "@/lib/basePath";
 import { CARD_SIZE } from "@/lib/card";
 import "./globals.css";
 
-const sans = Schibsted_Grotesk({ subsets: ["latin"], variable: "--font-sans" });
-const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: "400", variable: "--font-mono" });
+const sans = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const card = {
   url: `https://www.jaredconnolly.com${BASE_PATH}/card/breakthroughs/month`,
@@ -22,12 +21,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#f4f4f2",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={sans.variable}>
       <body>{children}</body>
     </html>
   );

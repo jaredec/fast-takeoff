@@ -61,7 +61,7 @@ function layout(s: Series, from: number, width: number, narrow: boolean) {
   const minSize = narrow ? 5 : 6;
   const room = roomFor(narrow);
   const pad = maxSize / 2 + 6;
-  const perDay = (width - pad - 44) / (s.asOf - from);
+  const perDay = (width - pad - 54) / (s.asOf - from);
   const x = (day: number) => pad + (day - from) * perDay;
 
   const events = s.events.filter((e) => e.day >= from && e.day <= s.asOf);
@@ -222,12 +222,7 @@ export function Timeline({ series, range }: { series: Series; range: Range }) {
 
       <ol className="feed">
         {list.map((e) => (
-          <li
-            key={keyOf(e)}
-            aria-current={active === keyOf(e) || undefined}
-            onPointerEnter={() => setActive(keyOf(e))}
-            onPointerLeave={() => setActive(null)}
-          >
+          <li key={keyOf(e)}>
             <Icon e={e} className="feed-icon" />
             <div>
               <b>{e.title}</b>
