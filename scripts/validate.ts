@@ -3,13 +3,15 @@ import { loadDataset } from "../src/lib/data";
 import { logosFor } from "../src/lib/logos";
 import { TRACKS, toDay } from "../src/lib/metrics";
 
-const { meta, tracks } = loadDataset();
+const { meta, tracks, takeoff } = loadDataset();
 const asOf = toDay(meta.asOf);
 const untracked = meta.untracked.map(([a, b]) => [toDay(a), toDay(b)] as const);
 const problems: string[] = [];
 const icons = new Set<string>();
 
 for (const [a, b] of untracked) if (a > b) problems.push(`meta: untracked range ${a} is backwards`);
+if (!(takeoff.low <= takeoff.doublingMonths && takeoff.doublingMonths <= takeoff.high))
+  problems.push("takeoff: doublingMonths must sit between low and high");
 
 for (const track of TRACKS) {
   const seen = new Set<string>();

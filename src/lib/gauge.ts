@@ -1,4 +1,4 @@
-import { ZONES } from "./metrics";
+import { ZONES } from "./takeoff";
 
 export const polar = (cx: number, cy: number, r: number, angle: number): [number, number] => [
   cx + r * Math.cos(angle),

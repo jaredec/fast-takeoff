@@ -9,13 +9,14 @@ import {
   formatInterval,
   formatRate,
   fromDay,
-  reading,
+  rateAt,
+  toDay,
   TRACK_INFO,
   UNITS,
-  type Reading,
   type Track,
   type Unit,
 } from "./metrics";
+import { formatMonths, gaugeFraction, loadTakeoff, zoneFor } from "./takeoff";
 
 const fontDir = join(process.cwd(), "assets/fonts");
 const fonts = Promise.all(
@@ -28,20 +29,21 @@ const INK = "#2b2b2b";
 const META = "#757575";
 const RULE = "rgba(0,0,0,.12)";
 
-function GaugePanel({ r }: { r: Reading }) {
+function GaugePanel({ months }: { months: number }) {
+  const zone = zoneFor(months);
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
       <svg width={460} height={258} viewBox="0 0 300 168">
         {zoneArcs(150, 150, 116).map(({ zone, d }) => (
           <path key={zone.name} d={d} stroke={zone.color} strokeWidth={22} fill="none" />
         ))}
-        <polygon points={needlePoints(150, 150, 88, r.fraction, 4.5)} fill="#424242" />
+        <polygon points={needlePoints(150, 150, 88, gaugeFraction(months), 4.5)} fill="#424242" />
         <circle cx={150} cy={150} r={9} fill="#424242" />
         <circle cx={150} cy={150} r={3.5} fill="#fff" />
       </svg>
       <div style={{ display: "flex", alignItems: "center", marginTop: 14, fontSize: 40, color: INK }}>
-        <div style={{ width: 18, height: 18, borderRadius: 9, background: r.zone.color, marginRight: 14 }} />
-        {r.zone.name}
+        <div style={{ width: 18, height: 18, borderRadius: 9, background: zone.color, marginRight: 14 }} />
+        {zone.name}
       </div>
     </div>
   );
@@ -74,11 +76,17 @@ function BarsPanel({ track }: { track: Track }) {
 
 export async function renderCard(track: Track, unit: Unit) {
   const series = loadSeries(track);
-  const r = reading(series);
+  const t = loadTakeoff();
   const [roman, italic, bold] = await fonts;
-  const value = formatRate(r.rate ? r.rate.perDay * UNITS[unit] : 0);
-  const every = r.rate && r.rate.perDay > 0 ? `One every ${formatInterval(1 / r.rate.perDay)}` : "";
-  const faster = r.vsTenYears && r.vsTenYears >= 1.5 ? `${Math.round(r.vsTenYears)}× faster than ten years ago` : "";
+  const index = track === "breakthroughs";
+  const rate = rateAt(series, series.asOf, 90);
+  const value = index ? formatMonths(t.doublingMonths) : formatRate(rate ? rate.perDay * UNITS[unit] : 0);
+  const lines = index
+    ? [
+        `${t.source}, ${formatDay(toDay(t.date), { month: "short", day: "numeric", year: "numeric" })}`,
+        `Best model: ${t.frontier.hours}-hour tasks (${t.frontier.model})`,
+      ]
+    : [rate && rate.perDay > 0 ? `One every ${formatInterval(1 / rate.perDay)}` : ""];
 
   return new ImageResponse(
     (
@@ -95,23 +103,28 @@ export async function renderCard(track: Track, unit: Unit) {
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, letterSpacing: 4, color: META }}>
-          <div>{track === "breakthroughs" ? "FAST TAKEOFF INDEX" : "FAST TAKEOFF · MODEL RELEASES"}</div>
-          <div>{formatDay(series.asOf, { month: "long", day: "numeric", year: "numeric" }).toUpperCase()}</div>
+          <div>{index ? "FAST TAKEOFF INDEX" : "FAST TAKEOFF · FRONTIER RELEASES"}</div>
+          <div>
+            {formatDay(index ? toDay(t.date) : series.asOf, { month: "long", day: "numeric", year: "numeric" }).toUpperCase()}
+          </div>
         </div>
         <div style={{ height: 1, background: RULE, marginTop: 18 }} />
 
         <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          {track === "breakthroughs" ? <GaugePanel r={r} /> : <BarsPanel track={track} />}
+          {index ? <GaugePanel months={t.doublingMonths} /> : <BarsPanel track={track} />}
           <div style={{ display: "flex", flexDirection: "column", width: 540 }}>
             <div style={{ fontSize: 40, fontStyle: "italic", color: META }}>
-              {track === "breakthroughs" ? "AI is now moving at" : "AI labs are shipping"}
+              {index ? "The length of task AI can finish alone doubles every" : "AI labs are shipping"}
             </div>
             <div style={{ fontSize: 200, lineHeight: 1, marginTop: 4, letterSpacing: -4 }}>{value}</div>
             <div style={{ fontSize: 48, marginTop: 4 }}>
-              {track === "breakthroughs" ? `breakthroughs a ${unit}` : `new models a ${unit}`}
+              {index ? "months" : `frontier models a ${unit}`}
             </div>
-            <div style={{ fontSize: 30, color: META, marginTop: 22 }}>{every}</div>
-            {faster && <div style={{ fontSize: 30, color: META, marginTop: 4 }}>{faster}</div>}
+            {lines.map((line, i) => (
+              <div key={i} style={{ fontSize: 30, color: META, marginTop: i ? 4 : 22 }}>
+                {line}
+              </div>
+            ))}
           </div>
         </div>
 

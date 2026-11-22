@@ -14,6 +14,10 @@ This repo used to be Capsule. Capsule is archived on the `archive/capsule` branc
 
 The site is served at jaredconnolly.com/fasttakeoff through a routing rule on the `jaredconnolly-com` Vercel project that rewrites to this project's production domain.
 
+## The index
+
+The Fast Takeoff Index reads `data/takeoff.json`: METR's time horizon doubling time, its confidence range and the best public model's time horizon, copied from METR's latest update. Update it when METR publishes a new one, never estimate it. Zones are set in `src/lib/takeoff.ts`.
+
 ## Curating events
 
 Events live in `data/breakthroughs.json` and `data/releases.json`. `data/meta.json` sets the last curated day (`asOf`) and the ranges not backfilled yet. Run `npm run validate-data` after any edit.

@@ -4,6 +4,7 @@ import releases from "../../data/releases.json";
 import meta from "../../data/meta.json";
 import { FIELDS } from "./logos";
 import { makeSeries, type AiEvent, type Meta, type Series, type Track } from "./metrics";
+import { loadTakeoff, type Takeoff } from "./takeoff";
 
 const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
 
@@ -23,7 +24,7 @@ export const metaSchema = z.object({
   untracked: z.array(z.tuple([isoDate, isoDate])),
 });
 
-export type Dataset = { meta: Meta; tracks: Record<Track, AiEvent[]> };
+export type Dataset = { meta: Meta; tracks: Record<Track, AiEvent[]>; takeoff: Takeoff };
 
 export function loadDataset(): Dataset {
   return {
@@ -32,6 +33,7 @@ export function loadDataset(): Dataset {
       breakthroughs: eventsSchema.parse(breakthroughs),
       releases: eventsSchema.parse(releases),
     },
+    takeoff: loadTakeoff(),
   };
 }
 

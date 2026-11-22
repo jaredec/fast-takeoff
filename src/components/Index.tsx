@@ -1,36 +1,35 @@
-"use client";
-
 import type { CSSProperties } from "react";
-import { formatRate, reading, UNITS, type Series, type Unit } from "@/lib/metrics";
+import { formatDay, toDay } from "@/lib/metrics";
+import { BASELINE_MONTHS, formatMonths, gaugeFraction, zoneFor, type Takeoff } from "@/lib/takeoff";
 import { Gauge } from "./Gauge";
 
-export function Index({ series, unit, onUnit }: { series: Series; unit: Unit; onUnit: (u: Unit) => void }) {
-  const r = reading(series);
-  const value = r.rate ? r.rate.perDay * UNITS[unit] : 0;
+export function Index({ takeoff: t }: { takeoff: Takeoff }) {
+  const zone = zoneFor(t.doublingMonths);
+  const months = formatMonths(t.doublingMonths);
   return (
     <section id="index">
       <h2>The Fast Takeoff Index</h2>
       <div className="index">
-        <Gauge fraction={r.fraction} value={formatRate(value)} zone={r.zone.name} />
+        <Gauge fraction={gaugeFraction(t.doublingMonths)} value={months} zone={zone.name} />
         <div>
-          <p className="kicker mono">AI is moving at</p>
-          <p className="big">{formatRate(value)}</p>
-          <div className="unitline">
-            <span>breakthroughs a {unit}</span>
-            <span className="units mono">
-              {(Object.keys(UNITS) as Unit[]).map((u) => (
-                <button key={u} aria-pressed={u === unit} onClick={() => onUnit(u)}>
-                  /{u}
-                </button>
-              ))}
-            </span>
-          </div>
-          <p className="zone" style={{ "--zc": r.zone.color } as CSSProperties}>
+          <p className="kicker mono">The length of task AI can finish alone doubles every</p>
+          <p className="big">{months}</p>
+          <p className="unitline">months</p>
+          <p className="zone" style={{ "--zc": zone.color } as CSSProperties}>
             <i />
-            {r.zone.name}
+            {zone.name}
           </p>
         </div>
       </div>
+      <p className="note">
+        From{" "}
+        <a href={t.url}>
+          {t.source}&rsquo;s {formatDay(toDay(t.date), { month: "short", day: "numeric", year: "numeric" })} update
+        </a>
+        , likely between {formatMonths(t.low)} and {formatMonths(t.high)} months. From 2019 to 2024 it doubled every{" "}
+        {BASELINE_MONTHS} months. The best public model, {t.frontier.model}, now finishes about half of tasks that take a
+        skilled person {t.frontier.hours} hours.
+      </p>
     </section>
   );
 }

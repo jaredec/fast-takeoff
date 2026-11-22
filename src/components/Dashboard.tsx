@@ -3,13 +3,12 @@
 import { useMemo, useState } from "react";
 import { BASE_PATH } from "@/lib/basePath";
 import type { Dataset } from "@/lib/data";
-import { formatDay, makeSeries, TRACK_INFO, TRACKS, type Track, type Unit } from "@/lib/metrics";
+import { formatDay, makeSeries, TRACK_INFO, TRACKS, type Track } from "@/lib/metrics";
 import { Index } from "./Index";
 import { RANGES, Timeline, type Range } from "./Timeline";
 import { TipProvider } from "./Tip";
 
-export function Dashboard({ meta, tracks }: Dataset) {
-  const [unit, setUnit] = useState<Unit>("month");
+export function Dashboard({ meta, tracks, takeoff }: Dataset) {
   const [track, setTrack] = useState<Track>("breakthroughs");
   const [range, setRange] = useState<Range>("all");
   const series = useMemo(
@@ -49,7 +48,7 @@ export function Dashboard({ meta, tracks }: Dataset) {
             even hours.
           </p>
 
-          <Index series={series.breakthroughs} unit={unit} onUnit={setUnit} />
+          <Index takeoff={takeoff} />
 
           <section id="timeline">
             <h2>Timeline</h2>

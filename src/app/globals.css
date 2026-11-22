@@ -170,6 +170,7 @@ h2 {
   transform-origin: 150px 150px;
 }
 .kicker {
+  max-width: 20rem;
   font-size: 12px;
   color: var(--meta);
 }
@@ -181,26 +182,18 @@ h2 {
   margin-top: 4px;
 }
 .unitline {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0.2rem 0.9rem;
   margin-top: 4px;
   font-size: 19px;
   font-weight: 500;
 }
-.units {
-  display: inline-flex;
-  gap: 0.7rem;
-  font-size: 11px;
+.note {
+  margin-top: 22px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--meta);
 }
-.units button {
-  color: var(--link);
-}
-.units button[aria-pressed="true"] {
-  color: var(--ink);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+.note a {
+  color: var(--meta);
 }
 .zone {
   display: inline-flex;

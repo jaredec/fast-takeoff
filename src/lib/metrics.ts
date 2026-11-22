@@ -70,28 +70,6 @@ export function rateAt(s: Series, asOf: number, window = 90): Rate | null {
   return { perDay: count / days, count, days };
 }
 
-export const ZONES = [
-  { name: "AI winter", max: 0.1, color: "#9db3c9" },
-  { name: "Slow takeoff", max: 1, color: "#e2c06a" },
-  { name: "Fast takeoff", max: 6, color: "#df7a45" },
-  { name: "Singularity", max: 30, color: "#b8392c" },
-] as const;
-export type Zone = (typeof ZONES)[number];
-
-/** Zones are set on breakthroughs per month. */
-export function zoneIndex(perMonth: number) {
-  const i = ZONES.findIndex((z) => perMonth < z.max);
-  return i < 0 ? ZONES.length - 1 : i;
-}
-
-/** Where the gauge needle points, from 0 (left) to 1 (right). Each zone gets an equal slice. */
-export function gaugeFraction(perMonth: number) {
-  const i = zoneIndex(perMonth);
-  const lo = i ? ZONES[i - 1].max : 0;
-  const within = Math.min(1, Math.max(0, (perMonth - lo) / (ZONES[i].max - lo)));
-  return (i + within) / ZONES.length;
-}
-
 export type Unit = "day" | "week" | "month";
 export const UNITS: Record<Unit, number> = { day: 1, week: 7, month: MONTH };
 export const isUnit = (u: string): u is Unit => u in UNITS;
@@ -111,33 +89,6 @@ export function formatInterval(days: number) {
   if (days < 60) return `${Math.round(days)} days`;
   if (days < 730) return `${Math.round(days / MONTH)} months`;
   return `${(days / 365.25).toFixed(days < 3650 ? 1 : 0)} years`;
-}
-
-export type Reading = {
-  asOf: number;
-  rate: Rate | null;
-  perMonth: number;
-  zone: Zone;
-  fraction: number;
-  latest: DayEvent | undefined;
-  /** Trailing-year rate now over the trailing-year rate ten years earlier. */
-  vsTenYears: number | null;
-};
-
-export function reading(s: Series, asOf = s.asOf): Reading {
-  const rate = rateAt(s, asOf, 90);
-  const year = rateAt(s, asOf, 365);
-  const then = rateAt(s, asOf - 3652, 365);
-  const perMonth = rate ? rate.perDay * MONTH : 0;
-  return {
-    asOf,
-    rate,
-    perMonth,
-    zone: ZONES[zoneIndex(perMonth)],
-    fraction: gaugeFraction(perMonth),
-    latest: s.events.findLast((e) => e.day <= asOf),
-    vsTenYears: year && then && then.perDay > 0 ? year.perDay / then.perDay : null,
-  };
 }
 
 export function countsByYear(s: Series, from: number, to: number) {

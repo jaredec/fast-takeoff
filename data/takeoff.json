@@ -1,0 +1,9 @@
+{
+  "source": "METR",
+  "url": "https://metr.org/blog/2026-11-20-q4-2026-capability-update/",
+  "date": "2026-11-20",
+  "doublingMonths": 3.61,
+  "low": 2.08,
+  "high": 4.94,
+  "frontier": { "model": "GPT-6 Astra", "hours": 40 }
+}
