@@ -14,29 +14,8 @@ const BAND = 11;
 /** AlexNet, where the deep learning era starts. Both tracks share this axis. */
 const START = toDay("2012-09-30");
 
-/**
- * Each event sits at its true date, on whichever side of the axis has room closest to it. Circles
- * shrink where events crowd. Under it all, one square per day in week columns, on the same scale.
- * Given `fit`, everything squeezes into that many pixels and the squares become one per month.
- */
-function layout(s: Series, narrow: boolean, fit: number) {
-  const maxSize = fit ? (narrow ? 20 : 26) : narrow ? 28 : 34;
-  const minSize = fit ? (narrow ? 5 : 6) : narrow ? 10 : 12;
-  const cell = narrow ? 7 : 10;
-  const pitch = cell + 2;
-  const pad = fit ? maxSize / 2 + 6 : maxSize + 24;
-  const perDay = fit ? (fit - pad - 44) / (s.asOf - START) : pitch / 7;
-  const x = (day: number) => pad + (day - START) * perDay;
-  const width = fit || x(s.asOf) + 110;
-
-  const events = s.events.filter((e) => e.day >= START);
-  const xs = events.map((e) => x(e.day));
-  const sizes = xs.map((xi) => {
-    const crowd = xs.filter((xj) => Math.abs(xj - xi) <= maxSize * 1.5).length;
-    return crowd <= 2 ? maxSize : Math.max(minSize, Math.round(maxSize * Math.sqrt(2 / crowd)));
-  });
-
-  // Beeswarm: each circle takes the spot nearest the axis that touches nothing placed before it.
+/** Beeswarm: each circle takes the spot nearest the axis that touches nothing placed before it. */
+function swarm(xs: number[], sizes: number[]) {
   const placed: { x: number; y: number; r: number }[] = [];
   const ys = xs.map((xi, i) => {
     const r = sizes[i] / 2;
@@ -56,6 +35,38 @@ function layout(s: Series, narrow: boolean, fit: number) {
   });
   const above = Math.max(BAND, ...placed.map((p) => p.y + p.r));
   const below = Math.max(BAND, ...placed.map((p) => -p.y + p.r));
+  return { ys, above, below };
+}
+
+/**
+ * Each event sits at its true date, on whichever side of the axis has room closest to it. Circles
+ * shrink where events crowd. Under it all, one square per day in week columns, on the same scale.
+ * Given `fit`, everything squeezes into that many pixels and the squares become one per month.
+ */
+function layout(s: Series, narrow: boolean, fit: number) {
+  const maxSize = fit ? (narrow ? 20 : 26) : narrow ? 28 : 34;
+  const minSize = fit ? (narrow ? 5 : 6) : narrow ? 10 : 12;
+  const cell = narrow ? 7 : 10;
+  const pitch = cell + 2;
+  const pad = fit ? maxSize / 2 + 6 : maxSize + 24;
+  const perDay = fit ? (fit - pad - 44) / (s.asOf - START) : pitch / 7;
+  const x = (day: number) => pad + (day - START) * perDay;
+  const width = fit || x(s.asOf) + 110;
+
+  const events = s.events.filter((e) => e.day >= START);
+  const xs = events.map((e) => x(e.day));
+  // Zoomed in, circles shrink where events crowd. Zoomed out, they share the largest size that fits.
+  let sizes = xs.map((xi) => {
+    const crowd = xs.filter((xj) => Math.abs(xj - xi) <= maxSize * 1.5).length;
+    return crowd <= 2 ? maxSize : Math.max(minSize, Math.round(maxSize * Math.sqrt(2 / crowd)));
+  });
+  let swarmed = swarm(xs, sizes);
+  for (let size = maxSize; fit && size >= minSize; size--) {
+    sizes = xs.map(() => size);
+    swarmed = swarm(xs, sizes);
+    if (swarmed.above + swarmed.below <= (narrow ? 150 : 190)) break;
+  }
+  const { ys, above, below } = swarmed;
 
   const years: { year: number; x: number }[] = [];
   const yearStep = perDay * 365 < 40 ? 2 : 1;
@@ -156,10 +167,15 @@ export function Timeline({
     const d = fromDay(day);
     const end = Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1) / 864e5;
     const list = series.events.filter((e) => e.day >= day && e.day < end);
+    if (!list.length) return tip.hide();
     tip.show(
       <>
         <time>{formatDay(day, { month: "long", year: "numeric" })}</time>
-        {list.length ? list.map((e) => <b key={e.title} style={{ display: "block" }}>{e.title}</b>) : "Nothing"}
+        {list.map((e) => (
+          <b key={e.title} style={{ display: "block" }}>
+            {e.title}
+          </b>
+        ))}
       </>,
       x,
       y,
@@ -169,10 +185,11 @@ export function Timeline({
     const day = Number((target as HTMLElement).dataset.day);
     if (!day) return tip.hide();
     const list = series.byDay.get(day);
+    if (!list && !isUntracked(series, day)) return tip.hide();
     tip.show(
       <>
         <time>{formatDay(day, { weekday: "short", month: "short", day: "numeric", year: "numeric" })}</time>
-        {list ? list.map((e) => <b key={e.title} style={{ display: "block" }}>{e.title}</b>) : isUntracked(series, day) ? "Not backfilled yet" : "Nothing"}
+        {list ? list.map((e) => <b key={e.title} style={{ display: "block" }}>{e.title}</b>) : "Not backfilled yet"}
       </>,
       x,
       y,

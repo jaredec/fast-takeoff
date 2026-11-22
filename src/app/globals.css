@@ -509,7 +509,8 @@ a.side-item:hover {
 .days i.hit {
   cursor: pointer;
 }
-.days i:hover {
+.days i.hit:hover,
+.days i.un:hover {
   outline: 1px solid rgba(0, 0, 0, 0.5);
 }
 
@@ -538,7 +539,7 @@ a.side-item:hover {
 .months i.un {
   background: repeating-linear-gradient(135deg, #e2e3df 0 2px, transparent 2px 4px);
 }
-.months i:hover {
+.months i.hit:hover {
   outline: 1px solid rgba(0, 0, 0, 0.5);
 }
 
