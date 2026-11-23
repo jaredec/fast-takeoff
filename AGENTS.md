@@ -10,9 +10,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Fast Takeoff
 
-This repo used to be Capsule. Capsule is archived on the `archive/capsule` branch and the `capsule-final` tag; don't build on it here.
+This repo used to be Capsule. Capsule now lives in `jaredec/capsule` (its own Vercel project, served at jaredconnolly.com/capsule); don't build on it here.
 
-The site is served at jaredconnolly.com/fasttakeoff through a routing rule on the `jaredconnolly-com` Vercel project that rewrites to this project's production domain.
+Fast Takeoff isn't public yet. The "Fast Takeoff" routing rule on the `jaredconnolly-com` Vercel project redirects jaredconnolly.com/fasttakeoff to /capsule for now; preview the site at this project's production domain under `/fasttakeoff`. At launch, turn that rule back into a rewrite to this project's production domain and link it from the homepage.
 
 ## The index
 
