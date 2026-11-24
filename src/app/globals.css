@@ -31,19 +31,10 @@ button {
   color: var(--ink);
 }
 
-h1,
 h2 {
   font-family: var(--head);
-  color: var(--strong);
-}
-
-h1 {
-  font-size: 2em;
-  margin: 0;
-}
-
-h2 {
   font-size: 1.5em;
+  color: var(--strong);
   margin: 0 0 10px;
 }
 
@@ -95,7 +86,7 @@ li {
 
 .cols {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 500px);
+  grid-template-columns: minmax(0, 500px) minmax(0, 1fr);
   column-gap: 48px;
   align-items: start;
 }
@@ -449,7 +440,6 @@ li {
   .page {
     padding-top: 0;
   }
-  .page > h1,
   #timeline > h2,
   #breakthroughs > h2 {
     display: none;

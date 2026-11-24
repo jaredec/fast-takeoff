@@ -55,9 +55,21 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
 
   return (
     <Pages>
-      <h1>The Singularity Index</h1>
-
       <div className="cols">
+        <section id="breakthroughs" className="side">
+          <h2>Breakthroughs</h2>
+          <p>
+            Firsts for humankind made by AI: new science, math or medicine, or a historic first the whole world noticed.
+          </p>
+          <Events series={series.breakthroughs} />
+          <footer className="thanks">
+            The Singularity Index by <a href="https://www.jaredconnolly.com">Jared Connolly</a>. Updated through{" "}
+            {formatDay(series.breakthroughs.asOf, { month: "long", day: "numeric", year: "numeric" })}.{" "}
+            <a href={`${BASE_PATH}/card/breakthroughs/month`}>Today&rsquo;s card</a> &middot;{" "}
+            <a href="https://x.com/thefasttakeoff">Follow on X</a>
+          </footer>
+        </section>
+
         <div className="side">
           <section id="index">
             <div className="reading">
@@ -108,20 +120,6 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
             </ul>
           </section>
         </div>
-
-        <section id="breakthroughs" className="side">
-          <h2>Breakthroughs</h2>
-          <p>
-            Firsts for humankind made by AI: new science, math or medicine, or a historic first the whole world noticed.
-          </p>
-          <Events series={series.breakthroughs} />
-          <footer className="thanks">
-            The Singularity Index by <a href="https://www.jaredconnolly.com">Jared Connolly</a>. Updated through{" "}
-            {formatDay(series.breakthroughs.asOf, { month: "long", day: "numeric", year: "numeric" })}.{" "}
-            <a href={`${BASE_PATH}/card/breakthroughs/month`}>Today&rsquo;s card</a> &middot;{" "}
-            <a href="https://x.com/thefasttakeoff">Follow on X</a>
-          </footer>
-        </section>
       </div>
       <ScrollTogether />
     </Pages>

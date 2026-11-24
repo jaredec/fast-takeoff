@@ -4,9 +4,9 @@ import { useSyncExternalStore, type MouseEvent, type ReactNode } from "react";
 
 /** On phones the page splits into these, one at a time; wider screens show everything at once. */
 const PAGES = [
+  { id: "breakthroughs", label: "Breakthroughs" },
   { id: "index", label: "Singularity Index" },
   { id: "timeline", label: "Timeline" },
-  { id: "breakthroughs", label: "Breakthroughs" },
 ] as const;
 type Page = (typeof PAGES)[number]["id"];
 
@@ -19,14 +19,14 @@ function subscribe(onChange: () => void) {
   };
 }
 
-const fromHash = (hash: string): Page => PAGES.find((p) => `#${p.id}` === hash)?.id ?? "index";
+const fromHash = (hash: string): Page => PAGES.find((p) => `#${p.id}` === hash)?.id ?? "breakthroughs";
 
 export function Pages({ children }: { children: ReactNode }) {
   const page = fromHash(useSyncExternalStore(subscribe, () => location.hash, () => ""));
 
   const go = (ev: MouseEvent, id: Page) => {
     ev.preventDefault();
-    history.pushState(null, "", id === "index" ? location.pathname + location.search : `#${id}`);
+    history.pushState(null, "", id === "breakthroughs" ? location.pathname + location.search : `#${id}`);
     window.dispatchEvent(new HashChangeEvent("hashchange"));
     window.scrollTo(0, 0);
   };
