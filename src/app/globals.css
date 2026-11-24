@@ -435,6 +435,39 @@ li {
   display: none;
 }
 
+/* Wide screens list the same pages in a nav to the right of the columns, the way patrickcollison.com does. */
+@media (min-width: 1100px) {
+  .page {
+    flex-direction: row;
+    max-width: 1240px;
+  }
+  .cols {
+    min-width: 0;
+  }
+  .pages {
+    display: block;
+    order: 1;
+    flex: none;
+    width: 120px;
+    margin-left: 48px;
+    padding-top: 32px;
+  }
+  .pages a {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--link);
+    text-decoration: none;
+  }
+  .pages a[aria-current] {
+    color: var(--strong);
+    font-weight: bold;
+  }
+  #index,
+  #timeline {
+    scroll-margin-top: 32px;
+  }
+}
+
 /* Phones get one page at a time, picked from the nav, instead of one long scroll. */
 @media (max-width: 720px) {
   .page {

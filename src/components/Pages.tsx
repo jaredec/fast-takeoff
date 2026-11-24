@@ -2,7 +2,10 @@
 
 import { useSyncExternalStore, type MouseEvent, type ReactNode } from "react";
 
-/** On phones the page splits into these, one at a time; wider screens show everything at once. */
+/**
+ * On phones the page splits into these, one at a time. Wider screens show everything at once, and the
+ * same links in a nav beside the columns scroll to each part.
+ */
 const PAGES = [
   { id: "breakthroughs", label: "Breakthroughs" },
   { id: "index", label: "Singularity Index" },
@@ -29,6 +32,10 @@ export function Pages({ children }: { children: ReactNode }) {
     history.pushState(null, "", id === "breakthroughs" ? location.pathname + location.search : `#${id}`);
     window.dispatchEvent(new HashChangeEvent("hashchange"));
     window.scrollTo(0, 0);
+    const el = document.getElementById(id);
+    if (!el || !matchMedia("(min-width: 721px)").matches) return;
+    if (el.classList.contains("side")) el.scrollTo({ top: 0, behavior: "smooth" });
+    else el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
