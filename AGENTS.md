@@ -12,7 +12,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 This repo used to be Capsule. Capsule now lives in `jaredec/capsule` (its own Vercel project, served at jaredconnolly.com/capsule); don't build on it here.
 
-Fast Takeoff isn't public yet. The "Fast Takeoff" routing rule on the `jaredconnolly-com` Vercel project redirects jaredconnolly.com/fasttakeoff to /capsule for now; preview the site at this project's production domain under `/fasttakeoff`. At launch, turn that rule back into a rewrite to this project's production domain and link it from the homepage.
+The site is live at jaredconnolly.com/fasttakeoff, linked from the homepage, through the "Fast Takeoff" routing rule on the `jaredconnolly-com` Vercel project that rewrites to this project's production domain. whataididtoday.com is registered but not connected yet.
 
 ## The index
 
