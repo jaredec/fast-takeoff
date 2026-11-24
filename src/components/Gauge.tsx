@@ -14,24 +14,23 @@ export function Gauge({ fraction, value, zone }: { fraction: number; value: stri
     return <line key={k} x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(0,0,0,.2)" strokeWidth={k % 10 ? 0.7 : 1.1} />;
   });
   const arcs = zoneArcs(CX, CY, R);
-  const n = arcs.length;
   return (
     <svg className="gauge" viewBox="0 0 300 180" aria-hidden="true">
-      {arcs.map(({ zone: z, d }, i) => (
-        <g key={z.name}>
-          <path d={d} stroke={z.color} strokeWidth={20} fill="none" />
-          <path
-            id={`zone-${i}`}
-            d={arcPath(CX, CY, R + 16, Math.PI - (i / n) * Math.PI, Math.PI - ((i + 1) / n) * Math.PI)}
-            fill="none"
-          />
-          <text className="zone-label" data-active={z.name === zone || undefined}>
-            <textPath href={`#zone-${i}`} startOffset="50%" textAnchor="middle">
-              {z.name}
-            </textPath>
-          </text>
-        </g>
-      ))}
+      {arcs.map(({ zone: z, d, mid }, i) => {
+        // The label's path is at least 50° wide so the narrow zones' names aren't cut off.
+        const half = Math.max(0.44, ((z.to - z.from) / 200) * Math.PI);
+        return (
+          <g key={z.name}>
+            <path d={d} stroke={z.color} strokeWidth={20} fill="none" />
+            <path id={`zone-${i}`} d={arcPath(CX, CY, R + 16, mid + half, mid - half)} fill="none" />
+            <text className="zone-label" data-active={z.name === zone || undefined}>
+              <textPath href={`#zone-${i}`} startOffset="50%" textAnchor="middle">
+                {z.name}
+              </textPath>
+            </text>
+          </g>
+        );
+      })}
       {ticks}
       <g className="needle" style={{ transform: `rotate(${-90 + fraction * 180}deg)` }}>
         <path d={`M${CX - 5} ${CY} L${CX} ${CY - R + 30} L${CX + 5} ${CY} Z`} fill="#111" />

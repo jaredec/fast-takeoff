@@ -11,12 +11,12 @@ export function arcPath(cx: number, cy: number, r: number, from: number, to: num
   return `M${x0.toFixed(2)} ${y0.toFixed(2)}A${r} ${r} 0 0 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
 }
 
-/** One arc per zone across the top half of a circle, left to right, with a small gap between zones. */
+/** One arc per zone across the top half of a circle, left to right, sized to its range, with a small gap between zones. */
 export function zoneArcs(cx: number, cy: number, r: number, gap = 0.018) {
   const n = ZONES.length;
   return ZONES.map((zone, i) => {
-    const from = Math.PI - (i / n) * Math.PI;
-    const to = Math.PI - ((i + 1) / n) * Math.PI;
+    const from = Math.PI - (zone.from / 100) * Math.PI;
+    const to = Math.PI - (zone.to / 100) * Math.PI;
     return {
       zone,
       d: arcPath(cx, cy, r, i ? from - gap : from, i === n - 1 ? to : to + gap),

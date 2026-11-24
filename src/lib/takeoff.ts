@@ -41,14 +41,14 @@ export const loadTakeoff = (): Takeoff => takeoffSchema.parse(data);
 export const PACE_PER_ZONE = 8;
 
 /**
- * Zones split the 0–100 scale into quarters. 50 is the old pace on every signal; each zone above or
- * below is another eightfold change in pace.
+ * 50 is the old pace on every signal. The extremes are narrow: Singularity needs about 28 times the old
+ * pace on average (90), AI winter about 28 times slower (10).
  */
 export const ZONES = [
-  { name: "AI winter", from: 0, to: 25, color: "#9db3c9" },
-  { name: "Slow takeoff", from: 25, to: 50, color: "#e2c06a" },
-  { name: "Fast takeoff", from: 50, to: 75, color: "#df7a45" },
-  { name: "Singularity", from: 75, to: 100, color: "#b8392c" },
+  { name: "AI winter", from: 0, to: 10, color: "#9db3c9" },
+  { name: "Slow takeoff", from: 10, to: 50, color: "#e2c06a" },
+  { name: "Fast takeoff", from: 50, to: 90, color: "#df7a45" },
+  { name: "Singularity", from: 90, to: 100, color: "#b8392c" },
 ] as const;
 export type Zone = (typeof ZONES)[number];
 
