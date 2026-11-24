@@ -412,6 +412,7 @@ li {
   .page {
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
     gap: 48px;
     box-sizing: border-box;
   }
@@ -426,6 +427,8 @@ li {
     display: block;
     flex: none;
     width: 120px;
+    /* Out at the far right, past the page's edge where the window has room. */
+    margin-right: calc(-1 * min(80px, max(0px, (100vw - 1080px) / 2)));
   }
   .pages a {
     display: block;
