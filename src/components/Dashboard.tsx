@@ -1,26 +1,13 @@
 import type { CSSProperties } from "react";
 import { BASE_PATH } from "@/lib/basePath";
 import type { Dataset } from "@/lib/data";
-import { countIn, formatDay, formatInterval, gaps, makeSeries, TRACK_INFO, TRACKS, yearsWord, type Series } from "@/lib/metrics";
+import { countIn, formatDay, formatInterval, gaps, makeSeries, TRACK_INFO, TRACKS, yearsWord } from "@/lib/metrics";
 import { paceFor, readIndex } from "@/lib/takeoff";
+import { BreakthroughList } from "./BreakthroughList";
 import { Gauge } from "./Gauge";
 import { ScrollTogether } from "./ScrollTogether";
 import { TimelineSection } from "./TimelineSection";
-
-function Events({ series }: { series: Series }) {
-  return (
-    <ul>
-      {[...series.events].reverse().map((e) => (
-        <li key={`${e.date} ${e.title}`}>
-          <b>{e.title}.</b> {e.why}{" "}
-          <i>
-            {e.org}, {formatDay(e.day)}.
-          </i>
-        </li>
-      ))}
-    </ul>
-  );
-}
+import { WhoProvider } from "./Who";
 
 /** Short phrases as one sentence: "More than 440 moratoriums; power up 19% a year." */
 function phrases(list: string[]) {
@@ -37,7 +24,7 @@ function formatUpdated(iso: string) {
   return `${day} at ${time} ET`;
 }
 
-export function Dashboard({ meta, tracks, takeoff }: Dataset) {
+export function Dashboard({ meta, tracks, human, takeoff }: Dataset) {
   const series = { breakthroughs: makeSeries(tracks.breakthroughs, meta), releases: makeSeries(tracks.releases, meta) };
   const { score, zone, signals } = readIndex(takeoff, series);
   const b = series.breakthroughs;
@@ -57,76 +44,73 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
     <div className="page">
       <h1>The Singularity Index</h1>
 
-      <div className="cols">
-        <div className="side">
-          <section id="index">
-            <div className="reading">
-              <Gauge fraction={score / 100} value={String(Math.round(score))} zone={zone.name} />
-              <p className="zone" style={{ "--zc": zone.color } as CSSProperties}>
-                <i />
-                {zone.name}
+      <WhoProvider>
+        <div className="cols">
+          <div className="side">
+            <section id="index">
+              <div className="reading">
+                <Gauge fraction={score / 100} value={String(Math.round(score))} zone={zone.name} />
+                <p className="zone" style={{ "--zc": zone.color } as CSSProperties}>
+                  <i />
+                  {zone.name}
+                </p>
+              </div>
+              <p>
+                <b>{zone.name}.</b> {zone.means} By the five measures below, it is moving {paceFor(score)}.
               </p>
-            </div>
-            <p>
-              <b>{zone.name}.</b> {zone.means} By the five measures below, it is moving {paceFor(score)}.
-            </p>
-            <p className="updated">Last updated {formatUpdated(meta.updated)}</p>
-            <p>
-              <b>Drivers.</b> {phrases(drivers)}
-            </p>
-            <p>
-              <b>Constraints.</b> {phrases(takeoff.forces.down.map((f) => f.text))}
-            </p>
-            <p className="note">
-              Method. The index is the mean of five signals. Each scores 50 at its earlier pace and moves 25 points for
-              every eightfold change in pace:{" "}
-              {signals.map((s, i) => (
-                <span key={s.name}>
-                  {i ? ", " : ""}
-                  <a href={s.url}>{s.name.toLowerCase()}</a> {Math.round(s.score)}
-                </span>
-              ))}
-              .
-            </p>
-          </section>
+              <p className="updated">Last updated {formatUpdated(meta.updated)}</p>
+              <p>
+                <b>Drivers.</b> {phrases(drivers)}
+              </p>
+              <p>
+                <b>Constraints.</b> {phrases(takeoff.forces.down.map((f) => f.text))}
+              </p>
+              <p className="note">
+                Method. The index is the mean of five signals. Each scores 50 at its earlier pace and moves 25 points
+                for every eightfold change in pace:{" "}
+                {signals.map((s, i) => (
+                  <span key={s.name}>
+                    {i ? ", " : ""}
+                    <a href={s.url}>{s.name.toLowerCase()}</a> {Math.round(s.score)}
+                  </span>
+                ))}
+                .
+              </p>
+            </section>
 
-          <TimelineSection meta={meta} tracks={tracks} />
+            <TimelineSection meta={meta} tracks={tracks} human={human} />
 
-          <section id="gaps">
-            <h2>Time between</h2>
-            <ul>
-              {TRACKS.map((t) => {
-                const g = gaps(series[t], TRACK_INFO[t].baselineYears);
-                return (
-                  <li key={t}>
-                    <b>{TRACK_INFO[t].label}.</b> One every {g.recent ? formatInterval(g.recent) : "—"} over the last
-                    year, against one every {g.before ? formatInterval(g.before) : "—"} in the{" "}
-                    {yearsWord(TRACK_INFO[t].baselineYears)} years before.
-                    {g.latest !== null &&
-                      (g.latest === 0
-                        ? " The latest two came the same day."
-                        : ` The latest came ${g.latest === 1 ? "1 day" : formatInterval(g.latest)} after the one before.`)}
-                  </li>
-                );
-              })}
-            </ul>
-          </section>
+            <section id="gaps">
+              <h2>Time between</h2>
+              <ul>
+                {TRACKS.map((t) => {
+                  const g = gaps(series[t], TRACK_INFO[t].baselineYears);
+                  return (
+                    <li key={t}>
+                      <b>{TRACK_INFO[t].label}.</b> One every {g.recent ? formatInterval(g.recent) : "—"} over the last
+                      year, against one every {g.before ? formatInterval(g.before) : "—"} in the{" "}
+                      {yearsWord(TRACK_INFO[t].baselineYears)} years before.
+                      {g.latest !== null &&
+                        (g.latest === 0
+                          ? " The latest two came the same day."
+                          : ` The latest came ${g.latest === 1 ? "1 day" : formatInterval(g.latest)} after the one before.`)}
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          </div>
+
+          <BreakthroughList ai={tracks.breakthroughs} human={human}>
+            <footer className="thanks">
+              The Singularity Index by <a href="https://www.jaredconnolly.com">Jared Connolly</a>. Updated through{" "}
+              {formatDay(series.breakthroughs.asOf, { month: "long", day: "numeric", year: "numeric" })}.{" "}
+              <a href={`${BASE_PATH}/card/breakthroughs/month`}>Today&rsquo;s card</a> &middot;{" "}
+              <a href="https://x.com/thefasttakeoff">Follow on X</a>
+            </footer>
+          </BreakthroughList>
         </div>
-
-        <section id="breakthroughs" className="side">
-          <h2>Breakthroughs</h2>
-          <p>
-            Firsts for humankind made by AI: new science, math or medicine, or a historic first the whole world noticed.
-          </p>
-          <Events series={series.breakthroughs} />
-          <footer className="thanks">
-            The Singularity Index by <a href="https://www.jaredconnolly.com">Jared Connolly</a>. Updated through{" "}
-            {formatDay(series.breakthroughs.asOf, { month: "long", day: "numeric", year: "numeric" })}.{" "}
-            <a href={`${BASE_PATH}/card/breakthroughs/month`}>Today&rsquo;s card</a> &middot;{" "}
-            <a href="https://x.com/thefasttakeoff">Follow on X</a>
-          </footer>
-        </section>
-      </div>
+      </WhoProvider>
       <ScrollTogether />
     </div>
   );

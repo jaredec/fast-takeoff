@@ -350,6 +350,11 @@ li {
   background: var(--fc);
 }
 
+.mark.dot.ring::after {
+  background: none;
+  box-shadow: inset 0 0 0 1.5px var(--fc);
+}
+
 .mark.dot[aria-current],
 .mark.dot:focus-visible {
   box-shadow: none;
@@ -358,6 +363,14 @@ li {
 .mark.dot[aria-current]::after,
 .mark.dot:focus-visible::after {
   box-shadow:
+    0 0 0 2px var(--bg),
+    0 0 0 3px var(--strong);
+}
+
+.mark.dot.ring[aria-current]::after,
+.mark.dot.ring:focus-visible::after {
+  box-shadow:
+    inset 0 0 0 1.5px var(--fc),
     0 0 0 2px var(--bg),
     0 0 0 3px var(--strong);
 }
@@ -380,6 +393,15 @@ li {
   width: 7px;
   height: 7px;
   border-radius: 50%;
+}
+
+.legend i.ring {
+  box-shadow: inset 0 0 0 1.5px var(--faint);
+}
+
+.switch.who {
+  margin-top: 4px;
+  font-size: 13px;
 }
 
 .swarm[data-active] .mark:not([aria-current]) {

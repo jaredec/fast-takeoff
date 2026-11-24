@@ -3,7 +3,7 @@ import { loadDataset } from "../src/lib/data";
 import { logosFor } from "../src/lib/logos";
 import { TRACKS, toDay } from "../src/lib/metrics";
 
-const { meta, tracks, takeoff } = loadDataset();
+const { meta, tracks, human, takeoff } = loadDataset();
 const asOf = toDay(meta.asOf);
 const untracked = meta.untracked.map(([a, b]) => [toDay(a), toDay(b)] as const);
 const problems: string[] = [];
@@ -38,8 +38,25 @@ for (const track of TRACKS) {
   }
 }
 
+const seen = new Set<string>();
+for (const e of human) {
+  const day = toDay(e.date);
+  const where = `human: ${e.date} ${e.title}`;
+  if (Number.isNaN(day)) problems.push(`${where}: invalid date`);
+  if (day > asOf) problems.push(`${where}: after asOf ${meta.asOf}`);
+  if (!e.field) problems.push(`${where}: needs a "field"`);
+  if (!e.url) problems.push(`${where}: needs a "url" to its source`);
+  if (e.icon) problems.push(`${where}: takes no "icon"`);
+  if (tracks.breakthroughs.some((b) => b.title === e.title)) problems.push(`${where}: shares a title with an AI breakthrough`);
+  const key = `${e.date}|${e.title}`;
+  if (seen.has(key)) problems.push(`${where}: duplicate`);
+  seen.add(key);
+}
+
 if (problems.length) {
   console.error(problems.join("\n"));
   process.exit(1);
 }
-console.log(`ok: ${TRACKS.map((t) => `${tracks[t].length} ${t}`).join(", ")}, as of ${meta.asOf}`);
+console.log(
+  `ok: ${TRACKS.map((t) => `${tracks[t].length} ${t}`).join(", ")}, ${human.length} without AI, as of ${meta.asOf}`,
+);

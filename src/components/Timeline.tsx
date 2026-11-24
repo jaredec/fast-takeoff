@@ -126,7 +126,8 @@ function Icon({ e, className }: { e: DayEvent; className?: string }) {
   );
 }
 
-export function Timeline({ series, range }: { series: Series; range: Range }) {
+/** `rings` draws breakthroughs made without AI as rings, to tell them from those made by AI. */
+export function Timeline({ series, range, rings }: { series: Series; range: Range; rings?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const narrow = useMediaQuery("(max-width: 640px)");
   const width = useElementWidth(ref);
@@ -141,7 +142,8 @@ export function Timeline({ series, range }: { series: Series; range: Range }) {
     tip.show(
       <>
         <time>
-          {formatDay(e.day)} · {e.org}
+          {formatDay(e.day)} · {e.human ? "Without AI · " : ""}
+          {e.org}
         </time>
         <b>{e.title}</b>
         <p>{e.why}</p>
@@ -185,7 +187,7 @@ export function Timeline({ series, range }: { series: Series; range: Range }) {
           {view.marks.map(({ e, x, y }) => (
             <button
               key={keyOf(e)}
-              className={e.field ? "mark dot" : "mark"}
+              className={e.field ? (rings && e.human ? "mark dot ring" : "mark dot") : "mark"}
               aria-label={`${e.title}, ${formatDay(e.day)}`}
               aria-current={active === keyOf(e) || undefined}
               style={

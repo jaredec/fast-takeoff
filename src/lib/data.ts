@@ -1,5 +1,6 @@
 import { z } from "zod";
 import breakthroughs from "../../data/breakthroughs.json";
+import human from "../../data/human.json";
 import releases from "../../data/releases.json";
 import meta from "../../data/meta.json";
 import { FIELDS } from "./logos";
@@ -16,6 +17,7 @@ export const eventsSchema = z.array(
     why: z.string().min(1),
     field: z.enum(FIELDS).optional(),
     icon: z.string().regex(/^[a-z0-9-]+$/).optional(),
+    url: z.url().optional(),
   }),
 );
 
@@ -25,7 +27,8 @@ export const metaSchema = z.object({
   untracked: z.array(z.tuple([isoDate, isoDate])),
 });
 
-export type Dataset = { meta: Meta; tracks: Record<Track, AiEvent[]>; takeoff: Takeoff };
+/** `human` holds breakthroughs made without AI, for comparison only; the index never reads it. */
+export type Dataset = { meta: Meta; tracks: Record<Track, AiEvent[]>; human: AiEvent[]; takeoff: Takeoff };
 
 export function loadDataset(): Dataset {
   return {
@@ -34,6 +37,7 @@ export function loadDataset(): Dataset {
       breakthroughs: eventsSchema.parse(breakthroughs),
       releases: eventsSchema.parse(releases),
     },
+    human: eventsSchema.parse(human),
     takeoff: loadTakeoff(),
   };
 }
