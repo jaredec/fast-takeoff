@@ -10,6 +10,10 @@ import { useTip } from "./Tip";
 const GAP = 2;
 /** Half the height of the band around the axis that holds the tick labels. */
 const BAND = 11;
+/** On phones the axis runs down the page instead, with the tick labels sitting across it. */
+const VERTICAL_BAND = 20;
+/** How tall the vertical timeline is for each range: long enough to scroll through, short enough to read. */
+const TALL = { "90d": 560, "1y": 1000, "5y": 1700, all: 2600 } as const;
 /** AlexNet, where the deep learning era starts. Both tracks share this axis. */
 const START = toDay("2012-09-30");
 
@@ -26,13 +30,13 @@ const keyOf = (e: DayEvent) => `${e.date} ${e.title}`;
 const roomFor = (narrow: boolean) => (narrow ? 190 : 260);
 
 /** Beeswarm: each circle takes the spot nearest the axis that touches nothing placed before it. */
-function swarm(xs: number[], size: number) {
+function swarm(xs: number[], size: number, band = BAND) {
   const r = size / 2;
   const clear = 2 * r + GAP;
   const placed: { x: number; y: number }[] = [];
   const ys = xs.map((xi) => {
     const near = placed.filter((p) => Math.abs(p.x - xi) < clear);
-    const base = BAND + r;
+    const base = band + r;
     const options = [base, -base];
     for (const p of near) {
       const dy = Math.sqrt(Math.max(0, clear ** 2 - (xi - p.x) ** 2));
@@ -44,8 +48,8 @@ function swarm(xs: number[], size: number) {
     placed.push({ x: xi, y });
     return y;
   });
-  const above = Math.max(BAND, ...ys.map((y) => y + r));
-  const below = Math.max(BAND, ...ys.map((y) => -y + r));
+  const above = Math.max(band, ...ys.map((y) => y + r));
+  const below = Math.max(band, ...ys.map((y) => -y + r));
   return { ys, above, below };
 }
 
@@ -71,25 +75,7 @@ function layout(s: Series, from: number, width: number, narrow: boolean) {
   const above = room / 2;
   const below = room / 2;
 
-  // Years across long ranges, months across short ones, with the year on each January.
-  const ticks: { key: number; x: number; label: string }[] = [];
-  const first = fromDay(from);
-  if (s.asOf - from > 3 * 365) {
-    const step = perDay * 365 < 40 ? 2 : 1;
-    for (let year = first.getUTCFullYear() + 1; year <= fromDay(s.asOf).getUTCFullYear(); year++) {
-      if (year % step === 0) ticks.push({ key: year, x: x(toDay(`${year}-01-01`)), label: String(year) });
-    }
-  } else {
-    const step = perDay * 30.4 < 36 ? 3 : 1;
-    for (let m = first.getUTCMonth() + 1, y = first.getUTCFullYear(); ; m++) {
-      const day = Date.UTC(y, m, 1) / 864e5;
-      if (day > s.asOf) break;
-      const d = fromDay(day);
-      if (d.getUTCMonth() % step) continue;
-      const label = d.getUTCMonth() ? d.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" }) : String(d.getUTCFullYear());
-      ticks.push({ key: day, x: x(day), label });
-    }
-  }
+  const ticks = ticksFor(from, s.asOf, perDay).map((t) => ({ ...t, x: x(t.day) }));
 
   const bands = s.untracked
     .filter(([a, b]) => b >= from && a <= s.asOf)
@@ -107,6 +93,62 @@ function layout(s: Series, from: number, width: number, narrow: boolean) {
     below,
     height: axis + above + 12,
     now: x(s.asOf),
+  };
+}
+
+/** Years across long ranges, months across short ones, with the year on each January. */
+function ticksFor(from: number, asOf: number, perDay: number) {
+  const ticks: { key: number; day: number; label: string }[] = [];
+  const first = fromDay(from);
+  if (asOf - from > 3 * 365) {
+    const step = perDay * 365 < 40 ? 2 : 1;
+    for (let year = first.getUTCFullYear() + 1; year <= fromDay(asOf).getUTCFullYear(); year++) {
+      if (year % step === 0) ticks.push({ key: year, day: toDay(`${year}-01-01`), label: String(year) });
+    }
+  } else {
+    const step = perDay * 30.4 < 36 ? 3 : 1;
+    for (let m = first.getUTCMonth() + 1, y = first.getUTCFullYear(); ; m++) {
+      const day = Date.UTC(y, m, 1) / 864e5;
+      if (day > asOf) break;
+      const d = fromDay(day);
+      if (d.getUTCMonth() % step) continue;
+      const label = d.getUTCMonth() ? d.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" }) : String(d.getUTCFullYear());
+      ticks.push({ key: day, day, label });
+    }
+  }
+  return ticks;
+}
+
+/**
+ * The phone version: newest at the top under "Now", time running down the page, and each event on
+ * whichever side of the axis has room closest to it.
+ */
+function layoutVertical(s: Series, from: number, width: number, range: Range) {
+  const height = TALL[range];
+  const top = 30;
+  const bottom = 16;
+  const perDay = (height - top - bottom) / (s.asOf - from);
+  const y = (day: number) => top + (s.asOf - day) * perDay;
+  const axis = width / 2;
+
+  const events = s.events.filter((e) => e.day >= from && e.day <= s.asOf);
+  const ys = events.map((e) => y(e.day));
+  let size = 24;
+  let swarmed = swarm(ys, size, VERTICAL_BAND);
+  while (size > 8 && Math.max(swarmed.above, swarmed.below) > axis - 2) swarmed = swarm(ys, --size, VERTICAL_BAND);
+
+  return {
+    size,
+    height,
+    axis,
+    top,
+    marks: events.map((e, i) => ({ e, x: axis + swarmed.ys[i], y: ys[i] })),
+    ticks: ticksFor(from, s.asOf, perDay)
+      .map((t) => ({ ...t, y: y(t.day) }))
+      .filter((t) => t.y - top > 20 && t.y < height - 8),
+    bands: s.untracked
+      .filter(([a, b]) => b >= from && a <= s.asOf)
+      .map(([a, b]) => ({ top: y(Math.min(b, s.asOf)), bottom: y(Math.max(a, from)) })),
   };
 }
 
@@ -129,10 +171,18 @@ function Icon({ e, className }: { e: DayEvent; className?: string }) {
 export function Timeline({ series, range }: { series: Series; range: Range }) {
   const ref = useRef<HTMLDivElement>(null);
   const narrow = useMediaQuery("(max-width: 640px)");
+  const vertical = useMediaQuery("(max-width: 720px)");
   const width = useElementWidth(ref);
   const days = RANGES.find((r) => r.id === range)!.days;
   const from = days ? series.asOf - days + 1 : START;
-  const view = useMemo(() => (width ? layout(series, from, width, narrow) : null), [series, from, width, narrow]);
+  const view = useMemo(
+    () => (width && !vertical ? layout(series, from, width, narrow) : null),
+    [series, from, width, narrow, vertical],
+  );
+  const tall = useMemo(
+    () => (width && vertical ? layoutVertical(series, from, width, range) : null),
+    [series, from, width, vertical, range],
+  );
   const [active, setActive] = useState<string | null>(null);
   const tip = useTip();
 
@@ -158,6 +208,68 @@ export function Timeline({ series, range }: { series: Series; range: Range }) {
     setActive(null);
     if (ev.pointerType === "mouse") tip.hide();
   };
+  const gapTip = (ev: PointerEvent) => tip.show(<b>Not backfilled yet</b>, ev.clientX, ev.clientY);
+
+  const mark = (e: DayEvent, size: number, at: CSSProperties) => (
+    <button
+      key={keyOf(e)}
+      className={e.field ? "mark dot" : "mark"}
+      aria-label={`${e.title}, ${formatDay(e.day)}`}
+      aria-current={active === keyOf(e) || undefined}
+      style={
+        {
+          ...at,
+          width: size,
+          height: size,
+          "--grow": Math.max(1.3, 30 / size).toFixed(2),
+          "--fc": e.field ? groupColor(fieldGroup(e.field as Field)) : undefined,
+        } as CSSProperties
+      }
+      onPointerMove={(ev) => ev.pointerType === "mouse" && show(e, ev.clientX, ev.clientY)}
+      onPointerLeave={leave}
+      onClick={(ev) => showAt(e, ev.currentTarget)}
+      onFocus={(ev) => showAt(e, ev.currentTarget)}
+      onBlur={() => {
+        setActive(null);
+        tip.hide();
+      }}
+    >
+      {!e.field && <Icon e={e} className="mark-icon" />}
+    </button>
+  );
+
+  if (vertical) {
+    return (
+      <div className="swarm vertical" ref={ref} style={{ height: TALL[range] }} data-active={active ? "" : undefined}>
+        {tall && (
+          <>
+            {tall.bands.map((b, i) => (
+              <div
+                key={i}
+                className="swarm-gap"
+                style={{ left: 0, right: 0, top: b.top, height: b.bottom - b.top }}
+                onPointerMove={gapTip}
+                onPointerLeave={leave}
+              />
+            ))}
+            <div className="swarm-axis" style={{ left: tall.axis, top: tall.top, bottom: 0 }} />
+            {tall.ticks.map((t) => (
+              <span key={t.key} className="swarm-year" style={{ left: tall.axis, top: t.y }}>
+                {t.label}
+              </span>
+            ))}
+            <div className="swarm-now" style={{ left: tall.axis, top: tall.top }}>
+              <i />
+              <span>Now</span>
+            </div>
+            {tall.marks.map(({ e, x, y }) =>
+              mark(e, tall.size, { left: x - tall.size / 2, top: y - tall.size / 2 }),
+            )}
+          </>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="swarm" ref={ref} style={{ height: roomFor(narrow) + 24 }} data-active={active ? "" : undefined}>
@@ -168,7 +280,7 @@ export function Timeline({ series, range }: { series: Series; range: Range }) {
               key={i}
               className="swarm-gap"
               style={{ left: b.left, width: b.right - b.left, bottom: view.axis - view.below, height: view.above + view.below }}
-              onPointerMove={(ev) => tip.show(<b>Not backfilled yet</b>, ev.clientX, ev.clientY)}
+              onPointerMove={gapTip}
               onPointerLeave={leave}
             />
           ))}
@@ -182,34 +294,9 @@ export function Timeline({ series, range }: { series: Series; range: Range }) {
             <i />
             <span>Now</span>
           </div>
-          {view.marks.map(({ e, x, y }) => (
-            <button
-              key={keyOf(e)}
-              className={e.field ? "mark dot" : "mark"}
-              aria-label={`${e.title}, ${formatDay(e.day)}`}
-              aria-current={active === keyOf(e) || undefined}
-              style={
-                {
-                  left: x - view.size / 2,
-                  bottom: view.axis + y - view.size / 2,
-                  width: view.size,
-                  height: view.size,
-                  "--grow": Math.max(1.3, 30 / view.size).toFixed(2),
-                  "--fc": e.field ? groupColor(fieldGroup(e.field as Field)) : undefined,
-                } as CSSProperties
-              }
-              onPointerMove={(ev) => ev.pointerType === "mouse" && show(e, ev.clientX, ev.clientY)}
-              onPointerLeave={leave}
-              onClick={(ev) => showAt(e, ev.currentTarget)}
-              onFocus={(ev) => showAt(e, ev.currentTarget)}
-              onBlur={() => {
-                setActive(null);
-                tip.hide();
-              }}
-            >
-              {!e.field && <Icon e={e} className="mark-icon" />}
-            </button>
-          ))}
+          {view.marks.map(({ e, x, y }) =>
+            mark(e, view.size, { left: x - view.size / 2, bottom: view.axis + y - view.size / 2 }),
+          )}
         </>
       )}
     </div>

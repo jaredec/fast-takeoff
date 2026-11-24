@@ -270,6 +270,23 @@ li {
   color: var(--strong);
 }
 
+.swarm.vertical .swarm-axis {
+  right: auto;
+  width: 1px;
+  height: auto;
+}
+
+.swarm.vertical .swarm-year {
+  translate: -50% -50%;
+  padding: 3px 0;
+}
+
+.swarm.vertical .swarm-now span {
+  left: 0;
+  top: -22px;
+  translate: -50% 0;
+}
+
 .mark {
   position: absolute;
   border-radius: 50%;
@@ -282,6 +299,7 @@ li {
     opacity 0.18s ease,
     box-shadow 0.18s ease,
     left 0.45s ease,
+    top 0.45s ease,
     bottom 0.45s ease,
     width 0.45s ease,
     height 0.45s ease;
@@ -465,6 +483,17 @@ li {
   #breakthroughs {
     margin-top: 20px;
     scroll-margin-top: 80px;
+  }
+  #timeline {
+    display: flex;
+    flex-direction: column;
+  }
+  #timeline .switch {
+    order: -2;
+  }
+  #timeline .legend {
+    order: -1;
+    margin: 10px 0 0;
   }
   .page[data-page="index"] :is(#timeline, #breakthroughs),
   .page[data-page="timeline"] :is(#index, #gaps, #breakthroughs),
