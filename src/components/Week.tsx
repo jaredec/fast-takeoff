@@ -15,7 +15,7 @@ export function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: Daily[
 
   return (
     <section id="week">
-      <h2>What did AI do today</h2>
+      <h2>What did AI do today?</h2>
       <p>
         Everything notable AI achieved each day this past week, newest first: results, records, discoveries and firsts,
         each with its source. New models are on the timeline.

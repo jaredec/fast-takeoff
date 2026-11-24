@@ -4,7 +4,7 @@ import { useSyncExternalStore, type MouseEvent, type ReactNode } from "react";
 
 /** The site's pages, shown one at a time and picked from the nav. */
 const PAGES = [
-  { id: "week", label: "What did AI do today" },
+  { id: "week", label: "What did AI do today?" },
   { id: "breakthroughs", label: "Breakthroughs" },
   { id: "index", label: "Singularity Index" },
   { id: "timeline", label: "Timeline" },
