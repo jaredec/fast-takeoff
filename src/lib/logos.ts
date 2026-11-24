@@ -19,6 +19,15 @@ export const FIELD_COLORS: Record<Field, string> = {
   vision: "#6a5d8f",
 };
 
+/** The timeline colors the sciences by field and groups the rest (games, weather, vision) as "other". */
+export const SCIENCES = ["math", "biology", "medicine", "chemistry", "physics"] as const satisfies readonly Field[];
+export type FieldGroup = (typeof SCIENCES)[number] | "other";
+export const FIELD_GROUPS: readonly FieldGroup[] = [...SCIENCES, "other"];
+const OTHER_COLOR = "#8a8a8a";
+
+export const fieldGroup = (f: Field): FieldGroup => ((SCIENCES as readonly Field[]).includes(f) ? (f as FieldGroup) : "other");
+export const groupColor = (g: FieldGroup) => (g === "other" ? OTHER_COLOR : FIELD_COLORS[g]);
+
 /** Lab marks in public/logos, for releases. Real marks only. */
 export const LOGOS = [
   "anthropic", "claude", "copilot", "deepmind", "deepseek", "gemini", "gemma", "google", "grok", "ibm", "kimi",
