@@ -173,16 +173,14 @@ li {
 
 .swarm-axis {
   position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
+  width: 1px;
   background: rgba(0, 0, 0, 0.12);
 }
 
 .swarm-year {
   position: absolute;
-  translate: -50% 50%;
-  padding: 0 5px;
+  translate: -50% -50%;
+  padding: 3px 0;
   background: var(--bg);
   font-size: 11px;
   line-height: 1;
@@ -212,30 +210,15 @@ li {
 
 .swarm-now span {
   position: absolute;
-  left: 8px;
-  top: -6px;
+  left: 0;
+  top: -22px;
+  translate: -50% 0;
   font-size: 11px;
   font-weight: bold;
   line-height: 12px;
   color: var(--strong);
 }
 
-.swarm.vertical .swarm-axis {
-  right: auto;
-  width: 1px;
-  height: auto;
-}
-
-.swarm.vertical .swarm-year {
-  translate: -50% -50%;
-  padding: 3px 0;
-}
-
-.swarm.vertical .swarm-now span {
-  left: 0;
-  top: -22px;
-  translate: -50% 0;
-}
 
 .mark {
   position: absolute;
@@ -318,6 +301,7 @@ li {
   display: flex;
   flex-wrap: wrap;
   gap: 4px 14px;
+  margin: 10px 0 0;
   font-size: 11px;
   color: var(--faint);
 }
@@ -447,6 +431,7 @@ li {
   .page {
     padding-top: 0;
   }
+  #index > h2,
   #timeline > h2,
   #breakthroughs > h2,
   #week > h2 {
@@ -479,19 +464,5 @@ li {
   #week {
     margin-top: 20px;
     scroll-margin-top: 80px;
-  }
-  #timeline {
-    display: flex;
-    flex-direction: column;
-  }
-  #timeline .switch {
-    order: -2;
-  }
-  #timeline .ranges {
-    display: none;
-  }
-  #timeline .legend {
-    order: -1;
-    margin: 10px 0 0;
   }
 }

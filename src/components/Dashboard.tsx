@@ -67,6 +67,7 @@ export function Dashboard({ meta, tracks, daily, takeoff }: Dataset) {
 
         <div>
           <section id="index">
+            <h2>Singularity Index</h2>
             <div className="reading">
               <Gauge fraction={score / 100} value={String(Math.round(score))} zone={zone.name} />
             </div>
