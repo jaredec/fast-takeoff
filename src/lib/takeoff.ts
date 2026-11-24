@@ -1,10 +1,10 @@
 import { z } from "zod";
 import data from "../../data/takeoff.json";
-import { formatDay, formatInterval, gaps, toDay, type Series, type Track } from "./metrics";
+import { formatDay, formatInterval, gaps, toDay, TRACK_INFO, yearsWord, type Series, type Track } from "./metrics";
 
 const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
 const reading = z.object({ read: isoDate, median: isoDate });
-const force = z.object({ text: z.string().min(1), source: z.string().min(1), url: z.url(), date: isoDate });
+const force = z.object({ label: z.string().min(1), text: z.string().min(1), source: z.string().min(1), url: z.url(), date: isoDate });
 
 /** Figures copied from each source's latest update. The index combines them; it never edits them. */
 export const takeoffSchema = z.object({
@@ -109,13 +109,14 @@ export function readIndex(t: Takeoff, series: Record<Track, Series>) {
     ["breakthroughs", "A breakthrough"],
     ["releases", "A frontier release"],
   ] as const) {
-    const g = gaps(series[track]);
+    const years = TRACK_INFO[track].baselineYears;
+    const g = gaps(series[track], years);
     if (!g.recent || !g.before) continue;
     signals.push(
       signal({
         name: track === "breakthroughs" ? "Breakthroughs" : "Frontier releases",
         now: `${noun} every ${formatInterval(g.recent)} over the last year`,
-        was: `${formatInterval(g.before)} the five years before`,
+        was: `${formatInterval(g.before)} the ${yearsWord(years)} years before`,
         source: "Our count",
         url: "#gaps",
         speed: g.before / g.recent,

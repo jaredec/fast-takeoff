@@ -5,10 +5,21 @@ export type AiEvent = { date: string; title: string; org: string; why: string; f
 export type Meta = { asOf: string; untracked: [string, string][] };
 export type DayEvent = AiEvent & { day: number };
 
-export const TRACK_INFO: Record<Track, { label: string; noun: string; color: string; rgb: [number, number, number] }> = {
-  breakthroughs: { label: "Breakthroughs", noun: "breakthroughs", color: "#5f9b65", rgb: [75, 143, 58] },
-  releases: { label: "Frontier releases", noun: "frontier releases", color: "#4a6fa5", rgb: [63, 99, 160] },
+type TrackInfo = {
+  label: string;
+  noun: string;
+  color: string;
+  rgb: [number, number, number];
+  /** Years before the last one that set its old pace. Releases start after ChatGPT, when labs began shipping frontier models to the public as a matter of course. */
+  baselineYears: number;
 };
+
+export const TRACK_INFO: Record<Track, TrackInfo> = {
+  breakthroughs: { label: "Breakthroughs", noun: "breakthroughs", color: "#5f9b65", rgb: [75, 143, 58], baselineYears: 5 },
+  releases: { label: "Frontier releases", noun: "frontier releases", color: "#4a6fa5", rgb: [63, 99, 160], baselineYears: 3 },
+};
+
+export const yearsWord = (n: number) => ["", "one", "two", "three", "four", "five", "six"][n] ?? String(n);
 
 export const DAY_MS = 864e5;
 export const MONTH = 30.4375;
@@ -97,12 +108,12 @@ export function averageGap(s: Series, from: number, to: number) {
   return count < 2 ? null : trackedDays(s, from, to) / count;
 }
 
-/** The average gap over the last year and over the five years before it. */
-export function gaps(s: Series) {
+/** The average gap over the last year and over the `years` before it. */
+export function gaps(s: Series, years: number) {
   const year = 365;
   return {
     recent: averageGap(s, s.asOf - year + 1, s.asOf),
-    before: averageGap(s, s.asOf - 6 * year + 1, s.asOf - year),
+    before: averageGap(s, s.asOf - (years + 1) * year + 1, s.asOf - year),
     latest: s.events.length > 1 ? s.events.at(-1)!.day - s.events.at(-2)!.day : null,
   };
 }

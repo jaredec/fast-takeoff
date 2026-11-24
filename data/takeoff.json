@@ -38,13 +38,15 @@
   "forces": {
     "up": [
       {
-        "text": "AI is helping build AI: OpenAI researchers' use of coding agents doubles about every month.",
+        "label": "AI research",
+        "text": "Daily coding-agent use by the median OpenAI researcher, valued at API prices, rose from under $1 in January 2026 to $601 in mid-August, doubling about every month.",
         "source": "Epoch AI",
         "url": "https://epoch.ai/data-insights/openai-coding-agent-spending",
         "date": "2026-10-05"
       },
       {
-        "text": "The compute used to train frontier models still grows about 5× a year.",
+        "label": "Training compute",
+        "text": "Compute used to train frontier language models has grown 5× a year since 2020.",
         "source": "Epoch AI",
         "url": "https://epoch.ai/trends",
         "date": "2026-11-05"
@@ -52,25 +54,29 @@
     ],
     "down": [
       {
-        "text": "More than 440 local moratoriums pause new data centers, and midterm voters backed nearly every limit on the ballot.",
+        "label": "Data center limits",
+        "text": "More than 440 local data center moratoriums are in effect. On November 3, voters approved 40 of 41 data center ballot measures in ten states.",
         "source": "Georgetown Environmental Law Review",
         "url": "https://www.law.georgetown.edu/environmental-law-review/blog/not-in-my-watershed-what-the-midterms-mean-for-data-center-regulation/",
         "date": "2026-11-11"
       },
       {
-        "text": "Data centers' power demand grows about 19% a year; the grid grows 2%.",
+        "label": "Power",
+        "text": "Power to data centers has grown 19% a year since 2000; US grid capacity, 2% a year.",
         "source": "Fortune",
         "url": "https://fortune.com/2026/11/22/ai-data-centers-power-grid-capacity/",
         "date": "2026-11-22"
       },
       {
-        "text": "Growth in AI chips sold has slowed to 2.5× a year, from about 6× in 2023.",
+        "label": "Chip sales",
+        "text": "Computing power of AI chips sold each quarter has grown 2.5× a year since 2024, down from about 6× in 2023.",
         "source": "Epoch AI",
         "url": "https://epoch.ai/trends",
         "date": "2026-11-05"
       },
       {
-        "text": "No frontier model met Epoch's employee standard on any of its real work tasks.",
+        "label": "Real work",
+        "text": "No model met Epoch's employee standard on any of its internal work tasks, including the two highest on its Capabilities Index.",
         "source": "Epoch AI",
         "url": "https://epoch.ai/publications/how-good-are-fable-5-2-and-gpt-6-2-astra-at-real-work",
         "date": "2026-11-17"
