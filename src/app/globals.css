@@ -420,7 +420,7 @@ li {
   }
 }
 
-/* Phones head each page with its name and a menu button; the other pages slide in from the right beneath it. */
+/* Phones head each page with its name and a menu button; the other pages slide in from the right over the text beneath it. */
 @media (max-width: 720px) {
   .page {
     padding-top: 24px;
@@ -432,6 +432,8 @@ li {
     display: none;
   }
   .pages {
+    position: relative;
+    z-index: 20;
     display: block;
   }
   .pages .bar {
@@ -451,7 +453,11 @@ li {
   }
   .pages .links {
     display: none;
-    margin-top: 6px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    padding: 6px 0 10px 56px;
+    background: linear-gradient(to right, transparent, var(--bg) 40px);
     text-align: right;
     font: 15px var(--head);
   }
