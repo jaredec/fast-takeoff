@@ -334,11 +334,6 @@ li {
   background: var(--fc);
 }
 
-.mark.dot.ring::after {
-  background: none;
-  box-shadow: inset 0 0 0 1.5px var(--fc);
-}
-
 .mark.dot[aria-current],
 .mark.dot:focus-visible {
   box-shadow: none;
@@ -347,14 +342,6 @@ li {
 .mark.dot[aria-current]::after,
 .mark.dot:focus-visible::after {
   box-shadow:
-    0 0 0 2px var(--bg),
-    0 0 0 3px var(--strong);
-}
-
-.mark.dot.ring[aria-current]::after,
-.mark.dot.ring:focus-visible::after {
-  box-shadow:
-    inset 0 0 0 1.5px var(--fc),
     0 0 0 2px var(--bg),
     0 0 0 3px var(--strong);
 }
@@ -377,15 +364,6 @@ li {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-}
-
-.legend i.ring {
-  box-shadow: inset 0 0 0 1.5px var(--faint);
-}
-
-.switch.who {
-  margin-top: 4px;
-  font-size: 13px;
 }
 
 .swarm[data-active] .mark:not([aria-current]) {
@@ -444,11 +422,53 @@ li {
   margin: 3px 0 0;
 }
 
+.pages {
+  display: none;
+}
+
+/* Phones get one page at a time, picked from the nav, instead of one long scroll. */
 @media (max-width: 720px) {
   .page {
-    padding-top: 24px;
+    padding-top: 0;
+  }
+  .page > h1,
+  #timeline > h2,
+  #breakthroughs > h2 {
+    display: none;
+  }
+  .pages {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    margin: 0 -24px;
+    padding: 16px 24px 12px;
+    border-bottom: 1px solid #eee;
+    background: var(--bg);
+    font: 16px var(--head);
+  }
+  .pages a {
+    color: var(--link);
+    text-decoration: none;
+  }
+  .pages a[aria-current] {
+    color: var(--strong);
+    font-weight: bold;
   }
   .cols {
     grid-template-columns: minmax(0, 1fr);
+  }
+  #index,
+  #timeline,
+  #breakthroughs {
+    margin-top: 20px;
+    scroll-margin-top: 80px;
+  }
+  .page[data-page="index"] :is(#timeline, #breakthroughs),
+  .page[data-page="timeline"] :is(#index, #gaps, #breakthroughs),
+  .page[data-page="breakthroughs"] :is(#index, #gaps, #timeline) {
+    display: none;
   }
 }

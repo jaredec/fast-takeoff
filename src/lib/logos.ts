@@ -1,9 +1,7 @@
 import type { AiEvent } from "./metrics";
 
 /** A breakthrough's field. */
-export const FIELDS = [
-  "math", "biology", "medicine", "chemistry", "physics", "space", "engineering", "weather", "games", "vision",
-] as const;
+export const FIELDS = ["math", "biology", "medicine", "chemistry", "physics", "weather", "games", "vision"] as const;
 export type Field = (typeof FIELDS)[number];
 
 /**
@@ -16,15 +14,13 @@ export const FIELD_COLORS: Record<Field, string> = {
   medicine: "#c0463a",
   chemistry: "#2a8a8a",
   physics: "#d07a34",
-  space: "#6b4fa0",
-  engineering: "#5a5a5a",
   weather: "#3b8bbf",
   games: "#424242",
   vision: "#6a5d8f",
 };
 
-/** The timeline colors the sciences by field and groups the rest (engineering, weather, games, vision) as "other". */
-export const SCIENCES = ["math", "biology", "medicine", "chemistry", "physics", "space"] as const satisfies readonly Field[];
+/** The timeline colors the sciences by field and groups the rest (games, weather, vision) as "other". */
+export const SCIENCES = ["math", "biology", "medicine", "chemistry", "physics"] as const satisfies readonly Field[];
 export type FieldGroup = (typeof SCIENCES)[number] | "other";
 export const FIELD_GROUPS: readonly FieldGroup[] = [...SCIENCES, "other"];
 const OTHER_COLOR = "#8a8a8a";

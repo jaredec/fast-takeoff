@@ -1,17 +1,7 @@
 export type Track = "breakthroughs" | "releases";
 export const TRACKS: Track[] = ["breakthroughs", "releases"];
 
-export type AiEvent = {
-  date: string;
-  title: string;
-  org: string;
-  why: string;
-  field?: string;
-  icon?: string;
-  url?: string;
-  /** Made without AI; only set where both kinds of breakthrough share a list. */
-  human?: boolean;
-};
+export type AiEvent = { date: string; title: string; org: string; why: string; field?: string; icon?: string };
 export type Meta = { asOf: string; updated: string; untracked: [string, string][] };
 export type DayEvent = AiEvent & { day: number };
 
