@@ -23,7 +23,7 @@ button {
   cursor: pointer;
 }
 
-/* The window holds the index and timeline on the left and the breakthroughs on the right, each scrolling on its own. */
+/* The page scrolls with the breakthroughs; the index and timeline stay in view on the left and scroll on their own. */
 .page {
   max-width: 1080px;
   margin: 0 auto;
@@ -117,30 +117,22 @@ li {
   body {
     margin: 0;
   }
-  .page {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    height: 100dvh;
+  div.side {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    max-height: 100dvh;
     box-sizing: border-box;
-  }
-  .cols {
-    flex: 1;
-    min-height: 0;
-    align-items: stretch;
-  }
-  .side {
-    min-height: 0;
     overflow-y: auto;
-    scrollbar-width: thin;
+    scrollbar-width: none;
     padding-bottom: 24px;
+  }
+  div.side::-webkit-scrollbar {
+    display: none;
   }
   section.side {
     margin-top: 0;
     padding-top: 32px;
-  }
-  .side .thanks {
-    margin-bottom: 0;
   }
 }
 
