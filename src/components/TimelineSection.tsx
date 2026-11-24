@@ -9,7 +9,7 @@ import { TipProvider } from "./Tip";
 
 export function TimelineSection({ meta, tracks }: Pick<Dataset, "meta" | "tracks">) {
   const [track, setTrack] = useState<Track>("breakthroughs");
-  const [range, setRange] = useState<Range>("all");
+  const [range, setRange] = useState<Range>("5y");
   const series = useMemo(
     () => ({ breakthroughs: makeSeries(tracks.breakthroughs, meta), releases: makeSeries(tracks.releases, meta) }),
     [meta, tracks],
