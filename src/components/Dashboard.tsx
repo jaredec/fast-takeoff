@@ -86,7 +86,9 @@ export function Dashboard({ meta, tracks, daily, takeoff }: Dataset) {
               {signals.map((s, i) => (
                 <span key={s.name}>
                   {i ? ", " : ""}
-                  <a href={s.url}>{s.name.toLowerCase()}</a> {Math.round(s.score)}
+                  <a href={s.url} target="_blank" rel="noopener noreferrer">
+                    {s.name.toLowerCase()}
+                  </a> {Math.round(s.score)}
                 </span>
               ))}
               .

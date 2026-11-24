@@ -394,6 +394,10 @@ li {
   display: none;
 }
 
+.pages .short {
+  display: none;
+}
+
 /* Wider screens list the pages in a nav to the right, the way patrickcollison.com does. */
 @media (min-width: 721px) {
   body {
@@ -425,6 +429,12 @@ li {
     margin-bottom: 6px;
     color: var(--link);
     text-decoration: none;
+  }
+  .pages .long {
+    display: none;
+  }
+  .pages .short {
+    display: inline;
   }
   .pages a[aria-current] {
     color: var(--strong);

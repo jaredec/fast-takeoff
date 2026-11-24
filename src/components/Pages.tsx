@@ -4,7 +4,7 @@ import { useSyncExternalStore, type MouseEvent, type ReactNode } from "react";
 
 /** The site's pages, shown one at a time and picked from the nav. */
 const PAGES = [
-  { id: "week", label: "What did AI do today?" },
+  { id: "week", label: "What did AI do today?", short: "Today" },
   { id: "breakthroughs", label: "Breakthroughs" },
   { id: "index", label: "Singularity Index" },
   { id: "timeline", label: "Timeline" },
@@ -37,7 +37,14 @@ export function Pages({ children }: { children: ReactNode }) {
       <nav className="pages">
         {PAGES.map((p) => (
           <a key={p.id} href={`#${p.id}`} aria-current={p.id === page ? "page" : undefined} onClick={(ev) => go(ev, p.id)}>
-            {p.label}
+            {"short" in p ? (
+              <>
+                <span className="long">{p.label}</span>
+                <span className="short">{p.short}</span>
+              </>
+            ) : (
+              p.label
+            )}
           </a>
         ))}
       </nav>

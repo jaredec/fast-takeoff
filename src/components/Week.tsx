@@ -30,7 +30,9 @@ export function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: Daily[
                 <li key={e.title}>
                   <b>{e.title}.</b> {e.why}{" "}
                   <i>
-                    {e.url ? <a href={e.url}>{e.org}</a> : e.org}
+                    {e.url ? <a href={e.url} target="_blank" rel="noopener noreferrer">
+                        {e.org}
+                      </a> : e.org}
                     {e.breakthrough && " · Breakthrough"}.
                   </i>
                 </li>
