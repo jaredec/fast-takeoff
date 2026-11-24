@@ -1,4 +1,3 @@
-import { BASE_PATH } from "@/lib/basePath";
 import type { Dataset } from "@/lib/data";
 import { countIn, formatDay, formatInterval, gaps, makeSeries, TRACK_INFO, TRACKS, yearsWord, type Series } from "@/lib/metrics";
 import { paceFor, readIndex } from "@/lib/takeoff";
@@ -61,12 +60,6 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
             Firsts for humankind made by AI: new science, math or medicine, or a historic first the whole world noticed.
           </p>
           <Events series={series.breakthroughs} />
-          <footer className="thanks">
-            The Singularity Index by <a href="https://www.jaredconnolly.com">Jared Connolly</a>. Updated through{" "}
-            {formatDay(series.breakthroughs.asOf, { month: "long", day: "numeric", year: "numeric" })}.{" "}
-            <a href={`${BASE_PATH}/card/breakthroughs/month`}>Today&rsquo;s card</a> &middot;{" "}
-            <a href="https://x.com/thefasttakeoff">Follow on X</a>
-          </footer>
         </section>
 
         <div>

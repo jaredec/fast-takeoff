@@ -27,7 +27,7 @@ button {
 .page {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 40px 24px 0;
+  padding: 40px 24px;
   color: var(--ink);
 }
 
@@ -107,18 +107,6 @@ li {
 .page[data-page="timeline"] :is(#index, #gaps, #breakthroughs),
 .page[data-page="breakthroughs"] :is(#index, #gaps, #timeline) {
   display: none;
-}
-
-.thanks {
-  margin: 48px 0 4em;
-  padding-top: 1em;
-  border-top: 1px solid #eee;
-  font-size: smaller;
-  color: #777;
-}
-
-.thanks a {
-  color: #777;
 }
 
 .gauge {
