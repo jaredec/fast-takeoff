@@ -30,7 +30,7 @@ Events live in `data/breakthroughs.json` and `data/releases.json`. `data/meta.js
 - A release is a frontier release: a lab's new most capable model, shipped so people can use it by app, API or open weights (GPT-5, Claude Fable 5.2, Gemini 4 Carbon). Cheaper or smaller tiers (Flash under a newer Pro, Sonnet under Opus, mini models), image, video and voice models, coding spin-offs and apps don't count. Date it by the day people could first use it.
 - Date an event by the day it was first shown or shipped in US time, not when coverage peaked.
 - Never invent an event or a date. Leave a gap and mark the range in `meta.json` instead.
-- A breakthrough's `title` leads with the result and why it matters ("Protein folding solved", "Riemann hypothesis proved"), not with "AI did X" and not with a version name ("AlphaFold 3"). Iconic names can stand alone ("AlexNet"). Name the system in `why`.
+- A breakthrough's `title` names its subject, the way Patrick Collison's Fast page names a project ("COVID-19 vaccines"): "Protein folding", "Riemann hypothesis". Not a headline ("Protein folding solved"), not "AI did X", not a version name ("AlphaFold 3"). An iconic system can be the subject ("Deep Blue", "AlexNet"). The `why` says what happened and names the system.
 - `why` is one plain sentence a non-expert would understand.
 - Every breakthrough has a `field` (see `FIELDS` in `src/lib/logos.ts`) and its own `icon`: a Lucide or Tabler icon that fits that breakthrough (a Go board for AlphaGo), saved as `public/logos/bt-<icon>.svg` in the field's color from `FIELD_COLORS`. No two breakthroughs share an icon.
 - Releases show their lab's logo, picked by `src/lib/logos.ts` from the title or org. A new lab needs its real mark in `public/logos`. Never draw or invent a logo.
