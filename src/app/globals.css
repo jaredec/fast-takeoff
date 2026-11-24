@@ -23,7 +23,7 @@ button {
   cursor: pointer;
 }
 
-/* The index and timeline on the left, held in view while the breakthroughs scroll past on the right. */
+/* The window holds the index and timeline on the left and the breakthroughs on the right, each scrolling on its own. */
 .page {
   max-width: 1080px;
   margin: 0 auto;
@@ -94,9 +94,33 @@ li {
 }
 
 @media (min-width: 721px) {
-  .pinned {
-    position: sticky;
+  body {
+    margin: 0;
+  }
+  .page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+    box-sizing: border-box;
+  }
+  .cols {
+    flex: 1;
+    min-height: 0;
+    align-items: stretch;
+  }
+  .side {
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
     padding-bottom: 24px;
+  }
+  section.side {
+    margin-top: 0;
+    padding-top: 48px;
+  }
+  .side .thanks {
+    margin-bottom: 0;
   }
 }
 

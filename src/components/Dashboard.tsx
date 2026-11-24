@@ -4,7 +4,6 @@ import type { Dataset } from "@/lib/data";
 import { formatDay, formatInterval, gaps, makeSeries, TRACK_INFO, TRACKS, type Series } from "@/lib/metrics";
 import { formatTimes, PACE_PER_ZONE, readIndex } from "@/lib/takeoff";
 import { Gauge } from "./Gauge";
-import { Pinned } from "./Pinned";
 import { TimelineSection } from "./TimelineSection";
 
 function Events({ series }: { series: Series }) {
@@ -31,7 +30,7 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
       <h1>Fast Takeoff</h1>
 
       <div className="cols">
-        <Pinned>
+        <div className="side">
           <section id="index">
             <h2>The Fast Takeoff Index</h2>
             <div className="reading">
@@ -85,23 +84,22 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
               })}
             </ul>
           </section>
-        </Pinned>
+        </div>
 
-        <section id="breakthroughs">
+        <section id="breakthroughs" className="side">
           <h2>Breakthroughs</h2>
           <p>
             Firsts for humankind made by AI: new science, math or medicine, or a historic first the whole world noticed.
           </p>
           <Events series={series.breakthroughs} />
+          <footer className="thanks">
+            Fast Takeoff by <a href="https://www.jaredconnolly.com">Jared Connolly</a>. Updated through{" "}
+            {formatDay(series.breakthroughs.asOf, { month: "long", day: "numeric", year: "numeric" })}.{" "}
+            <a href={`${BASE_PATH}/card/breakthroughs/month`}>Today&rsquo;s card</a> &middot;{" "}
+            <a href="https://x.com/thefasttakeoff">Follow on X</a>
+          </footer>
         </section>
       </div>
-
-      <footer className="thanks">
-        Fast Takeoff by <a href="https://www.jaredconnolly.com">Jared Connolly</a>. Updated through{" "}
-        {formatDay(series.breakthroughs.asOf, { month: "long", day: "numeric", year: "numeric" })}.{" "}
-        <a href={`${BASE_PATH}/card/breakthroughs/month`}>Today&rsquo;s card</a> &middot;{" "}
-        <a href="https://x.com/thefasttakeoff">Follow on X</a>
-      </footer>
     </div>
   );
 }
