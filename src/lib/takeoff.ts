@@ -92,7 +92,7 @@ const YEAR = 365.25;
 const month = (iso: string) => formatDay(toDay(iso), { month: "short", year: "numeric" });
 export const formatTimes = (x: number) => `${x >= 10 ? x.toFixed(0) : x.toFixed(1)}×`;
 
-/** The Fast Takeoff Index: the plain average of each signal's score, like the Fear & Greed Index. */
+/** The Singularity Index: the plain average of each signal's score, like the Fear & Greed Index. */
 export function readIndex(t: Takeoff, series: Record<Track, Series>) {
   const signal = (s: Omit<Signal, "score">): Signal => ({ ...s, score: scoreFor(s.speed) });
   const signals: Signal[] = [

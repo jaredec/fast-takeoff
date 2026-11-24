@@ -7,7 +7,7 @@ const card = {
   url: `https://www.jaredconnolly.com${BASE_PATH}/card/breakthroughs/month`,
   width: CARD_SIZE.width,
   height: CARD_SIZE.height,
-  alt: "The Fast Takeoff Index: how fast AI is moving, out of 100",
+  alt: "The Singularity Index: how fast AI is moving, out of 100",
 };
 
 export const metadata: Metadata = {
