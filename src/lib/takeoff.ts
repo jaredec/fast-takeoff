@@ -49,13 +49,15 @@ export const loadTakeoff = (): Takeoff => takeoffSchema.parse(data);
 export const PACE_PER_ZONE = 8;
 
 /**
- * 50 is the old pace on every signal. The extremes are narrow: Singularity needs about 28 times the old
- * pace on average (90), AI winter about 28 times slower (10).
+ * 50 is the old pace on every signal, and Steady is within about 1.5 times of it either way (45–55, like
+ * Fear & Greed's Neutral). The extremes are narrow: Singularity needs about 28 times the old pace on
+ * average (90), AI winter about 28 times slower (10).
  */
 export const ZONES = [
   { name: "AI winter", from: 0, to: 10, color: "#9db3c9", means: "AI, and the work done by AI, has all but stopped improving." },
-  { name: "Slow takeoff", from: 10, to: 50, color: "#e2c06a", means: "AI, and the work done by AI, keeps improving, but no faster than it used to." },
-  { name: "Fast takeoff", from: 50, to: 90, color: "#df7a45", means: "AI, and the work done by AI, is improving faster than it used to." },
+  { name: "Slow takeoff", from: 10, to: 45, color: "#e2c06a", means: "AI, and the work done by AI, keeps improving, but more slowly than it used to." },
+  { name: "Steady", from: 45, to: 55, color: "#a8a8a8", means: "AI, and the work done by AI, is improving at about the pace it used to." },
+  { name: "Fast takeoff", from: 55, to: 90, color: "#df7a45", means: "AI, and the work done by AI, is improving faster than it used to." },
   { name: "Singularity", from: 90, to: 100, color: "#b8392c", means: "AI, and the work done by AI, is improving dozens of times faster than it used to." },
 ] as const;
 export type Zone = (typeof ZONES)[number];
