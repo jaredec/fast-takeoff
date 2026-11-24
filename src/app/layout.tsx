@@ -1,10 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Geist } from "next/font/google";
 import { BASE_PATH } from "@/lib/basePath";
 import { CARD_SIZE } from "@/lib/card";
 import "./globals.css";
-
-const sans = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const card = {
   url: `https://www.jaredconnolly.com${BASE_PATH}/card/breakthroughs/month`,
@@ -21,12 +18,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f4f4f2",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={sans.variable}>
+    <html lang="en">
       <body>{children}</body>
     </html>
   );
