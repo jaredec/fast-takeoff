@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Dataset } from "@/lib/data";
+import { FIELD_COLORS, FIELDS } from "@/lib/logos";
 import { makeSeries, TRACK_INFO, TRACKS, type Track } from "@/lib/metrics";
 import { RANGES, Timeline, type Range } from "./Timeline";
 import { TipProvider } from "./Tip";
@@ -35,6 +36,16 @@ export function TimelineSection({ meta, tracks }: Pick<Dataset, "meta" | "tracks
           </span>
         </p>
         <Timeline series={series[track]} range={range} />
+        {track === "breakthroughs" && (
+          <p className="legend">
+            {FIELDS.filter((f) => series.breakthroughs.events.some((e) => e.field === f)).map((f) => (
+              <span key={f}>
+                <i style={{ background: FIELD_COLORS[f] }} />
+                {f}
+              </span>
+            ))}
+          </p>
+        )}
       </section>
     </TipProvider>
   );

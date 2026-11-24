@@ -326,6 +326,51 @@ li {
   height: 62%;
 }
 
+.mark.dot {
+  background: none;
+  box-shadow: none;
+}
+
+.mark.dot::after {
+  content: "";
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  background: var(--fc);
+}
+
+.mark.dot[aria-current],
+.mark.dot:focus-visible {
+  box-shadow: none;
+}
+
+.mark.dot[aria-current]::after,
+.mark.dot:focus-visible::after {
+  box-shadow:
+    0 0 0 2px var(--bg),
+    0 0 0 3px var(--strong);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: 11px;
+  color: var(--faint);
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
 .swarm[data-active] .mark:not([aria-current]) {
   opacity: 0.35;
 }

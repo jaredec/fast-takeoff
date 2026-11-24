@@ -3,7 +3,7 @@
 import { useMemo, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { BASE_PATH } from "@/lib/basePath";
 import { useElementWidth, useMediaQuery } from "@/lib/hooks";
-import { logosFor } from "@/lib/logos";
+import { FIELD_COLORS, logosFor, type Field } from "@/lib/logos";
 import { formatDay, fromDay, toDay, type DayEvent, type Series } from "@/lib/metrics";
 import { useTip } from "./Tip";
 
@@ -185,7 +185,7 @@ export function Timeline({ series, range }: { series: Series; range: Range }) {
           {view.marks.map(({ e, x, y }) => (
             <button
               key={keyOf(e)}
-              className="mark"
+              className={e.field ? "mark dot" : "mark"}
               aria-label={`${e.title}, ${formatDay(e.day)}`}
               aria-current={active === keyOf(e) || undefined}
               style={
@@ -195,6 +195,7 @@ export function Timeline({ series, range }: { series: Series; range: Range }) {
                   width: view.size,
                   height: view.size,
                   "--grow": Math.max(1.3, 30 / view.size).toFixed(2),
+                  "--fc": e.field ? FIELD_COLORS[e.field as Field] : undefined,
                 } as CSSProperties
               }
               onPointerMove={(ev) => ev.pointerType === "mouse" && show(e, ev.clientX, ev.clientY)}
@@ -206,7 +207,7 @@ export function Timeline({ series, range }: { series: Series; range: Range }) {
                 tip.hide();
               }}
             >
-              <Icon e={e} className="mark-icon" />
+              {!e.field && <Icon e={e} className="mark-icon" />}
             </button>
           ))}
         </>
