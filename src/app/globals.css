@@ -23,7 +23,7 @@ button {
   cursor: pointer;
 }
 
-/* Each column is a window-high pane that scrolls on its own; the page scrolls only from outside them. */
+/* The window holds two columns that each scroll on their own; scrolling outside them moves both (ScrollTogether). */
 .page {
   max-width: 1080px;
   margin: 0 auto;
@@ -117,9 +117,16 @@ li {
   body {
     margin: 0;
   }
-  .cols {
+  .page {
+    display: flex;
+    flex-direction: column;
     height: 100vh;
     height: 100dvh;
+    box-sizing: border-box;
+  }
+  .cols {
+    flex: 1;
+    min-height: 0;
     align-items: stretch;
   }
   .side {
@@ -136,6 +143,9 @@ li {
   section.side {
     margin-top: 0;
     padding-top: 32px;
+  }
+  .side .thanks {
+    margin-bottom: 0;
   }
 }
 
