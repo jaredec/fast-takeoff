@@ -378,10 +378,6 @@ li {
   display: none;
 }
 
-.pages .short {
-  display: none;
-}
-
 .pages .bar {
   display: none;
 }
@@ -418,22 +414,16 @@ li {
     color: var(--link);
     text-decoration: none;
   }
-  .pages .long {
-    display: none;
-  }
-  .pages .short {
-    display: inline;
-  }
   .pages a[aria-current] {
     color: var(--strong);
     font-weight: bold;
   }
 }
 
-/* Phones put the current page in a bar across the top, with the other pages behind a menu button. */
+/* Phones head each page with its name and a menu button; the other pages slide in from the right beneath it. */
 @media (max-width: 720px) {
   .page {
-    padding-top: 0;
+    padding-top: 24px;
   }
   #index > h2,
   #timeline > h2,
@@ -442,45 +432,36 @@ li {
     display: none;
   }
   .pages {
-    position: sticky;
-    top: 0;
-    z-index: 20;
     display: block;
-    margin: 0 -24px;
-    border-bottom: 1px solid #eee;
-    background: var(--bg);
-    font: 16px var(--head);
   }
   .pages .bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 14px 10px 24px;
-    color: var(--strong);
+    font-family: var(--head);
+    font-size: 1.5em;
     font-weight: bold;
+    color: var(--strong);
   }
   .pages .bar button {
     display: flex;
-    padding: 6px 10px;
-    color: var(--strong);
+    margin-right: -6px;
+    padding: 4px 6px;
+    color: var(--ink);
   }
   .pages .links {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    padding: 4px 24px 12px;
-    border-bottom: 1px solid #eee;
-    background: var(--bg);
-    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.06);
+    margin-top: 6px;
+    text-align: right;
+    font: 15px var(--head);
   }
   .pages[data-open] .links {
     display: block;
+    animation: slide-in 0.18s ease-out;
   }
   .pages a {
     display: block;
-    padding: 8px 0;
+    padding: 5px 0;
     color: var(--link);
     text-decoration: none;
   }
@@ -492,7 +473,19 @@ li {
   #timeline,
   #breakthroughs,
   #week {
-    margin-top: 20px;
-    scroll-margin-top: 80px;
+    margin-top: 12px;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pages[data-open] .links {
+    animation: none;
   }
 }
