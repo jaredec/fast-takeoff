@@ -382,6 +382,10 @@ li {
   display: none;
 }
 
+.pages .bar {
+  display: none;
+}
+
 /* Wider screens list the pages in a nav to the right, the way patrickcollison.com does. */
 @media (min-width: 721px) {
   body {
@@ -426,7 +430,7 @@ li {
   }
 }
 
-/* Phones put the nav across the top. */
+/* Phones put the current page in a bar across the top, with the other pages behind a menu button. */
 @media (max-width: 720px) {
   .page {
     padding-top: 0;
@@ -441,16 +445,42 @@ li {
     position: sticky;
     top: 0;
     z-index: 20;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 16px;
+    display: block;
     margin: 0 -24px;
-    padding: 16px 24px 12px;
     border-bottom: 1px solid #eee;
     background: var(--bg);
     font: 16px var(--head);
   }
+  .pages .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px 10px 24px;
+    color: var(--strong);
+    font-weight: bold;
+  }
+  .pages .bar button {
+    display: flex;
+    padding: 6px 10px;
+    color: var(--strong);
+  }
+  .pages .links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 4px 24px 12px;
+    border-bottom: 1px solid #eee;
+    background: var(--bg);
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.06);
+  }
+  .pages[data-open] .links {
+    display: block;
+  }
   .pages a {
+    display: block;
+    padding: 8px 0;
     color: var(--link);
     text-decoration: none;
   }
