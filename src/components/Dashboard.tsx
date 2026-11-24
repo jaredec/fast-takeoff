@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import { BASE_PATH } from "@/lib/basePath";
 import type { Dataset } from "@/lib/data";
-import { countIn, formatDay, formatInterval, gaps, makeSeries, TRACK_INFO, TRACKS, yearsWord, type Series } from "@/lib/metrics";
+import { formatDay, formatInterval, gaps, makeSeries, TRACK_INFO, TRACKS, yearsWord, type Series } from "@/lib/metrics";
 import { paceFor, readIndex } from "@/lib/takeoff";
 import { Gauge } from "./Gauge";
 import { ScrollTogether } from "./ScrollTogether";
@@ -22,15 +22,18 @@ function Events({ series }: { series: Series }) {
   );
 }
 
+/** "Nov 23 at 10:20:20 PM ET", the way CNN stamps the Fear & Greed Index. */
+function formatUpdated(iso: string) {
+  const d = new Date(iso);
+  const et = { timeZone: "America/New_York" } as const;
+  const day = d.toLocaleDateString("en-US", { ...et, month: "short", day: "numeric" });
+  const time = d.toLocaleTimeString("en-US", { ...et, hour: "numeric", minute: "2-digit", second: "2-digit" });
+  return `${day} at ${time} ET`;
+}
+
 export function Dashboard({ meta, tracks, takeoff }: Dataset) {
   const series = { breakthroughs: makeSeries(tracks.breakthroughs, meta), releases: makeSeries(tracks.releases, meta) };
   const { score, zone, signals } = readIndex(takeoff, series);
-  const b = series.breakthroughs;
-  const years = TRACK_INFO.breakthroughs.baselineYears;
-  const recent = countIn(b, b.asOf - 364, b.asOf);
-  const before = countIn(b, b.asOf - (years + 1) * 365 + 1, b.asOf - 365);
-  const releaseYears = TRACK_INFO.releases.baselineYears;
-  const releases = gaps(series.releases, releaseYears);
 
   return (
     <div className="page">
@@ -45,20 +48,10 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
                 <i />
                 {zone.name}
               </p>
+              <p className="updated">Last updated {formatUpdated(meta.updated)}</p>
             </div>
             <p>
               <b>{zone.name}.</b> {zone.means} By the five measures below, it is moving {paceFor(score)}.
-            </p>
-            <p>
-              <b>Drivers.</b> AI made {recent} breakthroughs in the past year, against {before} in the{" "}
-              {yearsWord(years)} years before.
-              {releases.recent &&
-                releases.before &&
-                ` A frontier model shipped every ${formatInterval(releases.recent)}, against every ${formatInterval(releases.before)} in the ${yearsWord(releaseYears)} years before.`}{" "}
-              {takeoff.forces.up.map((f) => f.text).join(" ")}
-            </p>
-            <p>
-              <b>Constraints.</b> {takeoff.forces.down.map((f) => f.text).join(" ")}
             </p>
             <p className="note">
               Method. The index is the mean of five signals. Each scores 50 at its earlier pace and moves 25 points for

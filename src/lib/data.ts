@@ -21,6 +21,7 @@ export const eventsSchema = z.array(
 
 export const metaSchema = z.object({
   asOf: isoDate,
+  updated: z.iso.datetime({ offset: true }),
   untracked: z.array(z.tuple([isoDate, isoDate])),
 });
 

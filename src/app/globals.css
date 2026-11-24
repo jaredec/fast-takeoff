@@ -196,6 +196,12 @@ li {
   color: var(--strong);
 }
 
+.updated {
+  margin: 4px 0 0;
+  font-size: 11px;
+  color: var(--faint);
+}
+
 .zone i {
   width: 8px;
   height: 8px;

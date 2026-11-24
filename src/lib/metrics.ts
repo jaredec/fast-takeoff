@@ -2,7 +2,7 @@ export type Track = "breakthroughs" | "releases";
 export const TRACKS: Track[] = ["breakthroughs", "releases"];
 
 export type AiEvent = { date: string; title: string; org: string; why: string; field?: string; icon?: string };
-export type Meta = { asOf: string; untracked: [string, string][] };
+export type Meta = { asOf: string; updated: string; untracked: [string, string][] };
 export type DayEvent = AiEvent & { day: number };
 
 type TrackInfo = {
