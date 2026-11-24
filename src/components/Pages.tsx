@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, useSyncExternalStore, type MouseEvent, typ
 
 /** The site's pages, shown one at a time and picked from the nav. */
 const PAGES = [
-  { id: "week", label: "Today" },
+  { id: "week", label: "Today", title: "What did AI do today?" },
   { id: "breakthroughs", label: "Breakthroughs" },
   { id: "index", label: "Singularity Index" },
   { id: "timeline", label: "Timeline" },
@@ -19,6 +19,11 @@ function subscribe(onChange: () => void) {
     window.removeEventListener("popstate", onChange);
   };
 }
+
+const headline = (id: Page) => {
+  const p = PAGES.find((p) => p.id === id)!;
+  return "title" in p ? p.title : p.label;
+};
 
 const fromHash = (hash: string): Page => PAGES.find((p) => `#${p.id}` === hash)?.id ?? PAGES[0].id;
 
@@ -56,7 +61,7 @@ export function Pages({ children }: { children: ReactNode }) {
       <nav className="pages" ref={nav} data-open={open || undefined}>
         {/* Phones show the current page as the headline with a menu button; wider screens list the pages instead. */}
         <div className="bar">
-          <span>{PAGES.find((p) => p.id === page)?.label}</span>
+          <span>{headline(page)}</span>
           <button type="button" aria-label={open ? "Close menu" : "Menu"} aria-expanded={open} aria-controls="page-links" onClick={() => setOpen(!open)}>
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
               {open ? <path d="M18 6 6 18M6 6l12 12" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
