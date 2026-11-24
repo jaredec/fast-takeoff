@@ -4,6 +4,7 @@ import { paceFor, readIndex } from "@/lib/takeoff";
 import { Gauge } from "./Gauge";
 import { Pages } from "./Pages";
 import { TimelineSection } from "./TimelineSection";
+import { Today } from "./Today";
 
 function Events({ series }: { series: Series }) {
   return (
@@ -35,7 +36,7 @@ function formatUpdated(iso: string) {
   return `${day} at ${time} ET`;
 }
 
-export function Dashboard({ meta, tracks, takeoff }: Dataset) {
+export function Dashboard({ meta, tracks, daily, takeoff }: Dataset) {
   const series = { breakthroughs: makeSeries(tracks.breakthroughs, meta), releases: makeSeries(tracks.releases, meta) };
   const { score, zone, signals } = readIndex(takeoff, series);
   const b = series.breakthroughs;
@@ -61,6 +62,8 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
           </p>
           <Events series={series.breakthroughs} />
         </section>
+
+        <Today daily={daily} breakthroughs={tracks.breakthroughs} />
 
         <div>
           <section id="index">

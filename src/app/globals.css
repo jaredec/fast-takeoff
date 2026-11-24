@@ -99,13 +99,15 @@ li {
 
 #index,
 #timeline,
-#breakthroughs {
+#breakthroughs,
+#today {
   margin-top: 0;
 }
 
-.page[data-page="index"] :is(#timeline, #breakthroughs),
-.page[data-page="timeline"] :is(#index, #gaps, #breakthroughs),
-.page[data-page="breakthroughs"] :is(#index, #gaps, #timeline) {
+.page:not([data-page="breakthroughs"]) #breakthroughs,
+.page:not([data-page="index"]) :is(#index, #gaps),
+.page:not([data-page="timeline"]) #timeline,
+.page:not([data-page="today"]) #today {
   display: none;
 }
 
@@ -436,7 +438,8 @@ li {
     padding-top: 0;
   }
   #timeline > h2,
-  #breakthroughs > h2 {
+  #breakthroughs > h2,
+  #today > h2 {
     display: none;
   }
   .pages {
@@ -462,7 +465,8 @@ li {
   }
   #index,
   #timeline,
-  #breakthroughs {
+  #breakthroughs,
+  #today {
     margin-top: 20px;
     scroll-margin-top: 80px;
   }

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import breakthroughs from "../../data/breakthroughs.json";
+import daily from "../../data/daily.json";
 import releases from "../../data/releases.json";
 import meta from "../../data/meta.json";
 import { FIELDS } from "./logos";
@@ -19,13 +20,25 @@ export const eventsSchema = z.array(
   }),
 );
 
+/** "What did AI do today": everything notable AI achieved each day, each with its source. */
+export const dailySchema = z.array(
+  z.object({
+    date: isoDate,
+    title: z.string().min(1),
+    org: z.string().min(1),
+    why: z.string().min(1),
+    url: z.url(),
+  }),
+);
+export type Daily = z.infer<typeof dailySchema>[number];
+
 export const metaSchema = z.object({
   asOf: isoDate,
   updated: z.iso.datetime({ offset: true }),
   untracked: z.array(z.tuple([isoDate, isoDate])),
 });
 
-export type Dataset = { meta: Meta; tracks: Record<Track, AiEvent[]>; takeoff: Takeoff };
+export type Dataset = { meta: Meta; tracks: Record<Track, AiEvent[]>; daily: Daily[]; takeoff: Takeoff };
 
 export function loadDataset(): Dataset {
   return {
@@ -34,6 +47,7 @@ export function loadDataset(): Dataset {
       breakthroughs: eventsSchema.parse(breakthroughs),
       releases: eventsSchema.parse(releases),
     },
+    daily: dailySchema.parse(daily),
     takeoff: loadTakeoff(),
   };
 }

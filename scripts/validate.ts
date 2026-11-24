@@ -3,7 +3,7 @@ import { loadDataset } from "../src/lib/data";
 import { logosFor } from "../src/lib/logos";
 import { TRACKS, toDay } from "../src/lib/metrics";
 
-const { meta, tracks, takeoff } = loadDataset();
+const { meta, tracks, daily, takeoff } = loadDataset();
 const asOf = toDay(meta.asOf);
 const untracked = meta.untracked.map(([a, b]) => [toDay(a), toDay(b)] as const);
 const problems: string[] = [];
@@ -38,8 +38,22 @@ for (const track of TRACKS) {
   }
 }
 
+const today = toDay(meta.updated.slice(0, 10));
+const seen = new Set<string>();
+for (const e of daily) {
+  const day = toDay(e.date);
+  const where = `daily: ${e.date} ${e.title}`;
+  if (Number.isNaN(day)) problems.push(`${where}: invalid date`);
+  if (day > today) problems.push(`${where}: after the last update, ${meta.updated}`);
+  if (tracks.breakthroughs.some((b) => b.date === e.date && b.title === e.title))
+    problems.push(`${where}: already a breakthrough that day, which the page adds on its own`);
+  const key = `${e.date}|${e.title}`;
+  if (seen.has(key)) problems.push(`${where}: duplicate`);
+  seen.add(key);
+}
+
 if (problems.length) {
   console.error(problems.join("\n"));
   process.exit(1);
 }
-console.log(`ok: ${TRACKS.map((t) => `${tracks[t].length} ${t}`).join(", ")}, as of ${meta.asOf}`);
+console.log(`ok: ${TRACKS.map((t) => `${tracks[t].length} ${t}`).join(", ")}, ${daily.length} daily, as of ${meta.asOf}`);
