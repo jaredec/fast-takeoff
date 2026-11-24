@@ -7,7 +7,7 @@ const PAGES = [
   { id: "breakthroughs", label: "Breakthroughs" },
   { id: "index", label: "Singularity Index" },
   { id: "timeline", label: "Timeline" },
-  { id: "today", label: "What did AI do today" },
+  { id: "week", label: "What did AI do this week" },
 ] as const;
 type Page = (typeof PAGES)[number]["id"];
 

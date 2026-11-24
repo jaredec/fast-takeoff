@@ -1,23 +1,24 @@
 import type { Daily } from "@/lib/data";
-import { formatDay, toDay, type AiEvent } from "@/lib/metrics";
+import { formatDay, toDay, type AiEvent, type Meta } from "@/lib/metrics";
 
 type Item = { date: string; title: string; org: string; why: string; url?: string; breakthrough?: boolean };
 
-/** The daily log, newest day first, with any breakthroughs from those days folded in. */
-export function Today({ daily, breakthroughs }: { daily: Daily[]; breakthroughs: AiEvent[] }) {
-  const since = daily.reduce((min, d) => (d.date < min ? d.date : min), daily[0]?.date ?? "9999");
+/** The seven days ending on the day of the last update, newest first, with that week's breakthroughs folded in. */
+export function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: Daily[]; breakthroughs: AiEvent[] }) {
+  const end = toDay(meta.updated.slice(0, 10));
+  const inWeek = (date: string) => toDay(date) > end - 7 && toDay(date) <= end;
   const items: Item[] = [
-    ...daily,
-    ...breakthroughs.filter((b) => b.date >= since).map((b) => ({ ...b, breakthrough: true })),
+    ...breakthroughs.filter((b) => inWeek(b.date)).map((b) => ({ ...b, breakthrough: true })),
+    ...daily.filter((d) => inWeek(d.date)),
   ];
   const days = [...new Set(items.map((e) => e.date))].sort().reverse();
 
   return (
-    <section id="today">
-      <h2>What did AI do today</h2>
+    <section id="week">
+      <h2>What did AI do this week</h2>
       <p>
-        Everything notable AI achieved, day by day: results, records, discoveries and firsts, each with its source.
-        New models are on the timeline.
+        Everything notable AI achieved in the past seven days: results, records, discoveries and firsts, each with its
+        source. New models are on the timeline.
       </p>
       {days.map((date) => (
         <div key={date}>

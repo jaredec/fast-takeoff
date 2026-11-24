@@ -4,7 +4,7 @@ import { paceFor, readIndex } from "@/lib/takeoff";
 import { Gauge } from "./Gauge";
 import { Pages } from "./Pages";
 import { TimelineSection } from "./TimelineSection";
-import { Today } from "./Today";
+import { Week } from "./Week";
 
 function Events({ series }: { series: Series }) {
   return (
@@ -63,7 +63,7 @@ export function Dashboard({ meta, tracks, daily, takeoff }: Dataset) {
           <Events series={series.breakthroughs} />
         </section>
 
-        <Today daily={daily} breakthroughs={tracks.breakthroughs} />
+        <Week meta={meta} daily={daily} breakthroughs={tracks.breakthroughs} />
 
         <div>
           <section id="index">
