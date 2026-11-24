@@ -39,7 +39,6 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
       <div className="cols">
         <div className="side">
           <section id="index">
-            <h2>Current reading</h2>
             <div className="reading">
               <Gauge fraction={score / 100} value={String(Math.round(score))} zone={zone.name} />
               <p className="zone" style={{ "--zc": zone.color } as CSSProperties}>
