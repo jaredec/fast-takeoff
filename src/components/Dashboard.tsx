@@ -2,6 +2,7 @@ import { BASE_PATH } from "@/lib/basePath";
 import type { Dataset } from "@/lib/data";
 import { formatDay, formatInterval, gaps, makeSeries, TRACK_INFO, TRACKS, type Series } from "@/lib/metrics";
 import { formatTimes, PACE_PER_ZONE, readIndex } from "@/lib/takeoff";
+import { Viz } from "./Viz";
 
 const ABOUT = {
   breakthroughs: "Firsts for humankind made by AI: new science, math or medicine, or a historic first the whole world noticed.",
@@ -23,17 +24,21 @@ function Events({ series }: { series: Series }) {
   );
 }
 
-export function Dashboard({ meta, tracks, takeoff }: Dataset) {
+export function Dashboard(data: Dataset) {
+  const { meta, tracks, takeoff } = data;
   const series = { breakthroughs: makeSeries(tracks.breakthroughs, meta), releases: makeSeries(tracks.releases, meta) };
   const { score, zone, signals } = readIndex(takeoff, series);
 
   return (
-    <>
+    <div className="page">
       <div id="menu">
         <span className="title">Fast Takeoff</span>
         <ul>
           <li>
             <a href="#index">Index</a>
+          </li>
+          <li>
+            <a href="#timeline">Timeline</a>
           </li>
           <li>
             <a href="#gaps">Time between</a>
@@ -52,7 +57,7 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
           </li>
         </ul>
       </div>
-      <div id="left">&nbsp;</div>
+      <Viz {...data} />
       <div id="content">
         <p>
           Fast takeoff refers to a scenario in which an AI transitions rapidly from roughly human-level intelligence to
@@ -115,6 +120,6 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
           {formatDay(series.breakthroughs.asOf, { month: "long", day: "numeric", year: "numeric" })}.
         </div>
       </div>
-    </>
+    </div>
   );
 }
