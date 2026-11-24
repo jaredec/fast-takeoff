@@ -101,7 +101,7 @@ export async function renderCard(track: Track, unit: Unit) {
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, letterSpacing: 4, color: META }}>
-          <div>{index ? "FAST TAKEOFF · SINGULARITY INDEX" : "FAST TAKEOFF · FRONTIER RELEASES"}</div>
+          <div>{index ? "THE SINGULARITY INDEX" : "SINGULARITY INDEX · FRONTIER RELEASES"}</div>
           <div>
             {formatDay(series.asOf, { month: "long", day: "numeric", year: "numeric" }).toUpperCase()}
           </div>

@@ -34,12 +34,12 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
 
   return (
     <div className="page">
-      <h1>Fast Takeoff</h1>
+      <h1>The Singularity Index</h1>
 
       <div className="cols">
         <div className="side">
           <section id="index">
-            <h2>The Singularity Index</h2>
+            <h2>Current reading</h2>
             <div className="reading">
               <Gauge fraction={score / 100} value={String(Math.round(score))} zone={zone.name} />
               <p className="zone" style={{ "--zc": zone.color } as CSSProperties}>
@@ -104,7 +104,7 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
           </p>
           <Events series={series.breakthroughs} />
           <footer className="thanks">
-            Fast Takeoff by <a href="https://www.jaredconnolly.com">Jared Connolly</a>. Updated through{" "}
+            The Singularity Index by <a href="https://www.jaredconnolly.com">Jared Connolly</a>. Updated through{" "}
             {formatDay(series.breakthroughs.asOf, { month: "long", day: "numeric", year: "numeric" })}.{" "}
             <a href={`${BASE_PATH}/card/breakthroughs/month`}>Today&rsquo;s card</a> &middot;{" "}
             <a href="https://x.com/thefasttakeoff">Follow on X</a>
