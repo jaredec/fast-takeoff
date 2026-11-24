@@ -12,8 +12,8 @@ const GAP = 2;
 const BAND = 11;
 /** On phones the axis runs down the page instead, with the tick labels sitting across it. */
 const VERTICAL_BAND = 20;
-/** How tall the vertical timeline is for each range: long enough to scroll through, short enough to read. */
-const TALL = { "90d": 560, "1y": 1000, "5y": 1700, all: 2600 } as const;
+/** How tall the vertical timeline is: long enough to scroll through, short enough to read. */
+const TALL = 2600;
 /** AlexNet, where the deep learning era starts. Both tracks share this axis. */
 const START = toDay("2012-09-30");
 
@@ -123,8 +123,9 @@ function ticksFor(from: number, asOf: number, perDay: number) {
  * The phone version: newest at the top under "Now", time running down the page, and each event on
  * whichever side of the axis has room closest to it.
  */
-function layoutVertical(s: Series, from: number, width: number, range: Range) {
-  const height = TALL[range];
+function layoutVertical(s: Series, width: number) {
+  const height = TALL;
+  const from = START;
   const top = 30;
   const bottom = 16;
   const perDay = (height - top - bottom) / (s.asOf - from);
@@ -168,6 +169,7 @@ function Icon({ e, className }: { e: DayEvent; className?: string }) {
   );
 }
 
+/** Phones scroll through the whole timeline, so they ignore `range`. */
 export function Timeline({ series, range }: { series: Series; range: Range }) {
   const ref = useRef<HTMLDivElement>(null);
   const narrow = useMediaQuery("(max-width: 640px)");
@@ -180,8 +182,8 @@ export function Timeline({ series, range }: { series: Series; range: Range }) {
     [series, from, width, narrow, vertical],
   );
   const tall = useMemo(
-    () => (width && vertical ? layoutVertical(series, from, width, range) : null),
-    [series, from, width, vertical, range],
+    () => (width && vertical ? layoutVertical(series, width) : null),
+    [series, width, vertical],
   );
   const [active, setActive] = useState<string | null>(null);
   const tip = useTip();
@@ -240,7 +242,7 @@ export function Timeline({ series, range }: { series: Series; range: Range }) {
 
   if (vertical) {
     return (
-      <div className="swarm vertical" ref={ref} style={{ height: TALL[range] }} data-active={active ? "" : undefined}>
+      <div className="swarm vertical" ref={ref} style={{ height: TALL }} data-active={active ? "" : undefined}>
         {tall && (
           <>
             {tall.bands.map((b, i) => (

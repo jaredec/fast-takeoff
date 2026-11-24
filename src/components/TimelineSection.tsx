@@ -27,7 +27,7 @@ export function TimelineSection({ meta, tracks }: Pick<Dataset, "meta" | "tracks
               </button>
             ))}
           </span>
-          <span>
+          <span className="ranges">
             {RANGES.map((r) => (
               <button key={r.id} aria-pressed={r.id === range} onClick={() => setRange(r.id)}>
                 {r.label}

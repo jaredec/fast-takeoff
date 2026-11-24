@@ -491,6 +491,9 @@ li {
   #timeline .switch {
     order: -2;
   }
+  #timeline .ranges {
+    display: none;
+  }
   #timeline .legend {
     order: -1;
     margin: 10px 0 0;
