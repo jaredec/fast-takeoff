@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import { BASE_PATH } from "@/lib/basePath";
 import type { Dataset } from "@/lib/data";
 import { countIn, formatDay, formatInterval, gaps, makeSeries, TRACK_INFO, TRACKS, yearsWord } from "@/lib/metrics";
@@ -50,10 +49,6 @@ export function Dashboard({ meta, tracks, human, takeoff }: Dataset) {
             <section id="index">
               <div className="reading">
                 <Gauge fraction={score / 100} value={String(Math.round(score))} zone={zone.name} />
-                <p className="zone" style={{ "--zc": zone.color } as CSSProperties}>
-                  <i />
-                  {zone.name}
-                </p>
               </div>
               <p>
                 <b>{zone.name}.</b> {zone.means} By the five measures below, it is moving {paceFor(score)}.

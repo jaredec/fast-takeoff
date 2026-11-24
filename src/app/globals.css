@@ -187,26 +187,10 @@ li {
   transform-origin: 150px 150px;
 }
 
-.zone {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin: 6px 0 0;
-  font-weight: bold;
-  color: var(--strong);
-}
-
 .updated {
   margin: -8px 0 13px;
   font-size: 11px;
   color: var(--faint);
-}
-
-.zone i {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--zc);
 }
 
 .switch {
