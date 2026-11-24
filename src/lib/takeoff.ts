@@ -4,7 +4,7 @@ import { formatDay, formatInterval, gaps, toDay, TRACK_INFO, yearsWord, type Ser
 
 const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
 const reading = z.object({ read: isoDate, median: isoDate });
-const force = z.object({ label: z.string().min(1), text: z.string().min(1), source: z.string().min(1), url: z.url(), date: isoDate });
+const force = z.object({ text: z.string().min(1), source: z.string().min(1), url: z.url(), date: isoDate });
 
 /** Figures copied from each source's latest update. The index combines them; it never edits them. */
 export const takeoffSchema = z.object({

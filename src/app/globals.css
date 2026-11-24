@@ -23,7 +23,7 @@ button {
   cursor: pointer;
 }
 
-/* The page scrolls with the breakthroughs; the index and timeline stay in view on the left and scroll on their own. */
+/* Each column is a window-high pane that scrolls on its own; the page scrolls only from outside them. */
 .page {
   max-width: 1080px;
   margin: 0 auto;
@@ -117,17 +117,20 @@ li {
   body {
     margin: 0;
   }
-  div.side {
-    position: sticky;
-    top: 0;
-    max-height: 100vh;
-    max-height: 100dvh;
+  .cols {
+    height: 100vh;
+    height: 100dvh;
+    align-items: stretch;
+  }
+  .side {
+    min-height: 0;
     box-sizing: border-box;
     overflow-y: auto;
+    overscroll-behavior: contain;
     scrollbar-width: none;
     padding-bottom: 24px;
   }
-  div.side::-webkit-scrollbar {
+  .side::-webkit-scrollbar {
     display: none;
   }
   section.side {
