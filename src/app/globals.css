@@ -23,108 +23,101 @@ button {
   cursor: pointer;
 }
 
-/* The visuals on the left, the text beside them, the menu on the right, like Collison's Fast page. */
+/* One centered column: the index dial beside its reading, the timeline across the page, the lists below. */
 .page {
-  display: grid;
-  grid-template-columns: minmax(0, 600px) minmax(0, 460px) 150px;
-  grid-template-areas: "viz content menu";
-  column-gap: 40px;
-  align-items: start;
-  padding-left: 12px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 24px 0;
+  color: var(--ink);
 }
 
-#menu {
-  grid-area: menu;
-  margin-top: 30px;
-  margin-right: 12px;
-  text-align: right;
+h1,
+h2 {
   font-family: var(--head);
+  color: var(--strong);
 }
 
-#menu ul {
-  list-style-type: none;
+h1 {
+  font-size: 2em;
   margin: 0;
-  padding: 0;
 }
 
-#menu li a {
-  display: inline-block;
+h2 {
+  font-size: 1.5em;
+  margin: 0 0 10px;
+}
+
+section {
+  margin-top: 48px;
+}
+
+a,
+a:visited {
   color: var(--link);
 }
 
-#content {
-  grid-area: content;
-  margin-top: 15px;
+p,
+ul {
+  line-height: 18px;
+  margin: 0 0 13px;
 }
 
-#content h2,
-.viz h1 {
-  font-family: var(--head);
-  font-size: 1.5em;
-  margin: 2em 0 0;
+ul {
+  padding-left: 18px;
 }
 
-#content .note {
+li {
+  margin-bottom: 0.7em;
+}
+
+.lede {
+  max-width: 600px;
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.note {
   font-size: 10px;
   color: var(--faint);
 }
 
-#content .note a {
+.note a {
   color: var(--faint);
 }
 
-#content a,
-#content a:visited {
-  color: var(--link);
+.index {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
 }
 
-#content p,
-#content ul {
-  color: var(--ink);
-  line-height: 18px;
+.reading {
+  text-align: center;
 }
 
-#content li {
-  margin-bottom: 0.7em;
+.cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 48px;
 }
 
-#content .thanks {
-  margin-top: 2em;
+ul.cols {
+  padding: 0;
+  list-style: none;
+}
+
+.thanks {
+  margin: 48px 0 4em;
   padding-top: 1em;
   border-top: 1px solid #eee;
-  margin-bottom: 4em;
   font-size: smaller;
   color: #777;
 }
 
-#content .thanks a {
+.thanks a {
   color: #777;
-}
-
-/* The index dial and the timeline. */
-.viz {
-  grid-area: viz;
-  padding-top: 15px;
-  padding-bottom: 24px;
-  color: var(--ink);
-}
-
-.viz h1:first-child {
-  margin-top: 13px;
-}
-
-@media (min-height: 700px) and (min-width: 821px) {
-  .viz {
-    position: sticky;
-    top: 0;
-  }
-}
-
-.reading {
-  width: 300px;
-  max-width: 100%;
-  margin-top: 14px;
-  text-align: center;
 }
 
 .gauge {
@@ -194,7 +187,7 @@ button {
 
 .swarm {
   position: relative;
-  margin-top: 18px;
+  margin-top: 8px;
 }
 
 .swarm-axis {
@@ -353,43 +346,19 @@ button {
   margin: 3px 0 0;
 }
 
-/* Narrower: the menu runs inline above the text. */
-@media (max-width: 1099px) {
+@media (max-width: 720px) {
   .page {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
-    grid-template-areas:
-      "viz menu"
-      "viz content";
+    padding-top: 24px;
   }
-  #menu {
-    margin: 30px 0 0;
-    text-align: left;
-  }
-  #menu ul,
-  #menu li {
-    display: inline;
-  }
-  #menu li + li::before {
-    content: " · ";
-    color: var(--faint);
-  }
-  #menu .title::after {
-    content: ": ";
-  }
-}
-
-/* Narrowest: one column, the visuals first. */
-@media (max-width: 820px) {
-  .page {
+  .index,
+  .cols {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      "menu"
-      "viz"
-      "content";
-    max-width: 600px;
-    padding-left: 0;
   }
-  #menu {
-    margin-top: 10px;
+  .index {
+    gap: 16px;
+  }
+  .reading {
+    max-width: 320px;
+    margin: 0 auto;
   }
 }

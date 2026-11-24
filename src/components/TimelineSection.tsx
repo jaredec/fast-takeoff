@@ -1,35 +1,23 @@
 "use client";
 
-import { useMemo, useState, type CSSProperties } from "react";
+import { useMemo, useState } from "react";
 import type { Dataset } from "@/lib/data";
 import { makeSeries, TRACK_INFO, TRACKS, type Track } from "@/lib/metrics";
-import { readIndex } from "@/lib/takeoff";
-import { Gauge } from "./Gauge";
 import { RANGES, Timeline, type Range } from "./Timeline";
 import { TipProvider } from "./Tip";
 
-export function Viz({ meta, tracks, takeoff }: Dataset) {
+export function TimelineSection({ meta, tracks }: Pick<Dataset, "meta" | "tracks">) {
   const [track, setTrack] = useState<Track>("breakthroughs");
   const [range, setRange] = useState<Range>("all");
   const series = useMemo(
     () => ({ breakthroughs: makeSeries(tracks.breakthroughs, meta), releases: makeSeries(tracks.releases, meta) }),
     [meta, tracks],
   );
-  const { score, zone } = readIndex(takeoff, series);
 
   return (
     <TipProvider>
-      <div className="viz" data-track={track}>
-        <h1>Fast Takeoff Index</h1>
-        <div className="reading">
-          <Gauge fraction={score / 100} value={String(Math.round(score))} zone={zone.name} />
-          <p className="zone" style={{ "--zc": zone.color } as CSSProperties}>
-            <i />
-            {zone.name}
-          </p>
-        </div>
-
-        <h1 id="timeline">Timeline</h1>
+      <section id="timeline">
+        <h2>Timeline</h2>
         <p className="switch">
           <span>
             {TRACKS.map((t) => (
@@ -47,7 +35,7 @@ export function Viz({ meta, tracks, takeoff }: Dataset) {
           </span>
         </p>
         <Timeline series={series[track]} range={range} />
-      </div>
+      </section>
     </TipProvider>
   );
 }
