@@ -4,7 +4,6 @@ import { countIn, formatDay, formatInterval, gaps, makeSeries, TRACK_INFO, TRACK
 import { paceFor, readIndex } from "@/lib/takeoff";
 import { Gauge } from "./Gauge";
 import { Pages } from "./Pages";
-import { ScrollTogether } from "./ScrollTogether";
 import { TimelineSection } from "./TimelineSection";
 
 function Events({ series }: { series: Series }) {
@@ -56,7 +55,7 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
   return (
     <Pages>
       <div className="cols">
-        <section id="breakthroughs" className="side">
+        <section id="breakthroughs">
           <h2>Breakthroughs</h2>
           <p>
             Firsts for humankind made by AI: new science, math or medicine, or a historic first the whole world noticed.
@@ -70,7 +69,7 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
           </footer>
         </section>
 
-        <div className="side">
+        <div>
           <section id="index">
             <div className="reading">
               <Gauge fraction={score / 100} value={String(Math.round(score))} zone={zone.name} />
@@ -121,7 +120,6 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
           </section>
         </div>
       </div>
-      <ScrollTogether />
     </Pages>
   );
 }
