@@ -34,5 +34,47 @@
       "median": "2033-08-07",
       "url": "https://web.archive.org/web/20261118000731/https://www.metaculus.com/questions/5121/date-of-artificial-general-intelligence/"
     }
+  },
+  "forces": {
+    "up": [
+      {
+        "text": "coding-agent use by OpenAI researchers doubling about every month",
+        "source": "Epoch AI",
+        "url": "https://epoch.ai/data-insights/openai-coding-agent-spending",
+        "date": "2026-10-05"
+      },
+      {
+        "text": "training compute up 5× a year since 2020",
+        "source": "Epoch AI",
+        "url": "https://epoch.ai/trends",
+        "date": "2026-11-05"
+      }
+    ],
+    "down": [
+      {
+        "text": "more than 440 local data center moratoriums",
+        "source": "Georgetown Environmental Law Review",
+        "url": "https://www.law.georgetown.edu/environmental-law-review/blog/not-in-my-watershed-what-the-midterms-mean-for-data-center-regulation/",
+        "date": "2026-11-11"
+      },
+      {
+        "text": "power to data centers up 19% a year since 2000, US grid capacity 2%",
+        "source": "Fortune",
+        "url": "https://fortune.com/2026/11/22/ai-data-centers-power-grid-capacity/",
+        "date": "2026-11-22"
+      },
+      {
+        "text": "computing power in AI chips sold up 2.5× a year, down from about 6× in 2023",
+        "source": "Epoch AI",
+        "url": "https://epoch.ai/trends",
+        "date": "2026-11-05"
+      },
+      {
+        "text": "no model yet meets Epoch's employee standard on its internal work tasks",
+        "source": "Epoch AI",
+        "url": "https://epoch.ai/publications/how-good-are-fable-5-2-and-gpt-6-2-astra-at-real-work",
+        "date": "2026-11-17"
+      }
+    ]
   }
 }

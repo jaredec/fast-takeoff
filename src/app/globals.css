@@ -197,7 +197,7 @@ li {
 }
 
 .updated {
-  margin: 4px 0 0;
+  margin: -8px 0 13px;
   font-size: 11px;
   color: var(--faint);
 }

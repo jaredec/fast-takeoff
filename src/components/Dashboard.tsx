@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import { BASE_PATH } from "@/lib/basePath";
 import type { Dataset } from "@/lib/data";
-import { formatDay, formatInterval, gaps, makeSeries, TRACK_INFO, TRACKS, yearsWord, type Series } from "@/lib/metrics";
+import { countIn, formatDay, formatInterval, gaps, makeSeries, TRACK_INFO, TRACKS, yearsWord, type Series } from "@/lib/metrics";
 import { paceFor, readIndex } from "@/lib/takeoff";
 import { Gauge } from "./Gauge";
 import { ScrollTogether } from "./ScrollTogether";
@@ -22,6 +22,12 @@ function Events({ series }: { series: Series }) {
   );
 }
 
+/** Short phrases as one sentence: "More than 440 moratoriums; power up 19% a year." */
+function phrases(list: string[]) {
+  const s = list.join("; ");
+  return `${s[0].toUpperCase()}${s.slice(1)}.`;
+}
+
 /** "Nov 23 at 10:20:20 PM ET", the way CNN stamps the Fear & Greed Index. */
 function formatUpdated(iso: string) {
   const d = new Date(iso);
@@ -34,6 +40,18 @@ function formatUpdated(iso: string) {
 export function Dashboard({ meta, tracks, takeoff }: Dataset) {
   const series = { breakthroughs: makeSeries(tracks.breakthroughs, meta), releases: makeSeries(tracks.releases, meta) };
   const { score, zone, signals } = readIndex(takeoff, series);
+  const b = series.breakthroughs;
+  const years = TRACK_INFO.breakthroughs.baselineYears;
+  const recent = countIn(b, b.asOf - 364, b.asOf);
+  const before = countIn(b, b.asOf - (years + 1) * 365 + 1, b.asOf - 365);
+  const releases = gaps(series.releases, TRACK_INFO.releases.baselineYears);
+  const drivers = [
+    `${recent} breakthroughs in the past year, against ${before} in the ${yearsWord(years)} years before`,
+    ...(releases.recent && releases.before
+      ? [`a frontier model every ${formatInterval(releases.recent)}, against every ${formatInterval(releases.before)}`]
+      : []),
+    ...takeoff.forces.up.map((f) => f.text),
+  ];
 
   return (
     <div className="page">
@@ -48,10 +66,16 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
                 <i />
                 {zone.name}
               </p>
-              <p className="updated">Last updated {formatUpdated(meta.updated)}</p>
             </div>
             <p>
               <b>{zone.name}.</b> {zone.means} By the five measures below, it is moving {paceFor(score)}.
+            </p>
+            <p className="updated">Last updated {formatUpdated(meta.updated)}</p>
+            <p>
+              <b>Drivers.</b> {phrases(drivers)}
+            </p>
+            <p>
+              <b>Constraints.</b> {phrases(takeoff.forces.down.map((f) => f.text))}
             </p>
             <p className="note">
               Method. The index is the mean of five signals. Each scores 50 at its earlier pace and moves 25 points for

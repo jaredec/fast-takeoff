@@ -18,6 +18,8 @@ Fast Takeoff isn't public yet. The "Fast Takeoff" routing rule on the `jaredconn
 
 The Singularity Index is our own 0–100 estimate, built like CNN's Fear & Greed Index: each signal scores 50 at its old pace and 25 points more for every eightfold speedup, and the index is their plain average (`readIndex` in `src/lib/takeoff.ts`). The signals are METR's time horizon doubling time, Epoch AI's Capabilities Index trend, the Metaculus community date for general AI, and the average gap between breakthroughs and between frontier releases from our own data.
 
+Under the dial, "Drivers" and "Constraints" are one short line each on what is pushing the pace each way right now (`forces` in `data/takeoff.json`, plus the breakthrough and release counts): brief, neutral phrases joined by semicolons, each stored with its source, link and date though the page doesn't show them. Replace stale ones as news changes, keep both sides honest, and never invent one.
+
 The sourced figures live in `data/takeoff.json`, copied from each source's latest update with its date and link. Update them when a source publishes, never estimate them. For Metaculus, record the date you read the median and keep a reading from about a year earlier in `before`.
 
 ## Curating events
