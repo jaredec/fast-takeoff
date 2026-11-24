@@ -23,9 +23,9 @@ button {
   cursor: pointer;
 }
 
-/* The timeline across the page, then the index on the left and the breakthroughs on the right. */
+/* The index and timeline on the left; the breakthroughs scroll on their own on the right. */
 .page {
-  max-width: 960px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 40px 24px 0;
   color: var(--ink);
@@ -49,10 +49,6 @@ h2 {
 
 section {
   margin-top: 48px;
-}
-
-#timeline {
-  margin-top: 24px;
 }
 
 a,
@@ -92,8 +88,21 @@ li {
 
 .cols {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
   column-gap: 48px;
+  align-items: start;
+}
+
+@media (min-width: 721px) {
+  #breakthroughs {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    margin-top: 0;
+    padding-top: 48px;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
 }
 
 .thanks {

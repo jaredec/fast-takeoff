@@ -29,8 +29,6 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
     <div className="page">
       <h1>Fast Takeoff</h1>
 
-      <TimelineSection meta={meta} tracks={tracks} />
-
       <div className="cols">
         <div>
           <section id="index">
@@ -65,6 +63,8 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
               from <a href={takeoff.metaculus.before.url}>Intelligence Progress</a>.
             </p>
           </section>
+
+          <TimelineSection meta={meta} tracks={tracks} />
 
           <section id="gaps">
             <h2>Time between</h2>
