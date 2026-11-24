@@ -4,6 +4,7 @@ import type { Dataset } from "@/lib/data";
 import { formatDay, formatInterval, gaps, makeSeries, TRACK_INFO, TRACKS, type Series } from "@/lib/metrics";
 import { formatTimes, PACE_PER_ZONE, readIndex } from "@/lib/takeoff";
 import { Gauge } from "./Gauge";
+import { Pinned } from "./Pinned";
 import { TimelineSection } from "./TimelineSection";
 
 function Events({ series }: { series: Series }) {
@@ -30,7 +31,7 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
       <h1>Fast Takeoff</h1>
 
       <div className="cols">
-        <div>
+        <Pinned>
           <section id="index">
             <h2>The Fast Takeoff Index</h2>
             <div className="reading">
@@ -84,7 +85,7 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
               })}
             </ul>
           </section>
-        </div>
+        </Pinned>
 
         <section id="breakthroughs">
           <h2>Breakthroughs</h2>

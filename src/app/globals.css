@@ -23,7 +23,7 @@ button {
   cursor: pointer;
 }
 
-/* The index and timeline on the left; the breakthroughs scroll on their own on the right. */
+/* The index and timeline on the left, held in view while the breakthroughs scroll past on the right. */
 .page {
   max-width: 1080px;
   margin: 0 auto;
@@ -94,14 +94,9 @@ li {
 }
 
 @media (min-width: 721px) {
-  #breakthroughs {
+  .pinned {
     position: sticky;
-    top: 0;
-    max-height: 100vh;
-    margin-top: 0;
-    padding-top: 48px;
-    overflow-y: auto;
-    box-sizing: border-box;
+    padding-bottom: 24px;
   }
 }
 
