@@ -55,6 +55,8 @@ export function Dashboard({ meta, tracks, daily, takeoff }: Dataset) {
   return (
     <Pages>
       <div className="cols">
+        <Week meta={meta} daily={daily} breakthroughs={tracks.breakthroughs} />
+
         <section id="breakthroughs">
           <h2>Breakthroughs</h2>
           <p>
@@ -62,8 +64,6 @@ export function Dashboard({ meta, tracks, daily, takeoff }: Dataset) {
           </p>
           <Events series={series.breakthroughs} />
         </section>
-
-        <Week meta={meta} daily={daily} breakthroughs={tracks.breakthroughs} />
 
         <div>
           <section id="index">
