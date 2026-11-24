@@ -53,10 +53,10 @@ export const PACE_PER_ZONE = 8;
  * pace on average (90), AI winter about 28 times slower (10).
  */
 export const ZONES = [
-  { name: "AI winter", from: 0, to: 10, color: "#9db3c9", means: "AI has all but stopped improving." },
-  { name: "Slow takeoff", from: 10, to: 50, color: "#e2c06a", means: "AI keeps improving, but no faster than it used to." },
-  { name: "Fast takeoff", from: 50, to: 90, color: "#df7a45", means: "AI is improving faster than it used to." },
-  { name: "Singularity", from: 90, to: 100, color: "#b8392c", means: "AI is improving dozens of times faster than it used to." },
+  { name: "AI winter", from: 0, to: 10, color: "#9db3c9", means: "AI, and the work done by AI, has all but stopped improving." },
+  { name: "Slow takeoff", from: 10, to: 50, color: "#e2c06a", means: "AI, and the work done by AI, keeps improving, but no faster than it used to." },
+  { name: "Fast takeoff", from: 50, to: 90, color: "#df7a45", means: "AI, and the work done by AI, is improving faster than it used to." },
+  { name: "Singularity", from: 90, to: 100, color: "#b8392c", means: "AI, and the work done by AI, is improving dozens of times faster than it used to." },
 ] as const;
 export type Zone = (typeof ZONES)[number];
 
