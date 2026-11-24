@@ -15,10 +15,10 @@ export function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: Daily[
 
   return (
     <section id="week">
-      <h2>What did AI do this week</h2>
+      <h2>What did AI do today</h2>
       <p>
-        Everything notable AI achieved in the past seven days: results, records, discoveries and firsts, each with its
-        source. New models are on the timeline.
+        Everything notable AI achieved each day this past week, newest first: results, records, discoveries and firsts,
+        each with its source. New models are on the timeline.
       </p>
       {days.map((date) => (
         <div key={date}>
