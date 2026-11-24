@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { BASE_PATH } from "@/lib/basePath";
 import type { Dataset } from "@/lib/data";
 import { countIn, formatDay, formatInterval, gaps, makeSeries, TRACK_INFO, TRACKS, yearsWord, type Series } from "@/lib/metrics";
-import { readIndex } from "@/lib/takeoff";
+import { paceFor, readIndex } from "@/lib/takeoff";
 import { Gauge } from "./Gauge";
 import { ScrollTogether } from "./ScrollTogether";
 import { TimelineSection } from "./TimelineSection";
@@ -48,7 +48,7 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
               </p>
             </div>
             <p>
-              It stands at <b>{Math.round(score)}</b> out of 100: <b>{zone.name.toLowerCase()}</b>.
+              <b>{zone.name}.</b> {zone.means} By the five measures below, it is moving {paceFor(score)}.
             </p>
             <p>
               <b>Drivers.</b> AI made {recent} breakthroughs in the past year, against {before} in the{" "}

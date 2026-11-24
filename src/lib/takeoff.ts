@@ -53,14 +53,22 @@ export const PACE_PER_ZONE = 8;
  * pace on average (90), AI winter about 28 times slower (10).
  */
 export const ZONES = [
-  { name: "AI winter", from: 0, to: 10, color: "#9db3c9" },
-  { name: "Slow takeoff", from: 10, to: 50, color: "#e2c06a" },
-  { name: "Fast takeoff", from: 50, to: 90, color: "#df7a45" },
-  { name: "Singularity", from: 90, to: 100, color: "#b8392c" },
+  { name: "AI winter", from: 0, to: 10, color: "#9db3c9", means: "AI has all but stopped improving." },
+  { name: "Slow takeoff", from: 10, to: 50, color: "#e2c06a", means: "AI keeps improving, but no faster than it used to." },
+  { name: "Fast takeoff", from: 50, to: 90, color: "#df7a45", means: "AI is improving faster than it used to." },
+  { name: "Singularity", from: 90, to: 100, color: "#b8392c", means: "AI is improving dozens of times faster than it used to." },
 ] as const;
 export type Zone = (typeof ZONES)[number];
 
 export const zoneFor = (score: number): Zone => ZONES.find((z) => score < z.to) ?? ZONES[ZONES.length - 1];
+
+/** The average pace a score stands for, against the old pace: 63 is about 3 times, 37 about 1/3. */
+export function paceFor(score: number) {
+  const f = PACE_PER_ZONE ** ((score - 50) / 25);
+  if (f >= 1.25) return `about ${f < 2 ? f.toFixed(1) : Math.round(f)} times its earlier pace`;
+  if (f > 0.8) return "about its earlier pace";
+  return f > 0.4 ? "about half its earlier pace" : `about 1/${Math.round(1 / f)} of its earlier pace`;
+}
 
 /** 0–100 from how many times faster than its baseline a signal moves: 1× is 50, 8× is 75, 1/8× is 25. */
 export const scoreFor = (speed: number) =>
