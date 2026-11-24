@@ -14,10 +14,10 @@ const BAND = 11;
 const START = toDay("2012-09-30");
 
 export const RANGES = [
-  { id: "all", label: "All", days: 0 },
-  { id: "5y", label: "5 years", days: 1826 },
-  { id: "1y", label: "Year", days: 365 },
   { id: "90d", label: "90 days", days: 90 },
+  { id: "1y", label: "Year", days: 365 },
+  { id: "5y", label: "5 years", days: 1826 },
+  { id: "all", label: "All", days: 0 },
 ] as const;
 export type Range = (typeof RANGES)[number]["id"];
 

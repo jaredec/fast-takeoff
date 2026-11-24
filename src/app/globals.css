@@ -23,7 +23,7 @@ button {
   cursor: pointer;
 }
 
-/* One centered column: the index dial beside its reading, the timeline across the page, the lists below. */
+/* The timeline across the page, then the index on the left and the breakthroughs on the right. */
 .page {
   max-width: 960px;
   margin: 0 auto;
@@ -51,6 +51,10 @@ section {
   margin-top: 48px;
 }
 
+#timeline {
+  margin-top: 24px;
+}
+
 a,
 a:visited {
   color: var(--link);
@@ -70,13 +74,6 @@ li {
   margin-bottom: 0.7em;
 }
 
-.lede {
-  max-width: 600px;
-  margin-top: 10px;
-  font-size: 15px;
-  line-height: 22px;
-}
-
 .note {
   font-size: 10px;
   color: var(--faint);
@@ -86,14 +83,10 @@ li {
   color: var(--faint);
 }
 
-.index {
-  display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
-  gap: 48px;
-  align-items: start;
-}
-
 .reading {
+  width: 300px;
+  max-width: 100%;
+  margin: 0 auto 16px;
   text-align: center;
 }
 
@@ -101,11 +94,6 @@ li {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   column-gap: 48px;
-}
-
-ul.cols {
-  padding: 0;
-  list-style: none;
 }
 
 .thanks {
@@ -350,15 +338,7 @@ ul.cols {
   .page {
     padding-top: 24px;
   }
-  .index,
   .cols {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .index {
-    gap: 16px;
-  }
-  .reading {
-    max-width: 320px;
-    margin: 0 auto;
   }
 }
