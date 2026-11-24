@@ -87,17 +87,30 @@ li {
 }
 
 .reading {
-  width: 300px;
+  width: 260px;
   max-width: 100%;
-  margin: 0 auto 16px;
+  margin: 0 auto 10px;
   text-align: center;
 }
 
 .cols {
   display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 500px);
   column-gap: 48px;
   align-items: start;
+}
+
+/* The left column is denser than the breakthroughs beside it. */
+.cols > div > section {
+  margin-top: 32px;
+}
+
+.cols > div li {
+  margin-bottom: 0.4em;
+}
+
+.cols > div h3 {
+  margin: 14px 0 6px;
 }
 
 @media (min-width: 721px) {
@@ -124,7 +137,7 @@ li {
   }
   section.side {
     margin-top: 0;
-    padding-top: 48px;
+    padding-top: 32px;
   }
   .side .thanks {
     margin-bottom: 0;
