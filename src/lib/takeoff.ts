@@ -12,10 +12,12 @@ export const takeoffSchema = z.object({
     source: z.string().min(1),
     url: z.url(),
     date: isoDate,
-    doublingMonths: z.number().positive(),
-    low: z.number().positive(),
-    high: z.number().positive(),
-    baselineMonths: z.number().positive(),
+    /** METR publishes both trends in days; the interval only in months. */
+    doublingDays: z.number().positive(),
+    lowMonths: z.number().positive(),
+    highMonths: z.number().positive(),
+    baselineDays: z.number().positive(),
+    baselineUrl: z.url(),
     frontier: z.object({ model: z.string().min(1), hours: z.number().positive() }),
   }),
   epoch: z.object({
@@ -80,7 +82,6 @@ export type Signal = {
 
 const YEAR = 365.25;
 const month = (iso: string) => formatDay(toDay(iso), { month: "short", year: "numeric" });
-export const formatMonths = (m: number) => (m >= 10 || Number.isInteger(m) ? m.toFixed(0) : m.toFixed(1));
 export const formatTimes = (x: number) => `${x >= 10 ? x.toFixed(0) : x.toFixed(1)}×`;
 
 /** The Fast Takeoff Index: the plain average of each signal's score, like the Fear & Greed Index. */
@@ -89,11 +90,11 @@ export function readIndex(t: Takeoff, series: Record<Track, Series>) {
   const signals: Signal[] = [
     signal({
       name: "Task length",
-      now: `The length of task AI can finish alone doubles every ${formatMonths(t.metr.doublingMonths)} months`,
-      was: `${formatMonths(t.metr.baselineMonths)} months from 2019 to 2024`,
+      now: `The length of task AI can finish alone doubles every ${t.metr.doublingDays} days`,
+      was: `${t.metr.baselineDays} days from 2019 to early 2025`,
       source: t.metr.source,
       url: t.metr.url,
-      speed: t.metr.baselineMonths / t.metr.doublingMonths,
+      speed: t.metr.baselineDays / t.metr.doublingDays,
     }),
     signal({
       name: "Capabilities",

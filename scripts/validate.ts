@@ -11,8 +11,8 @@ const icons = new Set<string>();
 
 for (const [a, b] of untracked) if (a > b) problems.push(`meta: untracked range ${a} is backwards`);
 const { metr, epoch, metaculus } = takeoff;
-if (!(metr.low <= metr.doublingMonths && metr.doublingMonths <= metr.high))
-  problems.push("takeoff: metr.doublingMonths must sit between low and high");
+if (!(metr.lowMonths <= metr.doublingDays / 30.44 && metr.doublingDays / 30.44 <= metr.highMonths))
+  problems.push("takeoff: metr.doublingDays must sit between lowMonths and highMonths");
 if (!(epoch.low <= epoch.perYear && epoch.perYear <= epoch.high))
   problems.push("takeoff: epoch.perYear must sit between low and high");
 if (toDay(metaculus.before.read) >= toDay(metaculus.now.read))

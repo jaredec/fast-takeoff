@@ -3,29 +3,36 @@
     "source": "METR",
     "url": "https://metr.org/blog/2026-11-20-q4-2026-capability-update/",
     "date": "2026-11-20",
-    "doublingMonths": 3.61,
-    "low": 2.08,
-    "high": 4.94,
-    "baselineMonths": 7,
-    "frontier": { "model": "GPT-6 Astra", "hours": 40 }
+    "doublingDays": 110,
+    "lowMonths": 2.08,
+    "highMonths": 4.94,
+    "baselineDays": 196,
+    "baselineUrl": "https://metr.org/blog/2026-01-29-time-horizon-1-1/",
+    "frontier": {
+      "model": "GPT-6 Astra",
+      "hours": 40
+    }
   },
   "epoch": {
     "source": "Epoch AI",
-    "url": "https://epoch.ai/trends",
-    "date": "2026-11-05",
-    "perYear": 14,
-    "low": 12,
-    "high": 17,
-    "baselinePerYear": 6
+    "url": "https://epoch.ai/publications/eci-bayesian-methodology",
+    "date": "2026-11-04",
+    "perYear": 16.6,
+    "low": 14.6,
+    "high": 18.7,
+    "baselinePerYear": 8.0
   },
   "metaculus": {
     "source": "Metaculus",
     "url": "https://www.metaculus.com/questions/5121/date-of-general-ai/",
-    "now": { "read": "2026-11-21", "median": "2030-05-23" },
+    "now": {
+      "read": "2026-11-23",
+      "median": "2030-02-04"
+    },
     "before": {
-      "read": "2025-11-01",
-      "median": "2033-05-23",
-      "url": "https://intelligenceprogress.com/superintelligence"
+      "read": "2025-11-23",
+      "median": "2033-08-07",
+      "url": "https://web.archive.org/web/20261118000731/https://www.metaculus.com/questions/5121/date-of-artificial-general-intelligence/"
     }
   },
   "forces": {
