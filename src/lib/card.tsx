@@ -34,7 +34,7 @@ function GaugePanel({ score }: { score: number }) {
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
       <svg width={460} height={258} viewBox="0 0 300 168">
         {zoneArcs(150, 150, 108).map(({ zone: z, d }) => (
-          <path key={z.name} d={d} stroke={z === zone ? "#c8c8c8" : "#e6e6e6"} strokeWidth={34} fill="none" />
+          <path key={z.name} d={d} stroke={z === zone ? z.color : "#e6e6e6"} strokeWidth={34} fill="none" />
         ))}
         <polygon points={needlePoints(150, 150, 88, score / 100, 4.5)} fill="#424242" />
         <circle cx={150} cy={150} r={9} fill="#424242" />

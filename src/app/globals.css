@@ -167,14 +167,6 @@ li {
   overflow: visible;
 }
 
-.gauge .zone-arc {
-  stroke: #e6e6e6;
-}
-
-.gauge .zone-arc[data-active] {
-  stroke: #c8c8c8;
-}
-
 .gauge .zone-label {
   font: 9.5px var(--sans);
   fill: var(--faint);
