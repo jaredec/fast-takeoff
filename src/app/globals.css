@@ -47,6 +47,13 @@ h2 {
   margin: 0 0 10px;
 }
 
+h3 {
+  font-family: var(--head);
+  font-size: 1.1em;
+  color: var(--strong);
+  margin: 18px 0 8px;
+}
+
 section {
   margin-top: 48px;
 }

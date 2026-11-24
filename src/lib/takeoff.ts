@@ -4,6 +4,7 @@ import { formatDay, formatInterval, gaps, toDay, type Series, type Track } from 
 
 const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
 const reading = z.object({ read: isoDate, median: isoDate });
+const force = z.object({ text: z.string().min(1), source: z.string().min(1), url: z.url(), date: isoDate });
 
 /** Figures copied from each source's latest update. The index combines them; it never edits them. */
 export const takeoffSchema = z.object({
@@ -31,6 +32,11 @@ export const takeoffSchema = z.object({
     url: z.url(),
     now: reading,
     before: reading.extend({ url: z.url() }),
+  }),
+  /** What's pushing the pace up and holding it back right now, one sourced line each. */
+  forces: z.object({
+    up: z.array(force),
+    down: z.array(force),
   }),
 });
 export type Takeoff = z.infer<typeof takeoffSchema>;

@@ -1,10 +1,18 @@
 import type { CSSProperties } from "react";
 import { BASE_PATH } from "@/lib/basePath";
 import type { Dataset } from "@/lib/data";
-import { formatDay, formatInterval, gaps, makeSeries, TRACK_INFO, TRACKS, type Series } from "@/lib/metrics";
-import { formatTimes, PACE_PER_ZONE, readIndex } from "@/lib/takeoff";
+import { countIn, formatDay, formatInterval, gaps, makeSeries, TRACK_INFO, TRACKS, type Series } from "@/lib/metrics";
+import { readIndex } from "@/lib/takeoff";
 import { Gauge } from "./Gauge";
 import { TimelineSection } from "./TimelineSection";
+
+function Source({ name, url }: { name: string; url: string }) {
+  return (
+    <i>
+      <a href={url}>{name}</a>
+    </i>
+  );
+}
 
 function Events({ series }: { series: Series }) {
   return (
@@ -24,6 +32,11 @@ function Events({ series }: { series: Series }) {
 export function Dashboard({ meta, tracks, takeoff }: Dataset) {
   const series = { breakthroughs: makeSeries(tracks.breakthroughs, meta), releases: makeSeries(tracks.releases, meta) };
   const { score, zone, signals } = readIndex(takeoff, series);
+  const b = series.breakthroughs;
+  const recent = countIn(b, b.asOf - 364, b.asOf);
+  const before = countIn(b, b.asOf - 6 * 365 + 1, b.asOf - 365);
+  const latest = b.events.at(-1)!;
+  const releases = gaps(series.releases);
 
   return (
     <div className="page">
@@ -41,26 +54,43 @@ export function Dashboard({ meta, tracks, takeoff }: Dataset) {
               </p>
             </div>
             <p>
-              It stands at <b>{Math.round(score)}</b> out of 100: <b>{zone.name.toLowerCase()}</b>. It averages the
-              signals below the way CNN&rsquo;s{" "}
-              <a href="https://www.cnn.com/markets/fear-and-greed">Fear &amp; Greed Index</a> averages seven market
-              signals. Each scores 50 when it moves at its old pace, 75 at {PACE_PER_ZONE} times that pace and 25 at{" "}
-              {PACE_PER_ZONE} times slower.
+              It stands at <b>{Math.round(score)}</b> out of 100: <b>{zone.name.toLowerCase()}</b>.
             </p>
+            <h3>Speeding it up</h3>
             <ul>
-              {signals.map((s) => (
-                <li key={s.name}>
-                  <b>{s.name}.</b> {s.now}, against {s.was}; {s.pace ?? `${formatTimes(s.speed)} the old pace`}. It
-                  scores {Math.round(s.score)}.{" "}
-                  <i>
-                    Source: <a href={s.url}>{s.source}</a>.
-                  </i>
+              <li>
+                {recent} breakthroughs in the past year, against {before} in the five years before. The latest:{" "}
+                {latest.title}. <Source name="Our count" url="#breakthroughs" />
+              </li>
+              {releases.recent && (
+                <li>
+                  A new frontier model ships about every {formatInterval(releases.recent)}.{" "}
+                  <Source name="Our count" url="#gaps" />
+                </li>
+              )}
+              {takeoff.forces.up.map((f) => (
+                <li key={f.text}>
+                  {f.text} <Source name={f.source} url={f.url} />
+                </li>
+              ))}
+            </ul>
+            <h3>Holding it back</h3>
+            <ul>
+              {takeoff.forces.down.map((f) => (
+                <li key={f.text}>
+                  {f.text} <Source name={f.source} url={f.url} />
                 </li>
               ))}
             </ul>
             <p className="note">
-              The figures are copied from each source&rsquo;s latest update. The forecasters&rsquo; earlier date is
-              from <a href={takeoff.metaculus.before.url}>Intelligence Progress</a>.
+              The number averages five signals, each 50 at its old pace:{" "}
+              {signals.map((s, i) => (
+                <span key={s.name}>
+                  {i ? ", " : ""}
+                  <a href={s.url}>{s.name.toLowerCase()}</a> {Math.round(s.score)}
+                </span>
+              ))}
+              .
             </p>
           </section>
 

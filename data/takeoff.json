@@ -27,5 +27,47 @@
       "median": "2033-05-23",
       "url": "https://intelligenceprogress.com/superintelligence"
     }
+  },
+  "forces": {
+    "up": [
+      {
+        "text": "AI is helping build AI: OpenAI researchers' use of coding agents doubles about every month.",
+        "source": "Epoch AI",
+        "url": "https://epoch.ai/data-insights/openai-coding-agent-spending",
+        "date": "2026-10-05"
+      },
+      {
+        "text": "The compute used to train frontier models still grows about 5× a year.",
+        "source": "Epoch AI",
+        "url": "https://epoch.ai/trends",
+        "date": "2026-11-05"
+      }
+    ],
+    "down": [
+      {
+        "text": "More than 440 local moratoriums pause new data centers, and midterm voters backed nearly every limit on the ballot.",
+        "source": "Georgetown Environmental Law Review",
+        "url": "https://www.law.georgetown.edu/environmental-law-review/blog/not-in-my-watershed-what-the-midterms-mean-for-data-center-regulation/",
+        "date": "2026-11-11"
+      },
+      {
+        "text": "Data centers' power demand grows about 19% a year; the grid grows 2%.",
+        "source": "Fortune",
+        "url": "https://fortune.com/2026/11/22/ai-data-centers-power-grid-capacity/",
+        "date": "2026-11-22"
+      },
+      {
+        "text": "Growth in AI chips sold has slowed to 2.5× a year, from about 6× in 2023.",
+        "source": "Epoch AI",
+        "url": "https://epoch.ai/trends",
+        "date": "2026-11-05"
+      },
+      {
+        "text": "No frontier model met Epoch's employee standard on any of its real work tasks.",
+        "source": "Epoch AI",
+        "url": "https://epoch.ai/publications/how-good-are-fable-5-2-and-gpt-6-2-astra-at-real-work",
+        "date": "2026-11-17"
+      }
+    ]
   }
 }
