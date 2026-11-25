@@ -21,7 +21,8 @@ export function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: Daily[
           items
             .filter((e) => e.date === date)
             .map((e) => (
-              <li key={e.title}>
+              <li key={e.title} className={e.breakthrough ? "star" : undefined}>
+                {e.breakthrough && <Star />}
                 <b>{e.title}.</b> {e.why}{" "}
                 <i>
                   {formatDay(toDay(e.date), { month: "long", day: "numeric" })},{" "}
@@ -32,12 +33,22 @@ export function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: Daily[
                   ) : (
                     e.org
                   )}
-                  {e.breakthrough && " · Breakthrough"}.
+                  .
                 </i>
               </li>
             )),
         )}
       </ul>
     </section>
+  );
+}
+
+/** A hand-drawn star that takes the place of the bullet for breakthroughs. */
+function Star() {
+  return (
+    <svg className="star" viewBox="0 0 24 24" role="img" aria-label="Breakthrough">
+      <title>Breakthrough</title>
+      <path d="M12.6 1.8Q15.4 10.8 19.2 21.2Q10.2 16.4 2.2 9.8Q12.4 10.6 22 8.4Q13.2 15.6 4.8 20.6Q8.4 10.4 13.4 1.2" />
+    </svg>
   );
 }
