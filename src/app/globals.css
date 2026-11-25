@@ -8,6 +8,11 @@
   --link: #0864c7;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   font-family: var(--sans);
   font-size: 13px;
@@ -101,6 +106,10 @@ li {
 #timeline,
 #breakthroughs,
 #week {
+  margin-top: 0;
+}
+
+#week > p:first-child {
   margin-top: 0;
 }
 
@@ -440,9 +449,7 @@ li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-family: var(--head);
-    font-size: 1.5em;
-    font-weight: bold;
+    font: bold 15px var(--head);
     color: var(--strong);
   }
   .pages .bar button {
