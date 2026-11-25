@@ -1,30 +1,27 @@
 "use client";
 
-import { useEffect, useRef, useState, useSyncExternalStore, type MouseEvent, type ReactNode } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 /** The site's pages, shown one at a time and picked from the nav. */
 const PAGES = [
-  { id: "week", label: "Today" },
-  { id: "breakthroughs", label: "Breakthroughs" },
-  { id: "problems", label: "Open problems" },
+  { href: "/", label: "Today" },
+  { href: "/breakthroughs", label: "Breakthroughs" },
+  { href: "/problems", label: "Open problems" },
 ] as const;
-type Page = (typeof PAGES)[number]["id"];
-
-function subscribe(onChange: () => void) {
-  window.addEventListener("hashchange", onChange);
-  window.addEventListener("popstate", onChange);
-  return () => {
-    window.removeEventListener("hashchange", onChange);
-    window.removeEventListener("popstate", onChange);
-  };
-}
-
-const fromHash = (hash: string): Page => PAGES.find((p) => `#${p.id}` === hash)?.id ?? PAGES[0].id;
 
 export function Pages({ children }: { children: ReactNode }) {
-  const page = fromHash(useSyncExternalStore(subscribe, () => location.hash, () => ""));
+  const pathname = usePathname();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const nav = useRef<HTMLElement>(null);
+
+  // Old links pointed at /#breakthroughs and /#problems.
+  useEffect(() => {
+    const old = PAGES.find((p) => p.href !== "/" && `#${p.href.slice(1)}` === location.hash);
+    if (old) router.replace(old.href);
+  }, [router]);
 
   useEffect(() => {
     if (!open) return;
@@ -42,16 +39,8 @@ export function Pages({ children }: { children: ReactNode }) {
     };
   }, [open]);
 
-  const go = (ev: MouseEvent, id: Page) => {
-    ev.preventDefault();
-    setOpen(false);
-    history.pushState(null, "", id === PAGES[0].id ? location.pathname + location.search : `#${id}`);
-    window.dispatchEvent(new HashChangeEvent("hashchange"));
-    window.scrollTo(0, 0);
-  };
-
   return (
-    <div className="page" data-page={page}>
+    <div className="page">
       <nav className="pages" ref={nav} data-open={open || undefined}>
         {/* Phones show a menu button; wider screens list the pages instead. */}
         <div className="bar">
@@ -63,13 +52,13 @@ export function Pages({ children }: { children: ReactNode }) {
         </div>
         <div className="links" id="page-links">
           {PAGES.map((p) => (
-            <a key={p.id} href={`#${p.id}`} aria-current={p.id === page ? "page" : undefined} onClick={(ev) => go(ev, p.id)}>
+            <Link key={p.href} href={p.href} aria-current={p.href === pathname ? "page" : undefined} onClick={() => setOpen(false)}>
               {p.label}
-            </a>
+            </Link>
           ))}
         </div>
       </nav>
-      {children}
+      <div className="cols">{children}</div>
     </div>
   );
 }

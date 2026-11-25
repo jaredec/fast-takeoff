@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Pages } from "@/components/Pages";
 import { CARD_SIZE } from "@/lib/card";
 import "./globals.css";
 
@@ -23,7 +24,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Pages>{children}</Pages>
+      </body>
     </html>
   );
 }

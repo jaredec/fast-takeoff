@@ -125,12 +125,6 @@ li {
   margin-top: 0;
 }
 
-.page:not([data-page="breakthroughs"]) #breakthroughs,
-.page:not([data-page="problems"]) #problems,
-.page:not([data-page="week"]) #week {
-  display: none;
-}
-
 #problems ol {
   padding-left: 30px;
 }
