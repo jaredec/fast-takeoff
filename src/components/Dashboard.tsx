@@ -28,9 +28,7 @@ export function Dashboard({ meta, tracks, daily, problems }: Dataset) {
         <Week meta={meta} daily={daily} breakthroughs={tracks.breakthroughs} />
 
         <section id="breakthroughs">
-          <p>
-            Firsts for humankind made or assisted by AI: new science, math or medicine, or a historic first the whole world noticed.
-          </p>
+          <p>Firsts for humankind made with AI, newest first.</p>
           <Events series={breakthroughs} />
         </section>
 
