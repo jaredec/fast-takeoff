@@ -1,16 +1,23 @@
+import { cacheLife } from "next/cache";
 import type { Daily } from "@/lib/data";
 import { formatDay, toDay, type AiEvent, type Meta } from "@/lib/metrics";
 
 type Item = { date: string; title: string; org: string; why: string; url?: string; breakthrough?: boolean };
 
-/** Everything from the seven days ending on the day of the last update, newest first, with that week's breakthroughs folded in. */
-export function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: Daily[]; breakthroughs: AiEvent[] }) {
-  const end = toDay(meta.updated.slice(0, 10));
-  const inWeek = (date: string) => toDay(date) > end - 7 && toDay(date) <= end;
-  const items: Item[] = [
-    ...breakthroughs.filter((b) => inWeek(b.date)).map((b) => ({ ...b, breakthrough: true })),
-    ...daily.filter((d) => inWeek(d.date)),
+/** Everything from the seven days ending today in US time (or the last update if older), newest first, excluding seven days ago. */
+export async function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: Daily[]; breakthroughs: AiEvent[] }) {
+  "use cache";
+  cacheLife("hours");
+
+  const all: Item[] = [
+    ...breakthroughs.map((b) => ({ ...b, breakthrough: true })),
+    ...daily,
   ];
+  const updatedDay = toDay(meta.updated.slice(0, 10));
+  const nowDay = toDay(new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" }));
+  const candidate = Math.max(updatedDay, nowDay);
+  const inWindow = (end: number) => all.filter((e) => toDay(e.date) > end - 7 && toDay(e.date) <= end);
+  const items = inWindow(candidate).length > 0 ? inWindow(candidate) : inWindow(updatedDay);
   const days = [...new Set(items.map((e) => e.date))].sort().reverse();
 
   return (
