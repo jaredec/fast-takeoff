@@ -31,7 +31,7 @@ Events live in `data/breakthroughs.json` and `data/releases.json`. `data/meta.js
 - Date an event by the day it was first shown or shipped in US time, not when coverage peaked.
 - Never invent an event or a date. Leave a gap and mark the range in `meta.json` instead.
 - A breakthrough's `title` names its subject, the way Patrick Collison's Fast page names a project ("COVID-19 vaccines"): "Protein folding", "Riemann hypothesis". Not a headline ("Protein folding solved"), not "AI did X", not a version name ("AlphaFold 3"). An iconic system can be the subject ("Deep Blue", "AlexNet"). The `why` says what happened and names the system.
-- `why` is one plain sentence a non-expert would understand.
+- `why` is one plain sentence a non-expert would understand. Don't join its clauses with ", and"; use a semicolon, "then" or "with" instead.
 - Credit people by name the way the sources do: the person who did the work alongside the AI ("mathematician Levent Alpöge"), or the one to three people a paper or prize credits ("led by John Jumper and Demis Hassabis"). Never "a mathematician" when the source names them. Leave large teams with no standout unnamed, and never guess a name.
 - Every breakthrough has a `field` (see `FIELDS` in `src/lib/logos.ts`) and its own `icon`: a Lucide or Tabler icon that fits that breakthrough (a Go board for AlphaGo), saved as `public/logos/bt-<icon>.svg` in the field's color from `FIELD_COLORS`. No two breakthroughs share an icon.
 - Releases show their lab's logo, picked by `src/lib/logos.ts` from the title or org. A new lab needs its real mark in `public/logos`. Never draw or invent a logo.
