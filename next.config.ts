@@ -1,13 +1,11 @@
 import type { NextConfig } from "next";
-import { BASE_PATH } from "./src/lib/basePath";
 
 const nextConfig: NextConfig = {
-  basePath: BASE_PATH,
   async redirects() {
     return [
-      { source: "/", destination: BASE_PATH, basePath: false, permanent: false },
-      // Capsule was archived when this project became Fast Takeoff.
-      { source: "/capsule/:path*", destination: BASE_PATH, basePath: false, permanent: false },
+      // The site used to live at jaredconnolly.com/fasttakeoff.
+      { source: "/fasttakeoff", destination: "/", permanent: true },
+      { source: "/fasttakeoff/:path+", destination: "/:path+", permanent: true },
     ];
   },
   cacheComponents: true,

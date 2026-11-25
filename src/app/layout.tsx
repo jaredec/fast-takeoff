@@ -1,10 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { BASE_PATH } from "@/lib/basePath";
 import { CARD_SIZE } from "@/lib/card";
 import "./globals.css";
 
 const card = {
-  url: `https://www.jaredconnolly.com${BASE_PATH}/card/breakthroughs/month`,
+  url: "https://whataididtoday.com/card/breakthroughs/month",
   width: CARD_SIZE.width,
   height: CARD_SIZE.height,
   alt: "The Singularity Index: how fast AI is moving, out of 100",

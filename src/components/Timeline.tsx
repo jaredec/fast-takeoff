@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useRef, useState, type CSSProperties, type PointerEvent } from "react";
-import { BASE_PATH } from "@/lib/basePath";
 import { useElementWidth } from "@/lib/hooks";
 import { fieldGroup, groupColor, logosFor, type Field } from "@/lib/logos";
 import { formatDay, fromDay, toDay, type DayEvent, type Series } from "@/lib/metrics";
@@ -89,11 +88,11 @@ function Icon({ e, className }: { e: DayEvent; className?: string }) {
   return (
     <span className={className}>
       {/* eslint-disable-next-line @next/next/no-img-element -- tiny static SVGs */}
-      <img src={`${BASE_PATH}/logos/${logos[0]}.svg`} alt="" />
+      <img src={`/logos/${logos[0]}.svg`} alt="" />
       {logos[1] && (
         <span className="mark-2">
           {/* eslint-disable-next-line @next/next/no-img-element -- tiny static SVGs */}
-          <img src={`${BASE_PATH}/logos/${logos[1]}.svg`} alt="" />
+          <img src={`/logos/${logos[1]}.svg`} alt="" />
         </span>
       )}
     </span>
