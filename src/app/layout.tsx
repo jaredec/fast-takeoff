@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "What did AI do today?",
   description: "How fast AI is moving, out of 100, from METR, Epoch AI, Metaculus forecasters and every AI breakthrough and frontier release.",
   openGraph: { title: "The Singularity Index", description: "How fast is AI moving? Tracked daily.", images: [card] },
-  twitter: { card: "summary_large_image", site: "@thefasttakeoff", images: [card] },
+  twitter: { card: "summary_large_image", images: [card] },
 };
 
 export const viewport: Viewport = {

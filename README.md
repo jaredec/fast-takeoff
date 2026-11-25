@@ -1,4 +1,4 @@
-# Fast Takeoff
+# What did AI do today?
 
 How fast is AI moving? A daily index of AI breakthroughs and model releases, served at [whataididtoday.com](https://whataididtoday.com).
 
