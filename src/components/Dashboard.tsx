@@ -59,7 +59,7 @@ export function Dashboard({ meta, tracks, daily, takeoff }: Dataset) {
 
         <section id="breakthroughs">
           <p>
-            Firsts for humankind made by AI: new science, math or medicine, or a historic first the whole world noticed.
+            Firsts for humankind made or assisted by AI: new science, math or medicine, or a historic first the whole world noticed.
           </p>
           <Events series={series.breakthroughs} />
         </section>
