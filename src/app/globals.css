@@ -442,10 +442,10 @@ li {
   }
 }
 
-/* Phones head each page with its name and a menu button; the other pages slide in from the right over the text beneath it. */
+/* Phones get a menu button at the top right; the pages slide in from the right over the text beneath it. */
 @media (max-width: 720px) {
   .page {
-    padding-top: 24px;
+    padding-top: 10px;
   }
   .pages {
     position: relative;
@@ -454,10 +454,7 @@ li {
   }
   .pages .bar {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font: bold 15px var(--head);
-    color: var(--strong);
+    justify-content: flex-end;
   }
   .pages .bar button {
     display: flex;
