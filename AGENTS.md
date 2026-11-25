@@ -16,7 +16,7 @@ The site is live at whataididtoday.com (with www redirecting to it), linked from
 
 ## Open problems
 
-The "Open problems" page lists ProofAtlas's October 6, 2026 ranking of the 500 most important open problems in math, grouped by field, each marked when it is solved, disproved or shown independent, with links to the proofs. `data/problems.json` is generated from the Top 500 map at top500.konsti.xyz by `npm run problems`; rerun it when the map updates, check any new problem that credits several papers or a person rather than a lab (`OPENAI_PAPER` and `PEOPLE` in `scripts/problems.ts`), then set `updated` in `meta.json`.
+The "Open problems" page is our own ranking of the biggest open problems in each science (`SCIENCES` in `src/lib/logos.ts`), 20 per field, most important first, in `data/problems.json`. Choose and order them ourselves; don't copy another list. Mark one `Solved` or `Disproved` only with a link to the announcement or proof for each credited lab or person; solved problems keep their place.
 
 ## The index
 

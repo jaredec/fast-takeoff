@@ -32,7 +32,7 @@ export function Dashboard({ meta, tracks, daily, problems }: Dataset) {
           <Events series={breakthroughs} />
         </section>
 
-        <Problems problems={problems.problems} updated={problems.updated} />
+        <Problems problems={problems} />
       </div>
     </Pages>
   );

@@ -1,9 +1,9 @@
 import { existsSync } from "node:fs";
 import { loadDataset } from "../src/lib/data";
-import { logosFor } from "../src/lib/logos";
+import { logosFor, SCIENCES } from "../src/lib/logos";
 import { TRACKS, toDay } from "../src/lib/metrics";
 
-const { meta, tracks, daily, takeoff } = loadDataset();
+const { meta, tracks, daily, problems: openProblems, takeoff } = loadDataset();
 const asOf = toDay(meta.asOf);
 const untracked = meta.untracked.map(([a, b]) => [toDay(a), toDay(b)] as const);
 const problems: string[] = [];
@@ -51,6 +51,14 @@ for (const e of daily) {
   if (seen.has(key)) problems.push(`${where}: duplicate`);
   seen.add(key);
 }
+
+for (const field of SCIENCES) {
+  const list = openProblems.filter((p) => p.field === field);
+  if (list.length !== 20) problems.push(`problems: ${field} has ${list.length}, not 20`);
+  if (new Set(list.map((p) => p.title)).size !== list.length) problems.push(`problems: ${field} has a duplicate`);
+}
+for (const p of openProblems)
+  if (!p.status !== !p.by) problems.push(`problems: ${p.title} needs both a status and who solved it, or neither`);
 
 if (problems.length) {
   console.error(problems.join("\n"));

@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
-    "validate-data": "tsx scripts/validate.ts",
-    "problems": "tsx scripts/problems.ts"
+    "validate-data": "tsx scripts/validate.ts"
   },
   "dependencies": {
     "next": "16.4.6",

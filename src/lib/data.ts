@@ -4,7 +4,7 @@ import daily from "../../data/daily.json";
 import releases from "../../data/releases.json";
 import meta from "../../data/meta.json";
 import problems from "../../data/problems.json";
-import { FIELDS } from "./logos";
+import { FIELDS, SCIENCES } from "./logos";
 import { makeSeries, type AiEvent, type Meta, type Series, type Track } from "./metrics";
 import { loadTakeoff, type Takeoff } from "./takeoff";
 
@@ -34,22 +34,16 @@ export const dailySchema = z.array(
 );
 export type Daily = z.infer<typeof dailySchema>[number];
 
-/** ProofAtlas's top 500 open problems in math, in its order, with who has settled each one since. */
-export const problemsSchema = z.object({
-  updated: isoDate,
-  problems: z
-    .array(
-      z.object({
-        rank: z.number().int().min(1).max(500),
-        title: z.string().min(1),
-        field: z.string().min(1),
-        status: z.enum(["Solved", "Disproved", "Shown independent"]).optional(),
-        by: z.array(z.object({ name: z.string().min(1), url: z.url() })).min(1).optional(),
-      }),
-    )
-    .length(500),
-});
-export type Problem = z.infer<typeof problemsSchema>["problems"][number];
+/** Our ranking of the biggest open problems in each science, most important first, marked when one is solved. */
+export const problemsSchema = z.array(
+  z.object({
+    field: z.enum(SCIENCES),
+    title: z.string().min(1),
+    status: z.enum(["Solved", "Disproved"]).optional(),
+    by: z.array(z.object({ name: z.string().min(1), url: z.url() })).min(1).optional(),
+  }),
+);
+export type Problem = z.infer<typeof problemsSchema>[number];
 
 export const metaSchema = z.object({
   asOf: isoDate,
@@ -61,7 +55,7 @@ export type Dataset = {
   meta: Meta;
   tracks: Record<Track, AiEvent[]>;
   daily: Daily[];
-  problems: z.infer<typeof problemsSchema>;
+  problems: Problem[];
   takeoff: Takeoff;
 };
 
