@@ -54,7 +54,7 @@ for (const e of daily) {
 
 for (const field of SCIENCES) {
   const list = openProblems.filter((p) => p.field === field);
-  if (list.length < 15) problems.push(`problems: ${field} has only ${list.length}`);
+  if (list.length < 100) problems.push(`problems: ${field} has only ${list.length}`);
   if (new Set(list.map((p) => p.title)).size !== list.length) problems.push(`problems: ${field} has a duplicate`);
 }
 for (const p of openProblems)
