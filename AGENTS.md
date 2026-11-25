@@ -14,7 +14,13 @@ This repo used to be Capsule. Capsule now lives in `jaredec/capsule` (its own Ve
 
 The site is live at whataididtoday.com (with www redirecting to it), linked from the jaredconnolly.com homepage.
 
+## Open problems
+
+The "Open problems" page lists ProofAtlas's October 6, 2026 ranking of the 500 most important open problems in math, grouped by field, each marked when it is solved, disproved or shown independent, with links to the proofs. `data/problems.json` is generated from the Top 500 map at top500.konsti.xyz by `npm run problems`; rerun it when the map updates, check any new problem that credits several papers or a person rather than a lab (`OPENAI_PAPER` and `PEOPLE` in `scripts/problems.ts`), then set `updated` in `meta.json`.
+
 ## The index
+
+The Singularity Index and Timeline pages are hidden for now, to be refined later; their code and data stay in the repo.
 
 The Singularity Index is our own 0–100 estimate, built like CNN's Fear & Greed Index: each signal scores 50 at its old pace and 25 points more for every eightfold speedup, and the index is their plain average (`readIndex` in `src/lib/takeoff.ts`). The signals are METR's time horizon doubling time, Epoch AI's Capabilities Index trend, the Metaculus community date for general AI, and the average gap between breakthroughs and between frontier releases from our own data.
 

@@ -1,0 +1,3316 @@
+{
+ "updated": "2026-11-24",
+ "problems": [
+  {
+   "rank": 1,
+   "title": "P versus NP",
+   "field": "Computer science"
+  },
+  {
+   "rank": 2,
+   "title": "Riemann Hypothesis",
+   "field": "Number theory",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "Anthropic",
+     "url": "https://alpo.ge/remark.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 3,
+   "title": "Yang-Mills Existence and Mass Gap",
+   "field": "Physics"
+  },
+  {
+   "rank": 4,
+   "title": "Hodge Conjecture",
+   "field": "Geometry"
+  },
+  {
+   "rank": 5,
+   "title": "Birch and Swinnerton-Dyer Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 6,
+   "title": "Navier-Stokes Existence and Smoothness: Fefferman A",
+   "field": "Analysis"
+  },
+  {
+   "rank": 7,
+   "title": "Global Langlands Functoriality Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 8,
+   "title": "Existence of One-Way Functions",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 9,
+   "title": "The abc Conjecture of Masser and Oesterle",
+   "field": "Number theory"
+  },
+  {
+   "rank": 10,
+   "title": "Extended Riemann hypothesis for Dedekind zeta functions",
+   "field": "Number theory"
+  },
+  {
+   "rank": 11,
+   "title": "NP versus P/poly",
+   "field": "Computer science"
+  },
+  {
+   "rank": 12,
+   "title": "Generalized Riemann Hypothesis for Dirichlet L-functions",
+   "field": "Number theory",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "Anthropic",
+     "url": "https://alpo.ge/remark.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 13,
+   "title": "NP versus coNP Problem",
+   "field": "Computer science"
+  },
+  {
+   "rank": 14,
+   "title": "P versus PSPACE",
+   "field": "Computer science"
+  },
+  {
+   "rank": 15,
+   "title": "Tate Conjecture for Algebraic Cycles",
+   "field": "Geometry"
+  },
+  {
+   "rank": 16,
+   "title": "Polynomial-time classical integer factorization",
+   "field": "Computer science"
+  },
+  {
+   "rank": 17,
+   "title": "BQP Versus NP: Complete Language-Class Relation",
+   "field": "Computer science"
+  },
+  {
+   "rank": 18,
+   "title": "Hardy-Littlewood Prime k-Tuple Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 19,
+   "title": "Unconditional Separation of Quantum and Classical Bounded-Error Polynomial Time (BQP != BPP)",
+   "field": "Quantum computing"
+  },
+  {
+   "rank": 20,
+   "title": "Twin Prime Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 21,
+   "title": "Smooth four-dimensional Poincare conjecture",
+   "field": "Geometry"
+  },
+  {
+   "rank": 22,
+   "title": "Hilbert's Tenth Problem over the Rationals",
+   "field": "Logic",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Hilberts-tenth-problem-over-the-rational-numbers-September-24-2026/main.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 23,
+   "title": "The NC versus P Problem for Efficient Parallel Computation",
+   "field": "Computer science"
+  },
+  {
+   "rank": 24,
+   "title": "Grothendiecks Generalized Hodge Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 25,
+   "title": "Binary Goldbach Problem for Even Integers",
+   "field": "Number theory"
+  },
+  {
+   "rank": 26,
+   "title": "P versus BPP (Does BPP = P?)",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 27,
+   "title": "Schanuel's conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 28,
+   "title": "Matrix-Multiplication Exponent Equals Two",
+   "field": "Computer science",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/The-matrix-multiplication-exponent-is-nine-fourths-November-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 29,
+   "title": "Unique Games Conjecture",
+   "field": "Computer science",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Unique-Games-Theorem-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 30,
+   "title": "Generalized Ramanujan Conjecture for GL_n",
+   "field": "Number theory"
+  },
+  {
+   "rank": 31,
+   "title": "Anderson Model Extended States in Dimension at Least Three",
+   "field": "Physics"
+  },
+  {
+   "rank": 32,
+   "title": "Valiants Algebraic P versus NP Conjecture (VP != VNP)",
+   "field": "Computer science",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Paths-trees-and-grids-separate-Valiants-hierarchy-November-24-2026/paper.pdf"
+    },
+    {
+     "name": "Anthropic",
+     "url": "https://github.com/anthropics/formal-math/blob/main/vp-vnp/README.md"
+    }
+   ]
+  },
+  {
+   "rank": 33,
+   "title": "Basing One-Way Functions on NP-Hardness",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 34,
+   "title": "P versus NP ∩ coNP",
+   "field": "Computer science"
+  },
+  {
+   "rank": 35,
+   "title": "Unconditional Separation of BQP from the Polynomial Hierarchy",
+   "field": "Quantum computing"
+  },
+  {
+   "rank": 36,
+   "title": "Extension of Kroneckers Theorem on Abelian Fields to Any Algebraic Base Field",
+   "field": "Number theory"
+  },
+  {
+   "rank": 37,
+   "title": "Prove the Penrose inequality or present a counterexample",
+   "field": "Physics"
+  },
+  {
+   "rank": 38,
+   "title": "Higher-dimensional Euclidean Kakeya conjecture",
+   "field": "Analysis",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/main/preprints/Local-smoothing-for-the-Euclidean-wave-equation-October-25-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 39,
+   "title": "Modularity of Elliptic Curves over Number Fields (End_K(E)=Z)",
+   "field": "Number theory"
+  },
+  {
+   "rank": 40,
+   "title": "Hilbert's Sixteenth Problem, Second Part",
+   "field": "Probability"
+  },
+  {
+   "rank": 41,
+   "title": "The Quantum PCP Conjecture",
+   "field": "Quantum computing"
+  },
+  {
+   "rank": 42,
+   "title": "Conformal Field Theory Limit of the Critical Three-Dimensional Ising Model",
+   "field": "Physics"
+  },
+  {
+   "rank": 43,
+   "title": "The Exponential Time Hypothesis for 3-SAT",
+   "field": "Computer science",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/main/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf"
+    },
+    {
+     "name": "Anthropic",
+     "url": "https://github.com/anthropics/formal-math/blob/main/eth/README.md"
+    }
+   ]
+  },
+  {
+   "rank": 44,
+   "title": "Grothendieck's Standard Conjecture D",
+   "field": "Number theory"
+  },
+  {
+   "rank": 45,
+   "title": "BQP versus QMA",
+   "field": "Quantum computing"
+  },
+  {
+   "rank": 46,
+   "title": "Fourier restriction conjecture",
+   "field": "Analysis",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/main/preprints/Local-smoothing-for-the-Euclidean-wave-equation-October-25-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 47,
+   "title": "The Fontaine-Mazur Conjecture on Geometric Galois Representations",
+   "field": "Number theory"
+  },
+  {
+   "rank": 48,
+   "title": "Nonexistence of Landau–Siegel zeros for quadratic Dirichlet L-functions",
+   "field": "Number theory",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Uniform-exclusion-of-Landau-Siegel-zeros-October-1-2026/paper.pdf"
+    },
+    {
+     "name": "Anthropic",
+     "url": "https://alpo.ge/remark.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 49,
+   "title": "Grothendieck Period Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 50,
+   "title": "Non-Perturbative Construction and Non-Triviality of 4D Euclidean Phi4 Quantum Field Theory",
+   "field": "Physics"
+  },
+  {
+   "rank": 51,
+   "title": "Equivalence of Worst-Case and Average-Case Hardness for NP (Excluding Heuristica)",
+   "field": "Computer science"
+  },
+  {
+   "rank": 52,
+   "title": "The Baum-Connes Conjecture for the K-Theory of Reduced Group C*-Algebras",
+   "field": "Algebra",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Torsion-Free-Counterexample-to-Reduced-Baum-Connes-Injectivity-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 53,
+   "title": "Schinzel's Hypothesis H on Simultaneous Prime Values of Irreducible Polynomials",
+   "field": "Number theory"
+  },
+  {
+   "rank": 54,
+   "title": "The Bombieri-Lang Conjecture for Varieties of General Type",
+   "field": "Number theory"
+  },
+  {
+   "rank": 55,
+   "title": "Novikov Conjecture on homotopy invariance of higher signatures",
+   "field": "Geometry"
+  },
+  {
+   "rank": 56,
+   "title": "Equivariant Tamagawa number conjecture: Burns-Flach Conjecture4 package",
+   "field": "Number theory"
+  },
+  {
+   "rank": 57,
+   "title": "Existence of One-Way Permutations",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 58,
+   "title": "Dickson's Conjecture on Simultaneous Prime Values of Linear Forms",
+   "field": "Number theory"
+  },
+  {
+   "rank": 59,
+   "title": "L = P Problem",
+   "field": "Computer science"
+  },
+  {
+   "rank": 60,
+   "title": "Inverse Galois problem over the rational numbers",
+   "field": "Algebra"
+  },
+  {
+   "rank": 61,
+   "title": "NEXP versus P/poly",
+   "field": "Computer science"
+  },
+  {
+   "rank": 62,
+   "title": "Permanent versus Determinant over C",
+   "field": "Computer science",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Circuit-lower-bounds-for-Hamiltonian-cycle-and-the-permanent-November-24-2026/paper.pdf"
+    },
+    {
+     "name": "Anthropic",
+     "url": "https://github.com/anthropics/formal-math/blob/main/vp-vnp/README.md"
+    }
+   ]
+  },
+  {
+   "rank": 63,
+   "title": "Vojtas Main Conjecture on Height Inequalities in Diophantine Approximation",
+   "field": "Number theory"
+  },
+  {
+   "rank": 64,
+   "title": "Strong Exponential Time Hypothesis (SETH)",
+   "field": "Computer science",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/main/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf"
+    },
+    {
+     "name": "Anthropic",
+     "url": "https://github.com/anthropics/formal-math/blob/main/eth/README.md"
+    }
+   ]
+  },
+  {
+   "rank": 65,
+   "title": "Artins Conjecture on the Holomorphy of Non-Abelian Artin L-Functions",
+   "field": "Number theory"
+  },
+  {
+   "rank": 66,
+   "title": "Modularity of Elliptic Curves over Totally Real Fields",
+   "field": "Number theory"
+  },
+  {
+   "rank": 67,
+   "title": "The Farrell-Jones Conjecture in Algebraic K- and L-Theory",
+   "field": "Algebra"
+  },
+  {
+   "rank": 68,
+   "title": "P versus NC^1",
+   "field": "Computer science"
+  },
+  {
+   "rank": 69,
+   "title": "Finiteness of the Tate-Shafarevich Group for Elliptic Curves",
+   "field": "Number theory"
+  },
+  {
+   "rank": 70,
+   "title": "Derandomization of Polynomial Identity Testing",
+   "field": "Computer science"
+  },
+  {
+   "rank": 71,
+   "title": "Deligne conjecture on coefficient-equivariant critical motivic L-values",
+   "field": "Number theory"
+  },
+  {
+   "rank": 72,
+   "title": "Termination of Flips Conjecture in the Minimal Model Program",
+   "field": "Geometry"
+  },
+  {
+   "rank": 73,
+   "title": "FPT versus W[1]",
+   "field": "Computer science"
+  },
+  {
+   "rank": 74,
+   "title": "Non-Triviality of the Three-Dimensional Ising Model",
+   "field": "Physics"
+  },
+  {
+   "rank": 75,
+   "title": "Montgomerys Pair Correlation Conjecture for Zeros of the Riemann Zeta Function",
+   "field": "Number theory"
+  },
+  {
+   "rank": 76,
+   "title": "Woodins Ultimate L Conjecture for Supercompact Cardinals",
+   "field": "Logic"
+  },
+  {
+   "rank": 77,
+   "title": "Chowla conjecture on correlations of the Liouville function",
+   "field": "Probability"
+  },
+  {
+   "rank": 78,
+   "title": "Abundance Conjecture for the minimal model program",
+   "field": "Geometry",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Log-abundance-in-characteristic-zero-September-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 79,
+   "title": "Graph Isomorphism in Polynomial Time",
+   "field": "Computer science"
+  },
+  {
+   "rank": 80,
+   "title": "Hadwiger Conjecture",
+   "field": "Combinatorics",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-counterexample-to-Hadwigers-conjecture-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 81,
+   "title": "Bateman-Horn conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 82,
+   "title": "The Lindeloef Hypothesis on the Growth of the Riemann Zeta Function",
+   "field": "Number theory",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "Anthropic",
+     "url": "https://alpo.ge/remark.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 83,
+   "title": "Zilber-Pink Conjecture on Unlikely Intersections",
+   "field": "Number theory"
+  },
+  {
+   "rank": 84,
+   "title": "Campana's Conjecture Characterizing Special Varieties by Potential Density of Rational Points",
+   "field": "Number theory"
+  },
+  {
+   "rank": 85,
+   "title": "Weight–Monodromy Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 86,
+   "title": "Sarnak's Mobius randomness conjecture for zero-entropy systems",
+   "field": "Probability"
+  },
+  {
+   "rank": 87,
+   "title": "Bose-Einstein Condensation in Interacting Continuous Bose Gases",
+   "field": "Physics",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Bose-Einstein-condensation-at-positive-temperature-in-the-dilute-hard-sphere-gas-October-5-2026/positive-temperature-hard-spheres.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 88,
+   "title": "Deligne's Absolute Hodge Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 89,
+   "title": "Elliott-Halberstam Conjecture on the Level of Distribution of Primes",
+   "field": "Number theory"
+  },
+  {
+   "rank": 90,
+   "title": "The Mumford-Tate Conjecture for Abelian Varieties over Number Fields",
+   "field": "Number theory"
+  },
+  {
+   "rank": 91,
+   "title": "Grothendieck–Teichmüller Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 92,
+   "title": "Entanglement Area Law for 2D Gapped Quantum Systems",
+   "field": "Quantum computing",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-two-dimensional-area-law-from-a-global-spectral-gap-September-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 93,
+   "title": "PSPACE versus EXPTIME",
+   "field": "Computer science"
+  },
+  {
+   "rank": 94,
+   "title": "Grothendieck Standard Conjecture of Hodge Type",
+   "field": "Algebra"
+  },
+  {
+   "rank": 95,
+   "title": "Kannan-Lovasz-Simonovits conjecture on isoperimetry of log-concave measures",
+   "field": "Applied math",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "Bizeul–Klartag–Lehec and Song–Zhang",
+     "url": "https://arxiv.org/abs/2610.01447v1"
+    }
+   ]
+  },
+  {
+   "rank": 96,
+   "title": "L versus NL",
+   "field": "Computer science"
+  },
+  {
+   "rank": 97,
+   "title": "Littlewood Conjecture",
+   "field": "Probability"
+  },
+  {
+   "rank": 98,
+   "title": "Effective Mordell Conjecture for Curves of Genus at Least Two",
+   "field": "Number theory"
+  },
+  {
+   "rank": 99,
+   "title": "Grothendiecks Section Conjecture in Anabelian Geometry",
+   "field": "Number theory"
+  },
+  {
+   "rank": 100,
+   "title": "Green-Griffiths-Lang Conjecture on entire curves in varieties of general type",
+   "field": "Geometry"
+  },
+  {
+   "rank": 101,
+   "title": "Classical Szpiro Discriminant–Conductor Conjecture over Q",
+   "field": "Number theory"
+  },
+  {
+   "rank": 102,
+   "title": "Bunyakovsky conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 103,
+   "title": "Superpolynomial Lower Bounds for Frege Propositional Proof Systems",
+   "field": "Computer science"
+  },
+  {
+   "rank": 104,
+   "title": "Polignac's conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 105,
+   "title": "Two-Dimensional Jacobian Conjecture in Characteristic Zero",
+   "field": "Algebra"
+  },
+  {
+   "rank": 106,
+   "title": "Strongly Polynomial Linear Programming",
+   "field": "Computer science",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Strongly-polynomial-linear-programming-November-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 107,
+   "title": "Global Regularity of the 3D Incompressible Magnetohydrodynamic Equations",
+   "field": "Analysis"
+  },
+  {
+   "rank": 108,
+   "title": "Invariant Subspace Problem for Hilbert Space Operators",
+   "field": "Analysis"
+  },
+  {
+   "rank": 109,
+   "title": "Exact Kissing Numbers in Higher Dimensions",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 110,
+   "title": "Selberg 1/4 Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 111,
+   "title": "Unbounded Ranks of Elliptic Curves over Q",
+   "field": "Number theory"
+  },
+  {
+   "rank": 112,
+   "title": "The Haldane Conjecture on Spectral Gaps of Antiferromagnetic Quantum Spin Chains",
+   "field": "Physics"
+  },
+  {
+   "rank": 113,
+   "title": "Quantum Unique Ergodicity on Negatively Curved Manifolds",
+   "field": "Probability"
+  },
+  {
+   "rank": 114,
+   "title": "Iitaka conjecture C_{n,m} on subadditivity of Kodaira dimension",
+   "field": "Geometry",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Projective-Hodge-lines-and-ordinary-Iitaka-subadditivity-September-27-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 115,
+   "title": "Prove the BKL locality conjecture in the general inhomogeneous context",
+   "field": "Physics"
+  },
+  {
+   "rank": 116,
+   "title": "Regular Inverse Galois Problem over Q",
+   "field": "Algebra"
+  },
+  {
+   "rank": 117,
+   "title": "Erdos-Szemeredi Sum-Product Conjecture for Integers",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 118,
+   "title": "Grothendieck–Katz p-Curvature Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 119,
+   "title": "The Borel Conjecture on Topological Rigidity of Aspherical Manifolds",
+   "field": "Geometry",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Nonhomeomorphic-closed-aspherical-four-manifolds-with-the-same-homotopy-type-October-4-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 120,
+   "title": "Serre's congruence subgroup conjecture",
+   "field": "Algebra"
+  },
+  {
+   "rank": 121,
+   "title": "Cohen-Lenstra class-group distributions for quadratic number fields",
+   "field": "Number theory"
+  },
+  {
+   "rank": 122,
+   "title": "QMA versus QCMA Problem",
+   "field": "Quantum computing"
+  },
+  {
+   "rank": 123,
+   "title": "Volume conjecture for knots",
+   "field": "Geometry"
+  },
+  {
+   "rank": 124,
+   "title": "Aspherical Manifolds Admit No Metric of Positive Scalar Curvature",
+   "field": "Geometry",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Positive-scalar-curvature-forces-rational-inessentiality-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 125,
+   "title": "No-Slip Vanishing-Viscosity Limit in the Energy Norm",
+   "field": "Analysis"
+  },
+  {
+   "rank": 126,
+   "title": "Density Hypothesis for Zeroes of the Riemann Zeta Function",
+   "field": "Number theory",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "Anthropic",
+     "url": "https://alpo.ge/remark.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 127,
+   "title": "Erdos-Hajnal Conjecture",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 128,
+   "title": "Local Connectivity of the Mandelbrot Set (MLC Conjecture)",
+   "field": "Probability"
+  },
+  {
+   "rank": 129,
+   "title": "Tarski's Exponential Function Problem",
+   "field": "Logic"
+  },
+  {
+   "rank": 130,
+   "title": "Polynomial Bound for Limit Cycles of Planar Polynomial Vector Fields",
+   "field": "Probability"
+  },
+  {
+   "rank": 131,
+   "title": "Unconditional Single-Prover Classical Verification of BQP Computations",
+   "field": "Quantum computing"
+  },
+  {
+   "rank": 132,
+   "title": "Existence of a Length-Optimal Propositional Proof System",
+   "field": "Computer science"
+  },
+  {
+   "rank": 133,
+   "title": "The Generalized Sato-Tate Conjecture for Higher-Dimensional Abelian Varieties",
+   "field": "Number theory"
+  },
+  {
+   "rank": 134,
+   "title": "NP-Completeness of the Minimum Circuit Size Problem (MCSP)",
+   "field": "Computer science"
+  },
+  {
+   "rank": 135,
+   "title": "Arithmetic Quantum Unique Ergodicity",
+   "field": "Probability"
+  },
+  {
+   "rank": 136,
+   "title": "Erdős problem 3: divergent harmonic series and long arithmetic progressions",
+   "field": "Number theory",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 137,
+   "title": "Borel normal number conjecture for irrational algebraic numbers",
+   "field": "Number theory"
+  },
+  {
+   "rank": 138,
+   "title": "Hyperlinearity of Every Group",
+   "field": "Algebra"
+  },
+  {
+   "rank": 139,
+   "title": "Cannon's conjecture",
+   "field": "Geometry",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Modulus-Proof-of-Cannons-Conjecture-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 140,
+   "title": "Torsion Conjecture for Abelian Varieties of Dimension at Least Two",
+   "field": "Number theory"
+  },
+  {
+   "rank": 141,
+   "title": "Global Gan–Gross–Prasad Conjecture (Fixed-Representation Form)",
+   "field": "Number theory"
+  },
+  {
+   "rank": 142,
+   "title": "Planted Clique Conjecture",
+   "field": "Computer science"
+  },
+  {
+   "rank": 143,
+   "title": "Indistinguishability Obfuscation from Constant-Degree Homomorphic Assumptions",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 144,
+   "title": "Superlinear Circuit Lower Bounds for Explicit Boolean Functions",
+   "field": "Computer science"
+  },
+  {
+   "rank": 145,
+   "title": "Residual Finiteness of Hyperbolic Groups",
+   "field": "Algebra",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/a-torsion-free-hyperbolic-group-that-is-not-residually-finite-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 146,
+   "title": "Uniform Subconvexity for Standard Automorphic L-Functions on GL(n)",
+   "field": "Number theory"
+  },
+  {
+   "rank": 147,
+   "title": "Log-Rank Conjecture in Communication Complexity",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 148,
+   "title": "Global Regularity of Solutions to the Inviscid Surface Quasi-Geostrophic Equation",
+   "field": "Analysis"
+  },
+  {
+   "rank": 149,
+   "title": "Murre's Chow-Kunneth Conjectures",
+   "field": "Number theory"
+  },
+  {
+   "rank": 150,
+   "title": "Polynomial pivot rule for the simplex method",
+   "field": "Cryptography & optimization",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Superpolynomial-graph-diameter-of-simple-polytopes-November-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 151,
+   "title": "Order of Magnitude of the Largest Three-Term-Progression-Free Sets",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 152,
+   "title": "Consistency of Reinhardt Cardinals without Choice",
+   "field": "Logic"
+  },
+  {
+   "rank": 153,
+   "title": "Congruent Number Problem",
+   "field": "Number theory"
+  },
+  {
+   "rank": 154,
+   "title": "Asymptotic tightness of the binary Gilbert–Varshamov bound",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 155,
+   "title": "Grothendieck's Variational Hodge Conjecture",
+   "field": "Geometry"
+  },
+  {
+   "rank": 156,
+   "title": "Colliot-Thelene Conjecture: Brauer-Manin Obstruction Controls Rational Points on Rationally Connected Varieties",
+   "field": "Number theory"
+  },
+  {
+   "rank": 157,
+   "title": "Density of Hyperbolicity for Rational Maps",
+   "field": "Probability"
+  },
+  {
+   "rank": 158,
+   "title": "Leopoldt's conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 159,
+   "title": "Erdos-Rado Sunflower Conjecture",
+   "field": "Combinatorics",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/An-exponential-bound-for-sunflowers-November-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 160,
+   "title": "Manins Conjecture on the Asymptotic Density of Rational Points on Fano Varieties",
+   "field": "Number theory"
+  },
+  {
+   "rank": 161,
+   "title": "BPL = L (Derandomizing Bounded-Error Logspace)",
+   "field": "Cryptography & optimization",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Exact-Derandomization-of-Logarithmic-Space-L-equals-RL-equals-BPL-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 162,
+   "title": "Tate's rational leading-term Stark conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 163,
+   "title": "NP versus the Existential Theory of the Reals",
+   "field": "Applied math"
+  },
+  {
+   "rank": 164,
+   "title": "Berman-Hartmanis Isomorphism Conjecture",
+   "field": "Computer science"
+  },
+  {
+   "rank": 165,
+   "title": "Cramer Conjecture on the Limsup of Normalized Prime Gaps",
+   "field": "Number theory"
+  },
+  {
+   "rank": 166,
+   "title": "Smooth Four-Dimensional Schoenflies Problem",
+   "field": "Geometry"
+  },
+  {
+   "rank": 167,
+   "title": "Uniform Boundedness Conjecture for Rational Points on Curves",
+   "field": "Number theory"
+  },
+  {
+   "rank": 168,
+   "title": "Voevodsky's Smash-Nilpotence Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 169,
+   "title": "The Free Group Factor Isomorphism Problem",
+   "field": "Algebra",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/An-isomorphism-of-the-free-group-factors-September-23-2026/An-isomorphism-of-the-free-group-factors-September-23-2026.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 170,
+   "title": "Simplicity of the Nontrivial Zeros of the Riemann Zeta Function",
+   "field": "Number theory"
+  },
+  {
+   "rank": 171,
+   "title": "Dirichlet Divisor Problem",
+   "field": "Number theory"
+  },
+  {
+   "rank": 172,
+   "title": "Conformal Invariance of the Critical Random-Cluster Model with q <= 4",
+   "field": "Probability"
+  },
+  {
+   "rank": 173,
+   "title": "Weinstein Conjecture on periodic orbits of Reeb flows",
+   "field": "Geometry"
+  },
+  {
+   "rank": 174,
+   "title": "Keating-Snaith Conjecture on Moments of the Riemann Zeta Function",
+   "field": "Number theory"
+  },
+  {
+   "rank": 175,
+   "title": "Capacity of the General Discrete Memoryless Relay Channel",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 176,
+   "title": "Separation of P_R from NP_R in the Blum–Shub–Smale Model",
+   "field": "Applied math"
+  },
+  {
+   "rank": 177,
+   "title": "L-space Conjecture",
+   "field": "Geometry"
+  },
+  {
+   "rank": 178,
+   "title": "Algebraic Independence of e and pi",
+   "field": "Number theory"
+  },
+  {
+   "rank": 179,
+   "title": "Arnold Conjecture on Hamiltonian Fixed Points",
+   "field": "Geometry",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-degenerate-counterexample-to-the-critical-number-Arnold-bound-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 180,
+   "title": "Omega(n log n) Boolean Circuit Lower Bound for Integer Multiplication",
+   "field": "Computer science"
+  },
+  {
+   "rank": 181,
+   "title": "Polyakov Conjecture: Absence of a Phase Transition for Planar O(n) Models with n >= 3",
+   "field": "Physics",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Exponential-decay-in-two-dimensional-classical-On-models-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 182,
+   "title": "Furstenberg's x2 x3 conjecture on invariant measures",
+   "field": "Probability"
+  },
+  {
+   "rank": 183,
+   "title": "Smooth anisotropic Calderón uniqueness from full boundary data",
+   "field": "Analysis",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Smooth-Anisotropic-Uniqueness-in-the-Calderon-Problem-from-One-Boundary-Patch-September-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 184,
+   "title": "Transcendence of Apery's Constant",
+   "field": "Number theory"
+  },
+  {
+   "rank": 185,
+   "title": "Grothendieck–Serre Conjecture on Principal Bundles over Regular Local Rings",
+   "field": "Algebra"
+  },
+  {
+   "rank": 186,
+   "title": "Inhomogeneous Landau–Coulomb Global Regularity (HST All-Moment Data)",
+   "field": "Analysis"
+  },
+  {
+   "rank": 187,
+   "title": "Kimura–O'Sullivan Finite-Dimensionality Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 188,
+   "title": "Beilinson-Soule Vanishing Conjecture for Rational Motivic Cohomology",
+   "field": "Algebra"
+  },
+  {
+   "rank": 189,
+   "title": "Collatz conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 190,
+   "title": "Metric TSP Subtour LP Integrality Gap Conjecture",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 191,
+   "title": "Polynomial-Time Quantum Algorithm for Symmetric-Group Hidden Subgroups",
+   "field": "Quantum computing"
+  },
+  {
+   "rank": 192,
+   "title": "Morton–Silverman Uniform Boundedness Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 193,
+   "title": "Nonvanishing conjecture for projective log canonical pairs",
+   "field": "Geometry",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Log-abundance-in-characteristic-zero-September-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 194,
+   "title": "Landau's Fourth Problem on Primes of the Form n^2+1",
+   "field": "Number theory"
+  },
+  {
+   "rank": 195,
+   "title": "Parity conjecture for elliptic curves",
+   "field": "Number theory"
+  },
+  {
+   "rank": 196,
+   "title": "Exact Consistency Strength of the Proper Forcing Axiom",
+   "field": "Logic"
+  },
+  {
+   "rank": 197,
+   "title": "Soliton Resolution for the Focusing Energy-Critical Wave Equation without Radial Symmetry",
+   "field": "Analysis"
+  },
+  {
+   "rank": 198,
+   "title": "Long-Range Order in the Quantum Heisenberg Ferromagnet",
+   "field": "Physics",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Spontaneous-magnetization-in-the-quantum-Heisenberg-ferromagnet-September-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 199,
+   "title": "Rank One Abelian Stark Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 200,
+   "title": "UCT Problem for Separable Nuclear Complex C*-Algebras",
+   "field": "Algebra"
+  },
+  {
+   "rank": 201,
+   "title": "Simpson's Motivicity Conjecture for Rigid Local Systems",
+   "field": "Number theory"
+  },
+  {
+   "rank": 202,
+   "title": "Palis finite-attractor full-basin density conjecture",
+   "field": "Probability"
+  },
+  {
+   "rank": 203,
+   "title": "Bochner-Riesz conjecture",
+   "field": "Analysis",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/main/preprints/Local-smoothing-for-the-Euclidean-wave-equation-October-25-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 204,
+   "title": "Exact Asymptotic Waring Function G(k)",
+   "field": "Number theory"
+  },
+  {
+   "rank": 205,
+   "title": "Local Smoothing Conjecture for Wave Equations",
+   "field": "Analysis",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/main/preprints/Local-smoothing-for-the-Euclidean-wave-equation-October-25-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 206,
+   "title": "Kaplansky's Zero-Divisor Conjecture for Torsion-Free Groups",
+   "field": "Algebra",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Torsion-Free-Group-Algebra-with-Zero-Divisors-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 207,
+   "title": "Skolem Problem for Linear Recurrence Sequences",
+   "field": "Logic"
+  },
+  {
+   "rank": 208,
+   "title": "Polynomial Freiman-Ruzsa Conjecture for General Abelian Groups",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 209,
+   "title": "Lehmer's Mahler Measure Problem",
+   "field": "Number theory"
+  },
+  {
+   "rank": 210,
+   "title": "Artin's primitive root conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 211,
+   "title": "Hilbert-Smith Conjecture",
+   "field": "Geometry",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Hilbert-Smith-conjecture-in-every-finite-dimension-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 212,
+   "title": "Brauer-Manin obstruction for number-field curves: Hasse-principle form",
+   "field": "Number theory"
+  },
+  {
+   "rank": 213,
+   "title": "Falconer distance set conjecture",
+   "field": "Combinatorics",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Falconer-distance-conjecture-in-all-dimensions-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 214,
+   "title": "Hopf conjecture for positive sectional curvature",
+   "field": "Geometry"
+  },
+  {
+   "rank": 215,
+   "title": "Set Cover Conjecture (SeCoCo)",
+   "field": "Computer science"
+  },
+  {
+   "rank": 216,
+   "title": "Polynomial Diameter Bound for Polytopes",
+   "field": "Cryptography & optimization",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Superpolynomial-graph-diameter-of-simple-polytopes-November-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 217,
+   "title": "Babai's diameter conjecture for nonabelian finite simple groups",
+   "field": "Algebra"
+  },
+  {
+   "rank": 218,
+   "title": "Polynomial-Time Quantum Algorithm for the Dihedral Hidden Subgroup Problem",
+   "field": "Quantum computing"
+  },
+  {
+   "rank": 219,
+   "title": "Effective Roth Theorem",
+   "field": "Number theory"
+  },
+  {
+   "rank": 220,
+   "title": "Density of Hyperbolicity for Complex Polynomials",
+   "field": "Probability"
+  },
+  {
+   "rank": 221,
+   "title": "Perfect-Matching Search in Deterministic NC (General Graphs)",
+   "field": "Computer science"
+  },
+  {
+   "rank": 222,
+   "title": "Virasoro Conjecture for Gromov–Witten Invariants",
+   "field": "Geometry"
+  },
+  {
+   "rank": 223,
+   "title": "Polynomial-Size Perfect Secret Sharing for General Access Structures",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 224,
+   "title": "Wall's Poincare Duality Group Conjecture",
+   "field": "Geometry",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-PD4-group-without-an-aspherical-manifold-model-September-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 225,
+   "title": "K(pi,1) conjecture for Artin groups",
+   "field": "Geometry",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Harmonic-heights-and-the-Artin-K-pi-1-conjecture-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 226,
+   "title": "Parshin Conjecture on Higher K-Theory over Finite Fields",
+   "field": "Number theory"
+  },
+  {
+   "rank": 227,
+   "title": "Witten's Asymptotic Expansion Conjecture for SU(2) WRT Invariants",
+   "field": "Physics"
+  },
+  {
+   "rank": 228,
+   "title": "Zauner's Conjecture: Unrestricted Complex SIC Existence in Every Dimension",
+   "field": "Quantum computing",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "Radchenko and Wheeler",
+     "url": "https://www.danrad.net/papers/stark-reciprocity.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 229,
+   "title": "Shafarevich Freeness Conjecture over Qab",
+   "field": "Number theory"
+  },
+  {
+   "rank": 230,
+   "title": "Berry random-wave conjecture: real negative-curvature BS formulation",
+   "field": "Physics"
+  },
+  {
+   "rank": 231,
+   "title": "Zagier's dimension conjecture for classical multiple zeta values",
+   "field": "Number theory"
+  },
+  {
+   "rank": 232,
+   "title": "Sharp Erdos Distinct-Distances Conjecture in the Plane",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 233,
+   "title": "Polynomial-Time Distribution-Free PAC Learning of DNF Formulas",
+   "field": "Computer science"
+  },
+  {
+   "rank": 234,
+   "title": "Unconditional 2−epsilon Inapproximability of Minimum Vertex Cover",
+   "field": "Computer science",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Factor-Two-Hardness-Threshold-for-Vertex-Cover-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 235,
+   "title": "Chromatic Number of the Plane (Hadwiger--Nelson Problem)",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 236,
+   "title": "Shub-Smale τ-Conjecture for Integer Zeros",
+   "field": "Computer science"
+  },
+  {
+   "rank": 237,
+   "title": "Global Existence of Classical Solutions to the Relativistic Vlasov-Maxwell System",
+   "field": "Analysis"
+  },
+  {
+   "rank": 238,
+   "title": "Serre Uniformity Question",
+   "field": "Number theory"
+  },
+  {
+   "rank": 239,
+   "title": "Universal Optimality of the Hexagonal Lattice in Dimension Two",
+   "field": "Combinatorics",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Universal-optimality-of-the-triangular-lattice-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 240,
+   "title": "Kawamata's K-Equivalence Implies D-Equivalence Conjecture",
+   "field": "Geometry"
+  },
+  {
+   "rank": 241,
+   "title": "Capacity of the Binary Deletion Channel",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 242,
+   "title": "Morrison-Kawamata Cone Conjecture",
+   "field": "Geometry"
+  },
+  {
+   "rank": 243,
+   "title": "11/8-Conjecture on intersection forms of spin 4-manifolds",
+   "field": "Geometry"
+  },
+  {
+   "rank": 244,
+   "title": "All-Pairs Shortest Paths in Truly Subcubic Time",
+   "field": "Cryptography & optimization",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "Anthropic",
+     "url": "https://github.com/anthropics/formal-math/blob/e1a4e6508154ea59f030480661590a9fe3018011/3sum-apsp/README.md"
+    }
+   ]
+  },
+  {
+   "rank": 245,
+   "title": "Quantum versus Classical Communication Complexity of Total Functions",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 246,
+   "title": "De Giorgi Conjecture for the Allen-Cahn Equation in Dimensions 4 to 8",
+   "field": "Analysis",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/De-Giorgis-conjecture-in-dimension-eight-September-26-2026/article.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 247,
+   "title": "MAJORITY is not in ACC0",
+   "field": "Computer science"
+  },
+  {
+   "rank": 248,
+   "title": "Equidistribution of Galois Orbits of Special Points on Shimura Varieties",
+   "field": "Probability"
+  },
+  {
+   "rank": 249,
+   "title": "Breuil-Mezard conjecture: equality of the Galois and automorphic sides",
+   "field": "Number theory"
+  },
+  {
+   "rank": 250,
+   "title": "Existence of an odd perfect number",
+   "field": "Number theory"
+  },
+  {
+   "rank": 251,
+   "title": "The k-Server Conjecture for General Metric Spaces",
+   "field": "Computer science"
+  },
+  {
+   "rank": 252,
+   "title": "Serre's Conjecture II on Galois Cohomology of Simply Connected Semisimple Groups",
+   "field": "Algebra"
+  },
+  {
+   "rank": 253,
+   "title": "Dynamical Mordell–Lang Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 254,
+   "title": "Exact satisfiability threshold for random k-SAT for small k (k = 3)",
+   "field": "Probability",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Limiting-Satisfiability-Threshold-for-Every-Fixed-Clause-Size-September-25-2026/article.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 255,
+   "title": "Vaught's conjecture",
+   "field": "Logic"
+  },
+  {
+   "rank": 256,
+   "title": "Polynomial-Time Decidability of Semidefinite Programming Feasibility",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 257,
+   "title": "Hopf conjecture for nonnegative sectional curvature",
+   "field": "Geometry"
+  },
+  {
+   "rank": 258,
+   "title": "Anosov Diffeomorphism Classification Conjecture",
+   "field": "Probability"
+  },
+  {
+   "rank": 259,
+   "title": "Banach-Mazur Rotation Problem",
+   "field": "Analysis"
+  },
+  {
+   "rank": 260,
+   "title": "RL versus L",
+   "field": "Computer science",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Exact-Derandomization-of-Logarithmic-Space-L-equals-RL-equals-BPL-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 261,
+   "title": "Kadison Similarity Problem for C*-Algebras",
+   "field": "Algebra",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Kadisons-similarity-theorem-through-uniform-derivation-estimates-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 262,
+   "title": "Constant-Query Locally Decodable Codes with Polynomial Blocklength",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 263,
+   "title": "Gauss Circle Problem",
+   "field": "Number theory"
+  },
+  {
+   "rank": 264,
+   "title": "Reliability Function of the Binary Symmetric Channel Below the Critical Rate",
+   "field": "Computer science"
+  },
+  {
+   "rank": 265,
+   "title": "Infinitude of Mersenne Primes",
+   "field": "Number theory"
+  },
+  {
+   "rank": 266,
+   "title": "Equivalence or Strict Containment of QMA and QMA(2)",
+   "field": "Quantum computing"
+  },
+  {
+   "rank": 267,
+   "title": "Sidorenko Conjecture on Bipartite Homomorphism Densities",
+   "field": "Combinatorics",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-counterexample-to-Sidorenkos-conjecture-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 268,
+   "title": "Shafarevich Holomorphic-Convexity Conjecture",
+   "field": "Geometry",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-surface-counterexample-to-Shafarevich-holomorphic-convexity-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 269,
+   "title": "Classical Worst-Case Hardness Reduction for LWE",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 270,
+   "title": "Kuznetsov Rationality Conjecture for Cubic Fourfolds",
+   "field": "Geometry",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Irrational-cubic-fourfolds-with-geometric-K3-categories-September-24-2026/Irrational-cubic-fourfolds-with-geometric-K3-categories-September-24-2026.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 271,
+   "title": "All groups are good: the four-dimensional disc-embedding conjecture",
+   "field": "Geometry",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-boundary-only-obstruction-to-four-dimensional-disk-embedding-September-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 272,
+   "title": "Zarankiewicz Problem for K_{t,t}-Free Bipartite Graphs",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 273,
+   "title": "Finite Spectrum Problem",
+   "field": "Logic"
+  },
+  {
+   "rank": 274,
+   "title": "Exact Unassisted Quantum Capacity of the Qubit Depolarizing Channel",
+   "field": "Quantum computing"
+  },
+  {
+   "rank": 275,
+   "title": "Bodirsky-Pinsker Tractability Conjecture for Infinite-Domain Constraint Satisfaction",
+   "field": "Computer science"
+  },
+  {
+   "rank": 276,
+   "title": "Michel Boundary Rigidity Conjecture for Simple Manifolds",
+   "field": "Geometry"
+  },
+  {
+   "rank": 277,
+   "title": "Alperin–McKay Conjecture",
+   "field": "Algebra"
+  },
+  {
+   "rank": 278,
+   "title": "Planar homogeneous Mumford–Shah local-structure conjecture",
+   "field": "Analysis",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Interior-regularity-of-planar-Mumford-Shah-minimizers-September-24-2026/Interior-regularity-of-planar-Mumford-Shah-minimizers-September-24-2026.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 279,
+   "title": "Complex linearity of closed-surface mapping class groups by genus",
+   "field": "Geometry"
+  },
+  {
+   "rank": 280,
+   "title": "Zagier Conjecture on Dedekind Zeta Values",
+   "field": "Number theory"
+  },
+  {
+   "rank": 281,
+   "title": "Polynomial-time explicit logarithmic Ramsey graphs",
+   "field": "Computer science"
+  },
+  {
+   "rank": 282,
+   "title": "Margulis–Zimmer Commensurated-Subgroup Conjecture over Number Fields",
+   "field": "Algebra"
+  },
+  {
+   "rank": 283,
+   "title": "Grigorchuk Gap Conjecture",
+   "field": "Algebra"
+  },
+  {
+   "rank": 284,
+   "title": "Nearby Lagrangian Conjecture",
+   "field": "Geometry",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-counterexample-to-the-nearby-Lagrangian-conjecture-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 285,
+   "title": "Cartan-Hadamard isoperimetric conjecture",
+   "field": "Geometry",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Generalized-Cartan-Hadamard-isoperimetry-and-Euclidean-equality-rigidity-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 286,
+   "title": "Vassiliev Separation by Abelian-Valued Finite-Type Invariants",
+   "field": "Geometry"
+  },
+  {
+   "rank": 287,
+   "title": "Existence of NPT Bound Entanglement",
+   "field": "Quantum computing"
+  },
+  {
+   "rank": 288,
+   "title": "Deterministic polynomial-time exact bipartite matching",
+   "field": "Computer science"
+  },
+  {
+   "rank": 289,
+   "title": "Sharp Upper Bound in Yau's Conjecture on Nodal Sets of Laplace Eigenfunctions",
+   "field": "Analysis",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Smooth-counterexamples-to-Yaus-nodal-upper-bound-in-dimensions-three-and-four-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 290,
+   "title": "Kaplansky's Idempotent Conjecture",
+   "field": "Algebra",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Torsion-Free-Group-Algebra-That-Is-Not-Directly-Finite-October-4-2026/direct-finiteness.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 291,
+   "title": "Calderón uniqueness for bounded measurable real isotropic conductivities",
+   "field": "Analysis",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Nonuniqueness-for-Bounded-Measurable-Scalar-Conductivities-in-Three-Dimensions-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 292,
+   "title": "Global Attractor Conjecture for Complex-Balanced Mass-Action Systems",
+   "field": "Applied math",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Uniform-Permanence-in-Weakly-Reversible-Mass-Action-Systems-October-5-2026/permanence.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 293,
+   "title": "Positivity Problem for Linear Recurrence Sequences",
+   "field": "Logic"
+  },
+  {
+   "rank": 294,
+   "title": "Frey-Mazur Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 295,
+   "title": "Zariski Multiplicity Conjecture for Hypersurface Singularities",
+   "field": "Geometry",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Ambiently-homeomorphic-isolated-hypersurface-germs-in-C4-with-multiplicities-four-and-five-September-27-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 296,
+   "title": "Moonshine Uniqueness Conjecture (Strongly Rational Holomorphic VOA Form)",
+   "field": "Algebra"
+  },
+  {
+   "rank": 297,
+   "title": "Amenability of Thompson's Group F",
+   "field": "Algebra",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Thompsons-group-F-is-nonamenable-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 298,
+   "title": "Griffiths Positivity Conjecture for Ample Vector Bundles",
+   "field": "Geometry",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/ample-rank-two-bundles-on-the-quadric-surface-without-griffiths-positive-metrics-September-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 299,
+   "title": "Global Regularity of the 2D Inviscid Boussinesq Equations",
+   "field": "Analysis"
+  },
+  {
+   "rank": 300,
+   "title": "The Singer Conjecture on Vanishing of L2-Cohomology of Aspherical Manifolds",
+   "field": "Algebra"
+  },
+  {
+   "rank": 301,
+   "title": "Irrationality of Euler's Constant",
+   "field": "Number theory"
+  },
+  {
+   "rank": 302,
+   "title": "The Atiyah Conjecture on the Integrality of L2-Betti Numbers",
+   "field": "Algebra"
+  },
+  {
+   "rank": 303,
+   "title": "Resolvent Degree of the General Degree-Seven Polynomial (Algebraic Form of Hilbert's Thirteenth Problem)",
+   "field": "Algebra"
+  },
+  {
+   "rank": 304,
+   "title": "Erdos--Szekeres Convex Polygon Conjecture",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 305,
+   "title": "Birkhoff Conjecture (Near-Boundary Continuous Invariant Foliation)",
+   "field": "Probability",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Rigidity-of-Smooth-Billiards-with-a-Continuous-Caustic-Collar-September-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 306,
+   "title": "Secret key from all entangled states",
+   "field": "Quantum computing",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Entanglement-with-zero-distillable-secret-key-in-local-dimension-ten-September-27-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 307,
+   "title": "Sample Compression Conjecture (Linear Size in VC Dimension)",
+   "field": "Computer science"
+  },
+  {
+   "rank": 308,
+   "title": "Original Dubrovin conjecture for Fano manifolds",
+   "field": "Geometry"
+  },
+  {
+   "rank": 309,
+   "title": "Montgomery's Large Value Conjecture for Dirichlet Polynomials",
+   "field": "Number theory"
+  },
+  {
+   "rank": 310,
+   "title": "Tutte 5-Flow Conjecture",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 311,
+   "title": "Mahler Conjecture on the Volume Product of a Convex Body",
+   "field": "Combinatorics",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-symmetric-Mahler-conjecture-and-its-equality-cases-September-22-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 312,
+   "title": "Tits Alternative for CAT(0) Groups",
+   "field": "Algebra"
+  },
+  {
+   "rank": 313,
+   "title": "Erdős Girth Conjecture",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 314,
+   "title": "Exact Real Grothendieck Constant",
+   "field": "Analysis"
+  },
+  {
+   "rank": 315,
+   "title": "Growth Rate of 3-Uniform Hypergraph Ramsey Numbers",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 316,
+   "title": "Marked Length Spectrum Rigidity Conjecture",
+   "field": "Geometry"
+  },
+  {
+   "rank": 317,
+   "title": "The Dynamic Optimality Conjecture for Splay Trees",
+   "field": "Computer science"
+  },
+  {
+   "rank": 318,
+   "title": "Huisken's Generic Singularity Conjecture for Mean Curvature Flow",
+   "field": "Analysis"
+  },
+  {
+   "rank": 319,
+   "title": "The Online Boolean Matrix-Vector Multiplication Conjecture",
+   "field": "Computer science"
+  },
+  {
+   "rank": 320,
+   "title": "Woodin's HOD Conjecture",
+   "field": "Logic"
+  },
+  {
+   "rank": 321,
+   "title": "Finiteness of Finitely Presented Periodic Groups",
+   "field": "Algebra",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/An-infinite-finitely-presented-periodic-group-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 322,
+   "title": "Iwasawa mu = 0 Conjecture for Cyclotomic Z_p-Extensions",
+   "field": "Number theory"
+  },
+  {
+   "rank": 323,
+   "title": "C^r Closing Lemma",
+   "field": "Probability"
+  },
+  {
+   "rank": 324,
+   "title": "Congruence Subgroup Property for Mapping Class Groups of Surfaces of Genus at Least Three",
+   "field": "Geometry"
+  },
+  {
+   "rank": 325,
+   "title": "Legendre's Conjecture on Primes Between Consecutive Squares",
+   "field": "Number theory"
+  },
+  {
+   "rank": 326,
+   "title": "Gromov's Surface Subgroup Question for One-Ended Hyperbolic Groups",
+   "field": "Geometry"
+  },
+  {
+   "rank": 327,
+   "title": "Hartshorne Conjecture on complete intersections in codimension two",
+   "field": "Geometry"
+  },
+  {
+   "rank": 328,
+   "title": "Sinai's Positive Metric Entropy Conjecture for the Chirikov Standard Map",
+   "field": "Probability",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Positive-Metric-Entropy-for-the-Standard-Map-at-Large-Parameters-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 329,
+   "title": "Néel Order for the Spin-1/2 Square-Lattice Heisenberg Antiferromagnet (Averaged Ground-State Order)",
+   "field": "Physics"
+  },
+  {
+   "rank": 330,
+   "title": "Koiran's Real Tau-Conjecture on Real Roots of Sums of Products of Sparse Polynomials",
+   "field": "Computer science"
+  },
+  {
+   "rank": 331,
+   "title": "Arnold Chord Conjecture in Higher Dimensions",
+   "field": "Geometry"
+  },
+  {
+   "rank": 332,
+   "title": "Shelah's Conjecture on NIP Fields",
+   "field": "Logic"
+  },
+  {
+   "rank": 333,
+   "title": "Bass-Quillen conjecture",
+   "field": "Algebra"
+  },
+  {
+   "rank": 334,
+   "title": "Unrestricted Linear-Circuit Lower Bound for the Discrete Fourier Transform",
+   "field": "Computer science",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/The-logarithmic-exponent-of-finite-Fourier-transforms-November-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 335,
+   "title": "Discontinuity of the q-State Potts Phase Transition on Z^d for d >= 3 and q >= 3",
+   "field": "Physics"
+  },
+  {
+   "rank": 336,
+   "title": "Lions' Open Problem on Small-Time Global Exact Null Controllability of the Navier-Stokes Equations with Dirichlet Boundary Conditions",
+   "field": "Applied math"
+  },
+  {
+   "rank": 337,
+   "title": "Mazur's Conjecture on the Real Topology of Rational Points",
+   "field": "Number theory",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "the ℤℚ Diophantine Project",
+     "url": "https://github.com/elliotglazer/diophantine-z-q"
+    }
+   ]
+  },
+  {
+   "rank": 338,
+   "title": "Nirenberg Problem on the Two-Sphere",
+   "field": "Geometry"
+  },
+  {
+   "rank": 339,
+   "title": "The Hadamard Matrix Existence Conjecture",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 340,
+   "title": "Chowla Non-Vanishing Conjecture for Dirichlet L-Functions at the Central Point",
+   "field": "Number theory"
+  },
+  {
+   "rank": 341,
+   "title": "Jones Unknot Conjecture",
+   "field": "Geometry"
+  },
+  {
+   "rank": 342,
+   "title": "Worst-case to average-case hardness reduction for the Learning Parity with Noise problem",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 343,
+   "title": "Koebe circle-domain uniformization conjecture",
+   "field": "Analysis",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Koebes-Circle-Domain-Conjecture-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 344,
+   "title": "Polynomial-time unknot recognition",
+   "field": "Geometry"
+  },
+  {
+   "rank": 345,
+   "title": "Slice-Ribbon Conjecture",
+   "field": "Geometry"
+  },
+  {
+   "rank": 346,
+   "title": "Broues Abelian Defect Group Conjecture",
+   "field": "Algebra"
+  },
+  {
+   "rank": 347,
+   "title": "Graph reconstruction conjecture",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 348,
+   "title": "Dixmier Conjecture",
+   "field": "Algebra"
+  },
+  {
+   "rank": 349,
+   "title": "Vinogradov Conjecture on the Least Quadratic Non-Residue",
+   "field": "Number theory",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "Anthropic",
+     "url": "https://alpo.ge/remark.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 350,
+   "title": "Tutte's 3-Flow Conjecture",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 351,
+   "title": "Kobayashi Conjecture: Hyperbolic Compact Kähler Manifolds Have Ample Canonical Bundle",
+   "field": "Geometry",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Canonical-ampleness-of-compact-hyperbolic-Kahler-manifolds-September-23-2026/canonical-ampleness.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 352,
+   "title": "Existence of a Finitely Presented Group of Intermediate Growth",
+   "field": "Algebra"
+  },
+  {
+   "rank": 353,
+   "title": "Brauer's k(B) Conjecture",
+   "field": "Algebra"
+  },
+  {
+   "rank": 354,
+   "title": "Corona problem for the unit polydisc",
+   "field": "Analysis"
+  },
+  {
+   "rank": 355,
+   "title": "Arithmeticity of Lattices in PU(n,1) for n at Least 4",
+   "field": "Geometry"
+  },
+  {
+   "rank": 356,
+   "title": "Bott Conjecture: nonnegatively curved simply connected manifolds are rationally elliptic",
+   "field": "Geometry"
+  },
+  {
+   "rank": 357,
+   "title": "Strong Hyperplane Conjecture for Isotropic Constants",
+   "field": "Combinatorics",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-sharp-entropy-bound-and-the-simplex-inequality-for-isotropic-constants-October-5-2026/isotropic-simplex.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 358,
+   "title": "CAT(0) Models for All Word-Hyperbolic Groups",
+   "field": "Geometry",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-hyperbolic-group-with-no-geometric-CAT0-action-September-25-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 359,
+   "title": "Hopf Conjecture: no metric of positive sectional curvature on S^2 x S^2",
+   "field": "Geometry"
+  },
+  {
+   "rank": 360,
+   "title": "Sharp asymptotic order of minimal star discrepancy in each dimension d >= 3",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 361,
+   "title": "Alperins Weight Conjecture for Modular Representations of Finite Groups",
+   "field": "Algebra",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Blockwise-Alperin-Weight-Conjecture-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 362,
+   "title": "Existence of a p-Optimal Propositional Proof System",
+   "field": "Computer science"
+  },
+  {
+   "rank": 363,
+   "title": "Iwaniec Conjecture for the Beurling-Ahlfors Transform Norm",
+   "field": "Analysis"
+  },
+  {
+   "rank": 364,
+   "title": "Log-Brunn-Minkowski Inequality for Symmetric Convex Bodies",
+   "field": "Combinatorics",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-logarithmic-Brunn-Minkowski-conjecture-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 365,
+   "title": "Igusa’s Standard p-Adic Monodromy Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 366,
+   "title": "Hyperkähler SYZ (Lagrangian Fibration) Conjecture",
+   "field": "Geometry",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Strong-Hyperkahler-SYZ-Conjecture-September-23-2026/main.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 367,
+   "title": "Ivrii conjecture on periodic billiard orbits",
+   "field": "Probability"
+  },
+  {
+   "rank": 368,
+   "title": "Benjamini-Schramm conjecture p_c<p_u for non-amenable Cayley graphs",
+   "field": "Probability",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Nonuniqueness-of-percolation-on-nonamenable-quasi-transitive-graphs-September-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 369,
+   "title": "Dixmier unitarisability problem for discrete groups",
+   "field": "Algebra",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Unitarizability-Implies-Amenability-for-Countable-Groups-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 370,
+   "title": "Partition Regularity of Pythagorean Triples",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 371,
+   "title": "Constant-Parameter Quantum Locally Testable Codes",
+   "field": "Quantum computing"
+  },
+  {
+   "rank": 372,
+   "title": "Bourgain's unbounded Sobolev orbit problem for cubic defocusing NLS on the square two-torus",
+   "field": "Analysis"
+  },
+  {
+   "rank": 373,
+   "title": "The Word Problem for One-Relation Monoids",
+   "field": "Algebra"
+  },
+  {
+   "rank": 374,
+   "title": "Fujita Freeness Conjecture",
+   "field": "Geometry",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Fujitas-freeness-conjecture-September-23-2026/Fujitas-freeness-conjecture-September-23-2026.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 375,
+   "title": "Nagata Conjecture on Plane Curve Linear Systems",
+   "field": "Geometry",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Nagatas-Conjecture-for-Plane-Curves-September-23-2026/main.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 376,
+   "title": "Kummer-Vandiver Conjecture on Cyclotomic Class Numbers",
+   "field": "Number theory"
+  },
+  {
+   "rank": 377,
+   "title": "Strong Compactness versus Supercompactness Equiconsistency Problem",
+   "field": "Logic"
+  },
+  {
+   "rank": 378,
+   "title": "Toms–Winter: Strict Comparison Implies Z-Stability",
+   "field": "Algebra",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Cuntz-comparison-and-Jiang-Su-absorption-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 379,
+   "title": "Margulis–Platonov normal-subgroup conjecture",
+   "field": "Algebra",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Margulis-Platonov-conjecture-over-number-fields-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 380,
+   "title": "Four Exponentials Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 381,
+   "title": "Brauer-Manin obstruction to the Hasse principle for K3 surfaces",
+   "field": "Number theory"
+  },
+  {
+   "rank": 382,
+   "title": "Černý Conjecture on Shortest Reset Words of Synchronizing Automata",
+   "field": "Computer science"
+  },
+  {
+   "rank": 383,
+   "title": "Positive Combinatorial Rule for Kronecker Coefficients",
+   "field": "Algebra"
+  },
+  {
+   "rank": 384,
+   "title": "Asymptotic Turan Numbers of Even Cycles",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 385,
+   "title": "Lieb-Thirring Conjecture on the Sharp Constant for Riesz Means of Order One in Three Dimensions",
+   "field": "Physics"
+  },
+  {
+   "rank": 386,
+   "title": "Beal's Conjecture (Tijdeman-Zagier Conjecture)",
+   "field": "Number theory"
+  },
+  {
+   "rank": 387,
+   "title": "Margulis Bounded Diagonal-Orbit Conjecture",
+   "field": "Probability"
+  },
+  {
+   "rank": 388,
+   "title": "Shelah's Categoricity Conjecture for L_omega1,omega",
+   "field": "Logic"
+  },
+  {
+   "rank": 389,
+   "title": "NP-Hardness of Constant-Factor Approximation for Densest k-Subgraph",
+   "field": "Computer science"
+  },
+  {
+   "rank": 390,
+   "title": "The Cherlin-Zilber Algebraicity Conjecture for Simple Groups of Finite Morley Rank",
+   "field": "Logic"
+  },
+  {
+   "rank": 391,
+   "title": "Pugh–Shub Stable Ergodicity (C^r Density in Partial Hyperbolicity)",
+   "field": "Probability"
+  },
+  {
+   "rank": 392,
+   "title": "Measure-zero singular set of stationary integral varifolds",
+   "field": "Analysis",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Almost-everywhere-regularity-of-stationary-integral-varifolds-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 393,
+   "title": "Gromov-Lawson-Rosenberg Conjecture for Finite Fundamental Groups",
+   "field": "Geometry"
+  },
+  {
+   "rank": 394,
+   "title": "Hilbert's Third Problem for Spherical and Hyperbolic Scissors Congruence",
+   "field": "Geometry"
+  },
+  {
+   "rank": 395,
+   "title": "Brown-Erdos-Sos Conjecture on Sparse Triple Systems",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 396,
+   "title": "Conforti–Cornuéjols Conjecture: Packing Property Implies Max-Flow Min-Cut",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 397,
+   "title": "Gromov's Filling Area Conjecture",
+   "field": "Geometry"
+  },
+  {
+   "rank": 398,
+   "title": "Corona Problem for the Unit Ball in Several Complex Variables",
+   "field": "Analysis"
+  },
+  {
+   "rank": 399,
+   "title": "Computability of the Shannon Capacity of Finite Graphs",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 400,
+   "title": "Blackadar–Kirchberg Quasidiagonality Problem for Stably Finite Nuclear C*-Algebras",
+   "field": "Algebra"
+  },
+  {
+   "rank": 401,
+   "title": "Serres Positivity Conjecture for Intersection Multiplicities over Regular Local Rings",
+   "field": "Algebra",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Positivity-of-Serres-Intersection-Multiplicity-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 402,
+   "title": "Yau's First Eigenvalue Conjecture for Minimal Hypersurfaces",
+   "field": "Geometry"
+  },
+  {
+   "rank": 403,
+   "title": "Rokhlin problem on multiple mixing",
+   "field": "Probability",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Rokhlins-multiple-mixing-problem-for-one-transformation-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 404,
+   "title": "Global Regularity of the 3D Incompressible Hall-MHD Equations for Large Data",
+   "field": "Analysis"
+  },
+  {
+   "rank": 405,
+   "title": "Arnold-Givental Lagrangian intersection conjecture",
+   "field": "Geometry"
+  },
+  {
+   "rank": 406,
+   "title": "Coleman-Oort conjecture: eventual special-subvariety exclusion",
+   "field": "Number theory"
+  },
+  {
+   "rank": 407,
+   "title": "Thomson problem",
+   "field": "Physics"
+  },
+  {
+   "rank": 408,
+   "title": "Green's conjecture on syzygies of canonical curves",
+   "field": "Algebra"
+  },
+  {
+   "rank": 409,
+   "title": "Li-Li Undirected Multiple-Unicast Network Coding Conjecture",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 410,
+   "title": "Bartnik's cosmological splitting conjecture",
+   "field": "Physics"
+  },
+  {
+   "rank": 411,
+   "title": "Lebesgue measure of the boundary of the Mandelbrot set",
+   "field": "Probability"
+  },
+  {
+   "rank": 412,
+   "title": "Fermat-Catalan Conjecture on Finiteness of Coprime Power Triples",
+   "field": "Number theory"
+  },
+  {
+   "rank": 413,
+   "title": "Whitehead Asphericity Conjecture",
+   "field": "Geometry"
+  },
+  {
+   "rank": 414,
+   "title": "Smallest number of variables for undecidable Hilbert's Tenth Problem over Z",
+   "field": "Logic"
+  },
+  {
+   "rank": 415,
+   "title": "Clemens Conjecture for Rational Curves on a General Quintic Threefold",
+   "field": "Geometry"
+  },
+  {
+   "rank": 416,
+   "title": "Chen-Yang Volume Conjecture for Turaev-Viro Invariants",
+   "field": "Geometry"
+  },
+  {
+   "rank": 417,
+   "title": "Zilber's Exponential-Algebraic Closedness Conjecture",
+   "field": "Logic"
+  },
+  {
+   "rank": 418,
+   "title": "Coding Theory and Combinatorics Problem CC-6: Existence of Finite Projective Planes of Non-Prime-Power Orders",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 419,
+   "title": "Lück's Determinant Conjecture for Discrete Groups",
+   "field": "Geometry",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Counterexample-to-the-Group-Ring-Determinant-Conjecture-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 420,
+   "title": "Absolute continuity of Bernoulli convolutions outside reciprocal Pisot parameters",
+   "field": "Probability",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Arithmetic-classification-and-non-Pisot-singularity-for-Bernoulli-convolutions-October-3-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 421,
+   "title": "GNRS Conjecture",
+   "field": "Computer science"
+  },
+  {
+   "rank": 422,
+   "title": "Fourier Entropy-Influence Conjecture",
+   "field": "Computer science"
+  },
+  {
+   "rank": 423,
+   "title": "Pólya's Conjecture for Dirichlet Eigenvalues",
+   "field": "Analysis"
+  },
+  {
+   "rank": 424,
+   "title": "Irrationality of Catalan's Constant",
+   "field": "Number theory",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Catalans-constant-is-irrational-September-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 425,
+   "title": "Separable Quotient Problem for Banach Spaces",
+   "field": "Analysis",
+   "status": "Shown independent",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Relative-independence-of-the-separable-quotient-problem-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 426,
+   "title": "Boundedness of Compact Hyperkahler Manifolds: Finiteness of Deformation Types in Each Dimension",
+   "field": "Geometry"
+  },
+  {
+   "rank": 427,
+   "title": "Finiteness of central configurations for the n-body problem, n >= 4",
+   "field": "Physics"
+  },
+  {
+   "rank": 428,
+   "title": "Turan Conjecture on the Turan Density of K_4^{(3)}",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 429,
+   "title": "Minkowski's conjecture on products of non-homogeneous linear forms",
+   "field": "Number theory"
+  },
+  {
+   "rank": 430,
+   "title": "Long-Time Existence of the Calabi Flow on Compact Kaehler Manifolds",
+   "field": "Analysis",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-finite-time-singularity-of-Calabi-flow-on-projective-space-September-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 431,
+   "title": "Hilbert's Tenth Problem over C(t) with named t",
+   "field": "Number theory"
+  },
+  {
+   "rank": 432,
+   "title": "Combinatorial Invariance of Kazhdan-Lusztig Polynomials",
+   "field": "Algebra",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Combinatorial-Invariance-of-Kazhdan-Lusztig-Polynomials-September-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 433,
+   "title": "Martin's Conjecture for Definable Turing-Invariant Functions",
+   "field": "Logic"
+  },
+  {
+   "rank": 434,
+   "title": "Realizable Limit Shapes in Two-Dimensional First-Passage Percolation",
+   "field": "Probability"
+  },
+  {
+   "rank": 435,
+   "title": "Frankl Union-Closed Sets Conjecture",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 436,
+   "title": "Polynomial-Time P-Matrix Linear Complementarity Problem",
+   "field": "Computer science"
+  },
+  {
+   "rank": 437,
+   "title": "Rationality Implies C2-Cofiniteness for Vertex Operator Algebras",
+   "field": "Algebra"
+  },
+  {
+   "rank": 438,
+   "title": "Zariski Cancellation Problem (characteristic zero, dimension ≥ 3)",
+   "field": "Algebra",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/An-explicit-failure-of-complex-affine-space-cancellation-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 439,
+   "title": "Balanced L4 boundedness of the trilinear Hilbert transform",
+   "field": "Analysis"
+  },
+  {
+   "rank": 440,
+   "title": "Stein's Conjecture on the Hilbert Transform along Lipschitz Vector Fields",
+   "field": "Analysis",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-uniform-Hilbert-transform-estimate-for-Lipschitz-directions-September-25-2026/main.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 441,
+   "title": "Colmezs Conjecture on Faltings Heights of CM Abelian Varieties",
+   "field": "Number theory"
+  },
+  {
+   "rank": 442,
+   "title": "Greenberg's Conjecture on Vanishing of Iwasawa Invariants of Totally Real Fields",
+   "field": "Number theory"
+  },
+  {
+   "rank": 443,
+   "title": "Matroid Secretary Conjecture",
+   "field": "Computer science"
+  },
+  {
+   "rank": 444,
+   "title": "Uniqueness of Tangent Cones for Area-Minimizing Integral Currents in Higher Codimension",
+   "field": "Analysis"
+  },
+  {
+   "rank": 445,
+   "title": "Von Neumann's Problem for II_1 Factors",
+   "field": "Analysis"
+  },
+  {
+   "rank": 446,
+   "title": "Sums of Three Cubes Representation Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 447,
+   "title": "Exact value of the site-percolation threshold on the square lattice",
+   "field": "Probability"
+  },
+  {
+   "rank": 448,
+   "title": "Smooth Realization of Finite-Entropy Ergodic Transformations",
+   "field": "Probability",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-finite-entropy-system-without-a-smooth-positive-volume-model-September-25-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 449,
+   "title": "Uniqueness of the KPZ Fixed Point Among Scaling-Covariant Local Fields",
+   "field": "Probability"
+  },
+  {
+   "rank": 450,
+   "title": "Deligne–Drinfeld Freeness Conjecture for grt_1",
+   "field": "Number theory",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Deligne-Drinfeld-conjecture-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 451,
+   "title": "Piltz Divisor Problem for k-Fold Divisor Error Terms",
+   "field": "Number theory"
+  },
+  {
+   "rank": 452,
+   "title": "Lovász Conjecture on Hamiltonian Paths in Vertex-Transitive Graphs",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 453,
+   "title": "Shub entropy conjecture",
+   "field": "Probability",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-C1-Counterexample-to-the-Entropy-Conjecture-September-25-2026/article.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 454,
+   "title": "Erdős Matching Conjecture",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 455,
+   "title": "Decidability of Finite Identity Bases for Finite Semigroups",
+   "field": "Logic"
+  },
+  {
+   "rank": 456,
+   "title": "Maximal Number of Mutually Unbiased Bases in Composite Dimensions",
+   "field": "Quantum computing"
+  },
+  {
+   "rank": 457,
+   "title": "Deterministic Linear-Time Minimum Spanning Tree Problem",
+   "field": "Computer science"
+  },
+  {
+   "rank": 458,
+   "title": "LeBrun-Salamon Conjecture: positive quaternion-Kahler manifolds are symmetric spaces",
+   "field": "Geometry",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Contact-Fano-manifolds-and-the-LeBrun-Salamon-conjecture-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 459,
+   "title": "Exact critical exponents of oriented percolation in 1+1 dimensions",
+   "field": "Probability"
+  },
+  {
+   "rank": 460,
+   "title": "Aaronson-Ambainis Conjecture",
+   "field": "Quantum computing",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "Physical Superintelligence",
+     "url": "https://github.com/physical-superintelligence/aaronson-ambainis/blob/2a6ceaef872ae993708950f951989134084b851a/AaronsonAmbainis/Main.lean"
+    }
+   ]
+  },
+  {
+   "rank": 461,
+   "title": "Kaplansky's Direct Finiteness Conjecture",
+   "field": "Algebra",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Torsion-Free-Group-Algebra-That-Is-Not-Directly-Finite-October-4-2026/direct-finiteness.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 462,
+   "title": "Greenfield-Wallach-Katok Conjecture for Cohomology-Free Vector Fields",
+   "field": "Probability"
+  },
+  {
+   "rank": 463,
+   "title": "Andrews-Curtis conjecture",
+   "field": "Algebra"
+  },
+  {
+   "rank": 464,
+   "title": "Lusztig's P1-P15 Conjectures for Bounded Weighted Coxeter Groups",
+   "field": "Algebra"
+  },
+  {
+   "rank": 465,
+   "title": "David–Semmes Riesz-transform problem in intermediate dimensions",
+   "field": "Analysis",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Riesz-transforms-and-uniform-rectifiability-in-higher-codimension-September-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 466,
+   "title": "Pisot Substitution Conjecture",
+   "field": "Probability"
+  },
+  {
+   "rank": 467,
+   "title": "Small Cohen-Macaulay Conjecture",
+   "field": "Algebra",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Complete-Local-Domain-Without-a-Small-Cohen-Macaulay-Module-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 468,
+   "title": "Ergodicity of Irrational Triangular Billiards",
+   "field": "Probability",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Ergodicity-of-triangular-billiards-with-an-irrational-angle-September-25-2026/Ergodicity-of-triangular-billiards-with-an-irrational-angle-September-25-2026.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 469,
+   "title": "Potential Density of Rational Points on K3 Surfaces",
+   "field": "Number theory"
+  },
+  {
+   "rank": 470,
+   "title": "Arveson-Douglas Essential Normality Conjecture for Homogeneous Quotient Modules",
+   "field": "Analysis"
+  },
+  {
+   "rank": 471,
+   "title": "Greek-Letter Redshift Conjecture in Algebraic K-Theory",
+   "field": "Algebra"
+  },
+  {
+   "rank": 472,
+   "title": "CAT(0) Conjecture for All Artin Groups",
+   "field": "Geometry",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/An-Artin-group-with-no-geometric-CAT-0-action-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 473,
+   "title": "Liouville problem for stationary Navier–Stokes D-solutions in R^3",
+   "field": "Analysis"
+  },
+  {
+   "rank": 474,
+   "title": "Capacity Region of General 3-Receiver Discrete Memoryless Broadcast Channels",
+   "field": "Cryptography & optimization"
+  },
+  {
+   "rank": 475,
+   "title": "Katok entropy rigidity conjecture",
+   "field": "Probability",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Entropy-equality-and-local-symmetry-in-negative-curvature-September-23-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 476,
+   "title": "Polynomial-Time Solvability of Condon's Simple Stochastic Games",
+   "field": "Computer science",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/3344da59991ed94f9ba711217b29c1d760badfa6/preprints/Strongly-polynomial-linear-programming-November-24-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 477,
+   "title": "Zariski Dense Orbit Conjecture",
+   "field": "Number theory"
+  },
+  {
+   "rank": 478,
+   "title": "Leray's Problem for Stationary Navier-Stokes under the Total-Flux Condition in Three Dimensions",
+   "field": "Analysis"
+  },
+  {
+   "rank": 479,
+   "title": "Fujita Very Ampleness Conjecture",
+   "field": "Geometry"
+  },
+  {
+   "rank": 480,
+   "title": "Furstenberg No-Bigeodesics (Planar FPP, Standard Minimum Moment)",
+   "field": "Probability",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/No-bigeodesics-in-planar-first-passage-percolation-September-24-2026/main.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 481,
+   "title": "Positive Counting Rule for Type-A Schubert Structure Constants",
+   "field": "Algebra"
+  },
+  {
+   "rank": 482,
+   "title": "Hall's Conjecture on Gaps Between Squares and Cubes",
+   "field": "Number theory"
+  },
+  {
+   "rank": 483,
+   "title": "Gaboriau's Fixed Price Problem for Countable Groups",
+   "field": "Analysis",
+   "status": "Disproved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-group-without-fixed-price-October-5-2026/unequal-costs-rank-100-amalgam.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 484,
+   "title": "Persistence Conjecture for Weakly Reversible Mass-Action Systems",
+   "field": "Applied math",
+   "status": "Solved",
+   "by": [
+    {
+     "name": "OpenAI",
+     "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Boundedness-and-persistence-of-weakly-reversible-mass-action-systems-September-25-2026/paper.pdf"
+    }
+   ]
+  },
+  {
+   "rank": 485,
+   "title": "Zilber's Quasiminimality Conjecture for the Complex Exponential Field",
+   "field": "Logic"
+  },
+  {
+   "rank": 486,
+   "title": "Campana-Peternell Conjecture",
+   "field": "Geometry"
+  },
+  {
+   "rank": 487,
+   "title": "Congruence Subgroup Property for Automorphism Groups of Free Groups",
+   "field": "Algebra"
+  },
+  {
+   "rank": 488,
+   "title": "Normality of Pi",
+   "field": "Number theory"
+  },
+  {
+   "rank": 489,
+   "title": "F-Conjecture for the Nef Cone of Mbar_(0,n)",
+   "field": "Geometry"
+  },
+  {
+   "rank": 490,
+   "title": "Voronoi Conjecture on Parallelohedra",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 491,
+   "title": "Voisin's Zero-Cycle Conjecture for Varieties of Geometric Genus One",
+   "field": "Geometry"
+  },
+  {
+   "rank": 492,
+   "title": "Auslander Conjecture on Affine Crystallographic Groups",
+   "field": "Geometry"
+  },
+  {
+   "rank": 493,
+   "title": "Infinitude of Fermat Primes",
+   "field": "Number theory"
+  },
+  {
+   "rank": 494,
+   "title": "Existence of the Diagonal Ramsey Growth Constant",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 495,
+   "title": "Polynomial-Time Quasioptimal Logarithmic-Energy Points on the 2-Sphere",
+   "field": "Applied math"
+  },
+  {
+   "rank": 496,
+   "title": "Uniform epsilon-equilibrium in finite multiplayer stochastic games",
+   "field": "Applied math"
+  },
+  {
+   "rank": 497,
+   "title": "Maximum Number of k-sets and Complexity of k-levels",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 498,
+   "title": "Hadwiger-Boltyanski Illumination Conjecture",
+   "field": "Combinatorics"
+  },
+  {
+   "rank": 499,
+   "title": "Freyd's Generating Hypothesis",
+   "field": "Geometry"
+  },
+  {
+   "rank": 500,
+   "title": "Residual Finiteness of All Artin-Tits Groups",
+   "field": "Geometry"
+  }
+ ]
+}

@@ -6,8 +6,7 @@ import { useEffect, useRef, useState, useSyncExternalStore, type MouseEvent, typ
 const PAGES = [
   { id: "week", label: "Today" },
   { id: "breakthroughs", label: "Breakthroughs" },
-  { id: "index", label: "Singularity Index" },
-  { id: "timeline", label: "Timeline" },
+  { id: "problems", label: "Open problems" },
 ] as const;
 type Page = (typeof PAGES)[number]["id"];
 
