@@ -16,7 +16,7 @@ The site is live at whataididtoday.com (with www redirecting to it), linked from
 
 ## Open problems
 
-The "Open problems" page is our own ranking of the biggest open problems in each science (`SCIENCES` in `src/lib/logos.ts`), 20 per field, most important first, in `data/problems.json`. Choose and order them ourselves; don't copy another list. Mark one `Solved` or `Disproved` only with a link to the announcement or proof for each credited lab or person; solved problems keep their place.
+The "Open problems" page is our own ranking of open problems in each science (`SCIENCES` in `src/lib/logos.ts`) that are within reach, most important first, in `data/problems.json`. Each is a concrete goal with a clear finish line, like a math conjecture or "net electricity from fusion", never an open-ended mystery ("origin of life", "consciousness", "patterns in pi"). Choose and order them ourselves; don't copy another list, and check a goal hasn't already been reached before adding it. Mark one `Solved` or `Disproved` only with a link to the announcement or proof for each credited lab or person; solved problems keep their place.
 
 ## The index
 

@@ -11,13 +11,13 @@ const SUBJECTS = [
   { id: "medicine", label: "Medicine" },
 ] as const;
 
-/** Our ranking of the biggest open problems in each science, with who has solved each one. */
+/** Our ranking of reachable open problems in each science, with who has solved each one. */
 export function Problems({ problems }: { problems: Problem[] }) {
   const [field, setField] = useState<Problem["field"]>("math");
 
   return (
     <section id="problems">
-      <p>The biggest open problems in each science, most important first, with who solved them.</p>
+      <p>Open problems in each science that are within reach, biggest first.</p>
       <p className="fields">
         {SUBJECTS.map((s) => (
           <button key={s.id} type="button" aria-pressed={s.id === field} onClick={() => setField(s.id)}>

@@ -34,7 +34,7 @@ export const dailySchema = z.array(
 );
 export type Daily = z.infer<typeof dailySchema>[number];
 
-/** Our ranking of the biggest open problems in each science, most important first, marked when one is solved. */
+/** Our ranking of reachable open problems in each science, most important first, marked when one is solved. */
 export const problemsSchema = z.array(
   z.object({
     field: z.enum(SCIENCES),
