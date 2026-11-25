@@ -15,7 +15,7 @@ export function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: Daily[
 
   return (
     <section id="week">
-      <p>Everything notable AI accomplished this past week, newest first.</p>
+      <p>Notable things AI accomplished this past week.</p>
       <ul>
         {days.flatMap((date) =>
           items

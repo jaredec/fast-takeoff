@@ -17,7 +17,7 @@ export function Problems({ problems }: { problems: Problem[] }) {
 
   return (
     <section id="problems">
-      <p>Open problems in each science that are within reach, biggest first.</p>
+      <p>Open problems across math and science.</p>
       <p className="fields">
         {SUBJECTS.map((s) => (
           <button key={s.id} type="button" aria-pressed={s.id === field} onClick={() => setField(s.id)}>

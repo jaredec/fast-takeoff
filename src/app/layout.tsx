@@ -3,7 +3,7 @@ import { Pages } from "@/components/Pages";
 import "./globals.css";
 
 const title = "What did AI do today?";
-const description = "Everything notable AI accomplished, from daily results to breakthroughs and open problems.";
+const description = "Notable things AI accomplished, breakthroughs and open problems.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://whataididtoday.com"),
