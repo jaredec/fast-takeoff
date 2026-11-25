@@ -36,13 +36,6 @@ button {
   color: var(--ink);
 }
 
-h2 {
-  font-family: var(--head);
-  font-size: 1.5em;
-  color: var(--strong);
-  margin: 0 0 10px;
-}
-
 h3 {
   font-family: var(--head);
   font-size: 1.1em;
@@ -109,7 +102,9 @@ li {
   margin-top: 0;
 }
 
-#week > p:first-child {
+#week > p:first-child,
+#breakthroughs > p:first-child,
+#timeline > p:first-child {
   margin-top: 0;
 }
 
@@ -433,12 +428,6 @@ li {
 @media (max-width: 720px) {
   .page {
     padding-top: 24px;
-  }
-  #index > h2,
-  #timeline > h2,
-  #breakthroughs > h2,
-  #week > h2 {
-    display: none;
   }
   .pages {
     position: relative;

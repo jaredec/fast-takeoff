@@ -58,7 +58,6 @@ export function Dashboard({ meta, tracks, daily, takeoff }: Dataset) {
         <Week meta={meta} daily={daily} breakthroughs={tracks.breakthroughs} />
 
         <section id="breakthroughs">
-          <h2>Breakthroughs</h2>
           <p>
             Firsts for humankind made by AI: new science, math or medicine, or a historic first the whole world noticed.
           </p>
@@ -67,7 +66,6 @@ export function Dashboard({ meta, tracks, daily, takeoff }: Dataset) {
 
         <div>
           <section id="index">
-            <h2>Singularity Index</h2>
             <div className="reading">
               <Gauge fraction={score / 100} value={String(Math.round(score))} zone={zone.name} />
             </div>
@@ -99,7 +97,6 @@ export function Dashboard({ meta, tracks, daily, takeoff }: Dataset) {
           <TimelineSection meta={meta} tracks={tracks} />
 
           <section id="gaps">
-            <h2>Time between</h2>
             <ul>
               {TRACKS.map((t) => {
                 const g = gaps(series[t], TRACK_INFO[t].baselineYears);

@@ -17,7 +17,6 @@ export function TimelineSection({ meta, tracks }: Pick<Dataset, "meta" | "tracks
   return (
     <TipProvider>
       <section id="timeline">
-        <h2>Timeline</h2>
         <p className="switch">
           <span>
             {TRACKS.map((t) => (
