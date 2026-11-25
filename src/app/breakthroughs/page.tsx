@@ -7,7 +7,7 @@ export default function Page() {
 
   return (
     <section id="breakthroughs">
-      <p>Firsts for humankind by people working with AI.</p>
+      <p>Breakthrough moments made or assisted by AI.</p>
       <ul>
         {[...breakthroughs.events].reverse().map((e) => (
           <li key={`${e.date} ${e.title}`}>
