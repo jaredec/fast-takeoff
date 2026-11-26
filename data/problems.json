@@ -1,7 +1,7 @@
 [
   {"field": "math", "title": "P versus NP"},
-  {"field": "math", "title": "Riemann hypothesis", "status": "Solved", "by": [{"name": "Levent Alpöge", "url": "https://alpo.ge/remark.pdf"}]},
-  {"field": "math", "title": "Navier–Stokes problem", "status": "Solved", "by": [{"name": "OpenAI", "url": "https://openai.com/index/navier-stokes-solution/"}, {"name": "Levent Alpöge", "url": "https://github.com/tristanbuckmaster/navier-stokes"}, {"name": "Tristan Buckmaster", "url": "https://github.com/tristanbuckmaster/navier-stokes"}]},
+  {"field": "math", "title": "Riemann hypothesis", "status": "Solved", "by": [{"name": "Levent Alpöge", "with": "Claude", "url": "https://alpo.ge/remark.pdf"}]},
+  {"field": "math", "title": "Navier–Stokes problem", "status": "Solved", "by": [{"name": "OpenAI", "url": "https://openai.com/index/navier-stokes-solution/"}, {"name": "Levent Alpöge and Tristan Buckmaster", "with": "Claude", "url": "https://github.com/tristanbuckmaster/navier-stokes"}]},
   {"field": "math", "title": "Yang–Mills mass gap"},
   {"field": "math", "title": "Hodge conjecture"},
   {"field": "math", "title": "Birch and Swinnerton-Dyer conjecture"},
@@ -22,7 +22,7 @@
   {"field": "math", "title": "Graph isomorphism in polynomial time"},
   {"field": "math", "title": "Strongly polynomial linear programming", "status": "Solved", "by": [{"name": "OpenAI", "url": "https://github.com/openai/math/blob/main/preprints/Strongly-polynomial-linear-programming-November-24-2026/paper.pdf"}]},
   {"field": "math", "title": "Invariant subspace problem"},
-  {"field": "math", "title": "Jacobian conjecture", "status": "Disproved", "by": [{"name": "Levent Alpöge", "url": "https://x.com/__alpoge__/status/2079028340955197566"}]},
+  {"field": "math", "title": "Jacobian conjecture", "status": "Disproved", "by": [{"name": "Levent Alpöge", "with": "Claude", "url": "https://x.com/__alpoge__/status/2079028340955197566"}]},
   {"field": "math", "title": "Kakeya conjecture", "status": "Solved", "by": [{"name": "OpenAI", "url": "https://openai.com/index/building-scientific-understanding-with-academic-communities/"}]},
   {"field": "math", "title": "Novikov conjecture"},
   {"field": "math", "title": "Borel conjecture"},

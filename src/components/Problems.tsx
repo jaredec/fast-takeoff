@@ -35,12 +35,13 @@ export function Problems({ problems }: { problems: Problem[] }) {
                 <i>
                   {" "}
                   {p.status} by{" "}
-                  {p.by.map((c, i, by) => (
+                  {p.by.map((c, i) => (
                     <span key={c.name}>
-                      {i === 0 ? "" : i === by.length - 1 ? " and " : ", "}
+                      {i ? " and by " : ""}
                       <a href={c.url} target="_blank" rel="noopener noreferrer">
                         {c.name}
                       </a>
+                      {c.with && ` with ${c.with}`}
                     </span>
                   ))}
                   .

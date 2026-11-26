@@ -40,7 +40,7 @@ export const problemsSchema = z.array(
     field: z.enum(SCIENCES),
     title: z.string().min(1),
     status: z.enum(["Solved", "Disproved"]).optional(),
-    by: z.array(z.object({ name: z.string().min(1), url: z.url() })).min(1).optional(),
+    by: z.array(z.object({ name: z.string().min(1), with: z.string().min(1).optional(), url: z.url() })).min(1).optional(),
   }),
 );
 export type Problem = z.infer<typeof problemsSchema>[number];
