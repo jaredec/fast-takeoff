@@ -4,7 +4,7 @@ import daily from "../../data/daily.json";
 import releases from "../../data/releases.json";
 import meta from "../../data/meta.json";
 import problems from "../../data/problems.json";
-import { FIELDS, SCIENCES } from "./logos";
+import { DAILY_FIELDS, FIELDS, SCIENCES } from "./logos";
 import { makeSeries, type AiEvent, type Meta, type Series, type Track } from "./metrics";
 import { loadTakeoff, type Takeoff } from "./takeoff";
 
@@ -29,6 +29,7 @@ export const dailySchema = z.array(
     title: z.string().min(1),
     org: z.string().min(1),
     why: z.string().min(1),
+    field: z.enum(DAILY_FIELDS),
     url: z.url(),
   }),
 );

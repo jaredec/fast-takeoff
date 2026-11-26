@@ -1,8 +1,10 @@
 import { cacheLife } from "next/cache";
+import type { CSSProperties } from "react";
 import type { Daily } from "@/lib/data";
+import { fieldColor } from "@/lib/logos";
 import { formatDay, toDay, type AiEvent, type Meta } from "@/lib/metrics";
 
-type Item = { date: string; title: string; org: string; why: string; url?: string; breakthrough?: boolean };
+type Item = { date: string; title: string; org: string; why: string; field?: string; url?: string; breakthrough?: boolean };
 
 /** Everything from the seven days ending today in US time (or the last update if older), newest first, excluding seven days ago. */
 export async function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: Daily[]; breakthroughs: AiEvent[] }) {
@@ -32,6 +34,14 @@ export async function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: 
                 {e.breakthrough && <Star />}
                 <b>{e.title}.</b> {e.why}{" "}
                 <i>
+                  {e.field && (
+                    <>
+                      <span className="field" style={{ "--field": fieldColor(e.field) } as CSSProperties}>
+                        {e.field[0].toUpperCase() + e.field.slice(1)}
+                      </span>
+                      ,{" "}
+                    </>
+                  )}
                   {formatDay(toDay(e.date), { month: "long", day: "numeric" })},{" "}
                   {e.url ? (
                     <a href={e.url} target="_blank" rel="noopener noreferrer">

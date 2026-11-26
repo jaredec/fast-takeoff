@@ -119,6 +119,21 @@ li {
   stroke-linejoin: round;
 }
 
+#week .field {
+  white-space: nowrap;
+}
+
+#week .field::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: var(--field);
+  vertical-align: 2px;
+}
+
 #week > p:first-child,
 #breakthroughs > p:first-child,
 #problems > p:first-child {

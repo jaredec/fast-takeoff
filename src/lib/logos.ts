@@ -28,6 +28,13 @@ const OTHER_COLOR = "#8a8a8a";
 export const fieldGroup = (f: Field): FieldGroup => ((SCIENCES as readonly Field[]).includes(f) ? (f as FieldGroup) : "other");
 export const groupColor = (g: FieldGroup) => (g === "other" ? OTHER_COLOR : FIELD_COLORS[g]);
 
+/** Fields for the Today page: the sciences, computer science, then plain labels for the rest, which show in gray. */
+export const DAILY_FIELDS = [...SCIENCES, "computer science", "engineering", "software", "security", "history"] as const;
+export type DailyField = (typeof DAILY_FIELDS)[number];
+const CS_COLOR = "#7a5ca0";
+export const fieldColor = (f: string) =>
+  f === "computer science" ? CS_COLOR : (SCIENCES as readonly string[]).includes(f) ? FIELD_COLORS[f as Field] : OTHER_COLOR;
+
 /** Lab marks in public/logos, for releases. Real marks only. */
 export const LOGOS = [
   "anthropic", "claude", "copilot", "deepmind", "deepseek", "gemini", "gemma", "google", "grok", "ibm", "kimi",
