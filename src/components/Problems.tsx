@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Problem } from "@/lib/data";
+import { creditMarks } from "@/lib/logos";
 
 const SUBJECTS = [
   { id: "math", label: "Math" },
@@ -35,16 +36,19 @@ export function Problems({ problems }: { problems: Problem[] }) {
                 <i>
                   {" "}
                   {p.status} by{" "}
-                  {p.by.map((c, i) => (
-                    <span key={c.name}>
-                      {i ? " and by " : ""}
-                      <a href={c.url} target="_blank" rel="noopener noreferrer">
-                        {c.name}
-                      </a>
-                      {c.with && ` with ${c.with}`}
-                    </span>
-                  ))}
-                  .
+                  <span className="faces">
+                    {p.by.map((c) => {
+                      const label = c.with ? `${c.name} with ${c.with}` : c.name;
+                      return (
+                        <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer" title={label} aria-label={label}>
+                          {creditMarks(c).map((m) => (
+                            // eslint-disable-next-line @next/next/no-img-element -- tiny static marks
+                            <img key={m.label} src={m.src} alt="" className={m.round ? "round" : undefined} />
+                          ))}
+                        </a>
+                      );
+                    })}
+                  </span>
                 </i>
               )}
             </li>

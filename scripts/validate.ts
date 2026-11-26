@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import { loadDataset } from "../src/lib/data";
-import { logosFor, SCIENCES } from "../src/lib/logos";
+import { creditMarks, logosFor, SCIENCES } from "../src/lib/logos";
 import { TRACKS, toDay } from "../src/lib/metrics";
 
 const { meta, tracks, daily, problems: openProblems, takeoff } = loadDataset();
@@ -57,8 +57,12 @@ for (const field of SCIENCES) {
   if (list.length < 100) problems.push(`problems: ${field} has only ${list.length}`);
   if (new Set(list.map((p) => p.title)).size !== list.length) problems.push(`problems: ${field} has a duplicate`);
 }
-for (const p of openProblems)
+for (const p of openProblems) {
   if (!p.status !== !p.by) problems.push(`problems: ${p.title} needs both a status and who solved it, or neither`);
+  for (const c of p.by ?? [])
+    if (c.with && !creditMarks(c).some((m) => m.label === c.with))
+      problems.push(`problems: ${p.title}: no mark for "${c.with}"; add one to src/lib/logos.ts`);
+}
 
 if (problems.length) {
   console.error(problems.join("\n"));

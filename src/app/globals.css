@@ -138,6 +138,39 @@ li {
   font-variant-numeric: tabular-nums;
 }
 
+/* Who solved a problem: overlapping circles of lab marks and avatars, each linking to its source. */
+.faces {
+  display: inline-flex;
+  vertical-align: middle;
+  margin: -4px 0 -3px 2px;
+}
+
+.faces a {
+  display: inline-flex;
+}
+
+.faces img {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  padding: 3px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    inset 0 0 0 1px #ddd,
+    0 0 0 1.5px var(--bg);
+}
+
+.faces img.round {
+  padding: 0;
+  box-shadow: 0 0 0 1.5px var(--bg);
+}
+
+.faces img + img,
+.faces a + a img:first-child {
+  margin-left: -4px;
+}
+
 .fields button {
   color: var(--link);
 }

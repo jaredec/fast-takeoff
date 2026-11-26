@@ -72,3 +72,28 @@ export function logosFor(e: AiEvent): string[] {
   if (product) return [product[1]];
   return BY_ORG[e.org] ?? [];
 }
+
+/** Real marks for credited groups on the Open problems page that aren't labs in BY_ORG. */
+const GROUP_MARKS: Record<string, Omit<Mark, "label">> = {
+  "Arc Institute": { src: "/logos/arc-institute.png", round: true },
+  FlyWire: { src: "/logos/flywire.png" },
+};
+
+/** `round` marks already fill a circle; the rest sit inset on white. */
+export type Mark = { src: string; label: string; round?: boolean };
+
+/**
+ * The circles for one credit on the Open problems page: a lab's or group's mark, or else a generic avatar for each
+ * person named ("A and B"), then the mark of the model they worked with. A model without a mark is left out.
+ */
+export function creditMarks(c: { name: string; with?: string }): Mark[] {
+  const lab = BY_ORG[c.name]?.[0];
+  const marks: Mark[] = lab
+    ? [{ src: `/logos/${lab}.svg`, label: c.name }]
+    : GROUP_MARKS[c.name]
+      ? [{ ...GROUP_MARKS[c.name], label: c.name }]
+      : c.name.split(/, | and /).map((person) => ({ src: "/logos/person.svg", label: person, round: true }));
+  const model = c.with ? BY_PRODUCT.find(([re]) => re.test(c.with!))?.[1] : undefined;
+  if (c.with && model) marks.push({ src: `/logos/${model}.svg`, label: c.with });
+  return marks;
+}
