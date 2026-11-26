@@ -41,8 +41,7 @@ export function Problems({ problems }: { problems: Problem[] }) {
                       <span key={c.name} className="credit">
                         <a href={c.url} target="_blank" rel="noopener noreferrer" aria-label={c.with ? `${c.name} with ${c.with}` : c.name}>
                           {creditMarks(c).map((m) => (
-                            // eslint-disable-next-line @next/next/no-img-element -- tiny static marks
-                            <img key={m.label} src={m.src} alt="" />
+                            <span key={m.label} data-mark={m.src} />
                           ))}
                         </a>
                         <span className="card" aria-hidden="true">
