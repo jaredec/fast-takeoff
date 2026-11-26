@@ -101,31 +101,6 @@ li {
   margin-top: 0;
 }
 
-/* Today's entries first; the rest of the week opens beneath them. */
-#week summary {
-  display: inline-block;
-  margin-bottom: 13px;
-  color: var(--link);
-  line-height: 18px;
-  cursor: pointer;
-  list-style: none;
-}
-
-#week summary::-webkit-details-marker {
-  display: none;
-}
-
-#week summary .less,
-#week details[open] summary .more {
-  display: none;
-}
-
-#week details[open] summary .less {
-  display: inline;
-  color: var(--strong);
-  font-weight: bold;
-}
-
 #week li.star {
   position: relative;
   list-style: none;

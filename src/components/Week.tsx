@@ -4,10 +4,7 @@ import { formatDay, toDay, type AiEvent, type Meta } from "@/lib/metrics";
 
 type Item = { date: string; title: string; org: string; why: string; url?: string; breakthrough?: boolean };
 
-/**
- * Everything from the seven days ending today in US time (or the last update if older), newest first, excluding seven
- * days ago: the latest day's entries, then the rest of the week behind a toggle.
- */
+/** Everything from the seven days ending today in US time (or the last update if older), newest first, excluding seven days ago. */
 export async function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: Daily[]; breakthroughs: AiEvent[] }) {
   "use cache";
   cacheLife("hours");
@@ -22,48 +19,34 @@ export async function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: 
   const inWindow = (end: number) => all.filter((e) => toDay(e.date) > end - 7 && toDay(e.date) <= end);
   const items = inWindow(candidate).length > 0 ? inWindow(candidate) : inWindow(updatedDay);
   const days = [...new Set(items.map((e) => e.date))].sort().reverse();
-  const latest = days[0];
-  const earlier = days.slice(1).flatMap((date) => items.filter((e) => e.date === date));
-  const when = !latest
-    ? "this past week"
-    : toDay(latest) === nowDay
-      ? "today"
-      : `on ${formatDay(toDay(latest), { month: "long", day: "numeric" })}`;
 
   return (
     <section id="week">
-      <p>Ambitious things AI accomplished {when}.</p>
-      <ul>{items.filter((e) => e.date === latest).map(entry)}</ul>
-      {earlier.length > 0 && (
-        <details>
-          <summary>
-            <span className="more">The rest of the week ({earlier.length} more)</span>
-            <span className="less">The rest of the week</span>
-          </summary>
-          <ul>{earlier.map(entry)}</ul>
-        </details>
-      )}
-    </section>
-  );
-}
-
-function entry(e: Item) {
-  return (
-    <li key={e.title} className={e.breakthrough ? "star" : undefined}>
-      {e.breakthrough && <Star />}
-      <b>{e.title}.</b> {e.why}{" "}
-      <i>
-        {formatDay(toDay(e.date), { month: "long", day: "numeric" })},{" "}
-        {e.url ? (
-          <a href={e.url} target="_blank" rel="noopener noreferrer">
-            {e.org}
-          </a>
-        ) : (
-          e.org
+      <p>Ambitious things AI accomplished this past week.</p>
+      <ul>
+        {days.flatMap((date) =>
+          items
+            .filter((e) => e.date === date)
+            .map((e) => (
+              <li key={e.title} className={e.breakthrough ? "star" : undefined}>
+                {e.breakthrough && <Star />}
+                <b>{e.title}.</b> {e.why}{" "}
+                <i>
+                  {formatDay(toDay(e.date), { month: "long", day: "numeric" })},{" "}
+                  {e.url ? (
+                    <a href={e.url} target="_blank" rel="noopener noreferrer">
+                      {e.org}
+                    </a>
+                  ) : (
+                    e.org
+                  )}
+                  .
+                </i>
+              </li>
+            )),
         )}
-        .
-      </i>
-    </li>
+      </ul>
+    </section>
   );
 }
 
