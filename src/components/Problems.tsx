@@ -35,9 +35,9 @@ export function Problems({ problems }: { problems: Problem[] }) {
                 <i>
                   {" "}
                   {p.status} by{" "}
-                  {p.by.map((c, i) => (
+                  {p.by.map((c, i, by) => (
                     <span key={c.name}>
-                      {i ? " and " : ""}
+                      {i === 0 ? "" : i === by.length - 1 ? " and " : ", "}
                       <a href={c.url} target="_blank" rel="noopener noreferrer">
                         {c.name}
                       </a>
