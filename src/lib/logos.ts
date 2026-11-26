@@ -74,27 +74,34 @@ export function logosFor(e: AiEvent): string[] {
 }
 
 /** Real marks for credited groups on the Open problems page that aren't labs in BY_ORG. */
-const GROUP_MARKS: Record<string, Omit<Mark, "label">> = {
-  "Arc Institute": { src: "/logos/arc-institute.png", round: true },
-  FlyWire: { src: "/logos/flywire.png" },
+const GROUP_MARKS: Record<string, string> = {
+  "Arc Institute": "/logos/arc-institute.png",
+  FlyWire: "/logos/flywire.png",
 };
 
-/** `round` marks already fill a circle; the rest sit inset on white. */
-export type Mark = { src: string; label: string; round?: boolean };
+/** The lab behind a model someone worked with, so credits show company marks like the lab credits beside them. */
+const MODEL_LABS: [RegExp, Logo][] = [
+  [/^Claude/, "anthropic"],
+  [/^(Chat)?GPT|^Codex/, "openai"],
+  [/^Gemini/, "google"],
+  [/^Grok/, "xai"],
+];
+
+export type Mark = { src: string; label: string };
 
 /**
  * The circles for one credit on the Open problems page: a lab's or group's mark, or else a generic avatar for a
- * person or a team avatar for several ("A and B"), then the mark of the model they worked with. A model without a
- * mark is left out.
+ * person or a team avatar for several ("A and B"), then the mark of the lab whose model they worked with. A model
+ * whose lab has no mark is left out.
  */
 export function creditMarks(c: { name: string; with?: string }): Mark[] {
   const lab = BY_ORG[c.name]?.[0];
   const marks: Mark[] = lab
     ? [{ src: `/logos/${lab}.svg`, label: c.name }]
     : GROUP_MARKS[c.name]
-      ? [{ ...GROUP_MARKS[c.name], label: c.name }]
-      : [{ src: /, | and /.test(c.name) ? "/logos/people.svg" : "/logos/person.svg", label: c.name, round: true }];
-  const model = c.with ? BY_PRODUCT.find(([re]) => re.test(c.with!))?.[1] : undefined;
-  if (c.with && model) marks.push({ src: `/logos/${model}.svg`, label: c.with });
+      ? [{ src: GROUP_MARKS[c.name], label: c.name }]
+      : [{ src: /, | and /.test(c.name) ? "/logos/people.svg" : "/logos/person.svg", label: c.name }];
+  const modelLab = c.with ? MODEL_LABS.find(([re]) => re.test(c.with!))?.[1] : undefined;
+  if (c.with && modelLab) marks.push({ src: `/logos/${modelLab}.svg`, label: c.with });
   return marks;
 }

@@ -42,14 +42,11 @@ export function Problems({ problems }: { problems: Problem[] }) {
                         <a href={c.url} target="_blank" rel="noopener noreferrer" aria-label={c.with ? `${c.name} with ${c.with}` : c.name}>
                           {creditMarks(c).map((m) => (
                             // eslint-disable-next-line @next/next/no-img-element -- tiny static marks
-                            <img key={m.label} src={m.src} alt="" className={m.round ? "round" : undefined} />
+                            <img key={m.label} src={m.src} alt="" />
                           ))}
                         </a>
                         <span className="card" aria-hidden="true">
-                          <a href={c.url} target="_blank" rel="noopener noreferrer" tabIndex={-1}>
-                            {c.name}
-                          </a>
-                          {c.with && ` with ${c.with}`}
+                          {c.with ? `${c.name} with ${c.with}` : c.name}
                         </span>
                       </span>
                     ))}

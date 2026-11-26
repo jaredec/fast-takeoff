@@ -155,9 +155,10 @@ li {
   margin-left: -4px;
 }
 
-/* The names behind a credit's circles, linked to the source, shown on hover above the circles. */
+/* The names behind a credit's circles, shown on hover above them; the circles themselves link to the source. */
 .faces .card {
   display: none;
+  pointer-events: none;
   position: absolute;
   bottom: calc(100% + 6px);
   left: 50%;
@@ -172,15 +173,6 @@ li {
   font-style: normal;
   line-height: 16px;
   white-space: nowrap;
-}
-
-.faces .card::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 8px;
 }
 
 .faces .credit:hover .card,
@@ -198,11 +190,6 @@ li {
   box-shadow:
     inset 0 0 0 1px #ddd,
     0 0 0 1.5px var(--bg);
-}
-
-.faces img.round {
-  padding: 0;
-  box-shadow: 0 0 0 1.5px var(--bg);
 }
 
 .faces img + img {
