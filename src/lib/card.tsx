@@ -128,7 +128,7 @@ export async function renderCard(track: Track, unit: Unit) {
 
         <div style={{ height: 1, background: RULE }} />
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 26, color: META, marginTop: 16 }}>
-          <div>whataididtoday.com</div>
+          <div>todayinai.org</div>
         </div>
       </div>
     ),

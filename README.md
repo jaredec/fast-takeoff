@@ -1,1 +1,1 @@
-[whataididtoday.com](https://whataididtoday.com).
+[todayinai.org](https://todayinai.org).

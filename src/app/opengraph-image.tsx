@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "What did AI do today?";
+export const alt = "Today in AI";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -29,7 +29,7 @@ export default function Image() {
             strokeLinejoin="round"
           />
         </svg>
-        <div style={{ fontSize: 60, letterSpacing: -1.5 }}>What did AI do today?</div>
+        <div style={{ fontSize: 60, letterSpacing: -1.5 }}>Today in AI</div>
       </div>
     ),
     size,

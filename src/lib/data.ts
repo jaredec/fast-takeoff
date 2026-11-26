@@ -22,7 +22,7 @@ export const eventsSchema = z.array(
   }),
 );
 
-/** "What did AI do today?": everything notable AI achieved each day, each with its source. */
+/** The Today page: everything notable AI achieved each day, each with its source. */
 export const dailySchema = z.array(
   z.object({
     date: isoDate,
