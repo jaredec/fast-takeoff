@@ -22,7 +22,7 @@ export async function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: 
 
   return (
     <section id="week">
-      <p>Ambitious things AI accomplished this past week.</p>
+      <p>A continuously updated log of ambitious things AI accomplished this past week. Stars denote breakthroughs.</p>
       <ul>
         {days.flatMap((date) =>
           items
