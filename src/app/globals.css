@@ -145,8 +145,47 @@ li {
   margin: -4px 0 -3px 2px;
 }
 
-.faces a {
+.faces .credit,
+.faces .credit > a {
+  position: relative;
   display: inline-flex;
+}
+
+.faces .credit + .credit {
+  margin-left: -4px;
+}
+
+/* The names behind a credit's circles, linked to the source, shown on hover above the circles. */
+.faces .card {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  z-index: 10;
+  transform: translateX(-50%);
+  padding: 5px 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  color: var(--ink);
+  font-size: 12px;
+  font-style: normal;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.faces .card::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 8px;
+}
+
+.faces .credit:hover .card,
+.faces .credit:focus-within .card {
+  display: block;
 }
 
 .faces img {
@@ -166,8 +205,7 @@ li {
   box-shadow: 0 0 0 1.5px var(--bg);
 }
 
-.faces img + img,
-.faces a + a img:first-child {
+.faces img + img {
   margin-left: -4px;
 }
 

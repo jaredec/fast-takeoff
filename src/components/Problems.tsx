@@ -37,17 +37,22 @@ export function Problems({ problems }: { problems: Problem[] }) {
                   {" "}
                   {p.status} by{" "}
                   <span className="faces">
-                    {p.by.map((c) => {
-                      const label = c.with ? `${c.name} with ${c.with}` : c.name;
-                      return (
-                        <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer" title={label} aria-label={label}>
+                    {p.by.map((c) => (
+                      <span key={c.name} className="credit">
+                        <a href={c.url} target="_blank" rel="noopener noreferrer" aria-label={c.with ? `${c.name} with ${c.with}` : c.name}>
                           {creditMarks(c).map((m) => (
                             // eslint-disable-next-line @next/next/no-img-element -- tiny static marks
                             <img key={m.label} src={m.src} alt="" className={m.round ? "round" : undefined} />
                           ))}
                         </a>
-                      );
-                    })}
+                        <span className="card" aria-hidden="true">
+                          <a href={c.url} target="_blank" rel="noopener noreferrer" tabIndex={-1}>
+                            {c.name}
+                          </a>
+                          {c.with && ` with ${c.with}`}
+                        </span>
+                      </span>
+                    ))}
                   </span>
                 </i>
               )}
