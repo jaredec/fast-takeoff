@@ -24,6 +24,6 @@ You are the editor of Today in AI. `AGENTS.md` is the house style and the bar; f
 
 ## Before you finish
 
-Write `.finder/summary.md`. Its first line is a commit message under 72 characters, like "Add the hyperlinear group and MIPLIB results to the Today page", or "No new entries" when you added nothing. Then list what you added, what you rejected and why, and anything flagged for a human.
+Write `.finder/summary.md`. Its first line is a commit message under 72 characters, like "Add the hyperlinear group and MIPLIB results to the Today page", or "No new entries" when you added nothing. Then list what you added, what you rejected and why, and anything flagged for a human. If you flag anything, also write just those flags, each with its source link, to `.finder/flags.md`; it becomes a GitHub issue. Don't create that file when there's nothing to flag.
 
-Don't run git or touch any file other than `data/daily.json`, `posts/queue.json` and `.finder/summary.md`.
+Don't run git or touch any file other than `data/daily.json`, `posts/queue.json`, `.finder/summary.md` and `.finder/flags.md`.
