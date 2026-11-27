@@ -32,7 +32,7 @@ export async function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: 
                 {e.breakthrough && <Star />}
                 <b>{e.title}.</b> {e.why}{" "}
                 <i>
-                  {formatDay(toDay(e.date), { month: "long", day: "numeric" })},{" "}
+                  {formatDay(toDay(e.date), { month: "short", day: "numeric" })},{" "}
                   {e.url ? (
                     <a href={e.url} target="_blank" rel="noopener noreferrer">
                       {e.org}
