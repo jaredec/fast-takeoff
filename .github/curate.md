@@ -28,7 +28,7 @@ The matrix multiplication exponent is exactly 9/4.
 Solved by OpenAI
 ```
 
-The first line is the result as one flat statement ending in a period: the strongest claim the source supports, literally true, in the result's own terms ("The Riemann hypothesis is true."), with any jargon a curious reader wouldn't know put into plain words. Nothing else: no title, context, dates, "open since", adjectives or hype. The second line is the credit, with no period, naming the same people and model as the entry: "Proved by" for a proof ("Proved by Levent Alpöge with Claude"), "Solved by" for a problem or question it answers, "Proposed by" for a proposal, otherwise "By". No stars, links, hashtags, emoji or questions.
+The first line is the result as one flat statement ending in a period: the strongest claim the source supports, literally true, in the result's own terms ("The Riemann hypothesis is true."), with any jargon a curious reader wouldn't know put into plain words. Nothing else: no title, context, dates, "open since", adjectives or hype. The second line is the credit, with no period, short enough to fit on one line on a phone (about 40 characters): "Proved by" for a proof ("Proved by Levent Alpöge with Claude"), "Solved by" for a problem or question it answers, "Proposed by" for a proposal, otherwise "By". Credit whoever the entry credits, shortened: a lab by name ("Solved by OpenAI"), one person by full name, two by surname ("Proved by Burton and Chen with Claude"), three or more by the first surname and "et al." ("Solved by Djaljapayan et al. with GPT-6"). Add the model when a person or outside team used it. No stars, links, hashtags, emoji or questions.
 
 ## Before you finish
 
