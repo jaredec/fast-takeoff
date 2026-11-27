@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "url": "https://eprint.iacr.org/2026/3020.pdf",
+    "title": "Deterministic subexponential discrete logarithm algorithm",
+    "note": "New IACR eprint giving a deterministic subexponential-time algorithm for the discrete logarithm problem; possibly the formal write-up of, or a distinct result from, the discrete-log item already listed for 2026-11-25 — verify against that entry before publishing.",
+    "urgent": false,
+    "source": "Hacker News",
+    "foundAt": "2026-11-27T18:15:10.112Z"
+  }
+]
