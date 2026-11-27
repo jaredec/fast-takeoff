@@ -22,7 +22,15 @@ export async function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: 
 
   return (
     <section id="week">
-      <p>A running log of the most ambitious things AI did this past week.</p>
+      <p>
+        A running log of the most ambitious things AI did this past week.
+        {items.some((e) => e.breakthrough) && (
+          <>
+            {" "}
+            <Star className="key" /> marks a breakthrough.
+          </>
+        )}
+      </p>
       <ul>
         {days.flatMap((date) =>
           items
@@ -51,9 +59,9 @@ export async function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: 
 }
 
 /** A hand-drawn star that takes the place of the bullet for breakthroughs. */
-function Star() {
+function Star({ className = "star" }: { className?: string }) {
   return (
-    <svg className="star" viewBox="0 0 24 24" role="img" aria-label="Breakthrough">
+    <svg className={className} viewBox="0 0 24 24" role="img" aria-label="Breakthrough">
       <title>Breakthrough</title>
       <path d="M12.6 1.8Q15.4 10.8 19.2 21.2Q10.2 16.4 2.2 9.8Q12.4 10.6 22 8.4Q13.2 15.6 4.8 20.6Q8.4 10.4 13.4 1.2" />
     </svg>
