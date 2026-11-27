@@ -121,6 +121,8 @@ li {
 
 #week .field {
   white-space: nowrap;
+  margin: 0 2px;
+  color: var(--faint);
 }
 
 #week .field::before {

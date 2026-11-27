@@ -32,16 +32,16 @@ export async function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: 
             .map((e) => (
               <li key={e.title} className={e.breakthrough ? "star" : undefined}>
                 {e.breakthrough && <Star />}
-                <b>{e.title}.</b> {e.why}{" "}
+                <b>{e.title}.</b>{" "}
+                {e.field && (
+                  <>
+                    <span className="field" style={{ "--field": fieldColor(e.field) } as CSSProperties}>
+                      {e.field[0].toUpperCase() + e.field.slice(1)}
+                    </span>{" "}
+                  </>
+                )}
+                {e.why}{" "}
                 <i>
-                  {e.field && (
-                    <>
-                      <span className="field" style={{ "--field": fieldColor(e.field) } as CSSProperties}>
-                        {e.field[0].toUpperCase() + e.field.slice(1)}
-                      </span>
-                      ,{" "}
-                    </>
-                  )}
                   {formatDay(toDay(e.date), { month: "long", day: "numeric" })},{" "}
                   {e.url ? (
                     <a href={e.url} target="_blank" rel="noopener noreferrer">
