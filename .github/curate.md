@@ -20,7 +20,8 @@ You are the editor of Today in AI. `AGENTS.md` is the house style and the bar; f
 - Add entries only to `data/daily.json`, one per line, in date order, with keys in this order: `date`, `title`, `org`, `why`, `field`, `url`. Match the style of the entries already there.
 - Don't edit existing entries or any other file in `data/`. If an existing entry looks wrong, or a lead could be a breakthrough, a frontier release, or settles a problem in `data/problems.json`, say so in the summary for a human instead.
 - Run `npm run validate-data` and fix anything it reports.
-- For each new entry, append a draft post to `posts/queue.json`: `{"id": "<date>-<title in kebab case>", "title": "<title>", "text": "..."}`. The text is two lines separated by a blank line, at most 280 characters, in normal capitalization:
+- Post only entries whose result works as one finished fact a curious reader gets at once: a settled conjecture or open question, an exact answer, a first, or a real-world result with a hard number. Skip improved bounds and partial progress, proposals, results that need context or jargon to land, debunkings, attacks, engineering milestones, and follow-ups to a result already posted. There's no daily limit. Mention the skipped entries in the summary.
+- For each entry that gets a post, append a draft to `posts/queue.json`: `{"id": "<date>-<title in kebab case>", "title": "<title>", "text": "..."}`. The text is two lines separated by a blank line, at most 280 characters, in normal capitalization:
 
 ```
 The matrix multiplication exponent is exactly 9/4.
