@@ -37,6 +37,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# automation scratch space and the finder branch checkout
+/.finder/
+/.finder-state/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
