@@ -20,7 +20,15 @@ You are the editor of Today in AI. `AGENTS.md` is the house style and the bar; f
 - Add entries only to `data/daily.json`, one per line, in date order, with keys in this order: `date`, `title`, `org`, `why`, `field`, `url`. Match the style of the entries already there.
 - Don't edit existing entries or any other file in `data/`. If an existing entry looks wrong, or a lead could be a breakthrough, a frontier release, or settles a problem in `data/problems.json`, say so in the summary for a human instead.
 - Run `npm run validate-data` and fix anything it reports.
-- For each new entry, append a draft post to `posts/queue.json`: `{"id": "<date>-<title in kebab case>", "title": "<title>", "text": "..."}`. The text is at most 280 characters, all lowercase including names, in three parts separated by blank lines. First the entry's title. Then what happened, stated plainly as fact in one or two sentences: keep the result's own terms when they are the point ("the matrix multiplication exponent is exactly 9/4"), but put jargon a curious reader wouldn't know into plain words ("without assuming a fixed spacetime", not "background-independent"). Last the credit, naming the same people and model as the entry: "solved by …" when it settles a question, otherwise "by …" ("by venkatesa chandrasekaran with gpt-6 astra"). Start a breakthrough's post with "☆ ". Don't explain why it matters, and no links, hashtags, emoji, questions or hype.
+- For each new entry, append a draft post to `posts/queue.json`: `{"id": "<date>-<title in kebab case>", "title": "<title>", "text": "..."}`. The text is two lines separated by a blank line, at most 280 characters, in normal capitalization:
+
+```
+The matrix multiplication exponent is exactly 9/4.
+
+Solved by OpenAI
+```
+
+The first line is the result as one flat statement ending in a period: the strongest claim the source supports, literally true, in the result's own terms ("The Riemann hypothesis is true."), with any jargon a curious reader wouldn't know put into plain words. Nothing else: no title, context, dates, "open since", adjectives or hype. The second line is the credit, with no period, naming the same people and model as the entry: "Proved by" for a proof ("Proved by Levent Alpöge with Claude"), "Solved by" for a problem or question it answers, "Proposed by" for a proposal, otherwise "By". No stars, links, hashtags, emoji or questions.
 
 ## Before you finish
 
