@@ -130,7 +130,8 @@ li {
   stroke-linejoin: round;
 }
 
-#week li > i {
+#week li > i,
+#breakthroughs li > i {
   display: inline-block;
   color: var(--faint);
 }
