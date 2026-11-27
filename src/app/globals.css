@@ -120,7 +120,7 @@ li {
 }
 
 #week li > i {
-  display: block;
+  display: inline-block;
   color: var(--faint);
 }
 
