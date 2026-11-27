@@ -27,7 +27,7 @@ export async function Week({ meta, daily, breakthroughs }: { meta: Meta; daily: 
         {items.some((e) => e.breakthrough) && (
           <>
             {" "}
-            Breakthroughs are marked with <Star className="key" />.
+            <Star className="key" /> = breakthrough
           </>
         )}
       </p>
