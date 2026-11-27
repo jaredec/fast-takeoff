@@ -1,18 +1,1 @@
-[
-  {
-    "url": "http://arxiv.org/abs/2611.34855v1",
-    "title": "Real equiangular lines in dimensions 18–20",
-    "note": "In collaboration with OpenAI's GPT-6, the authors determine the exact maximum numbers of real equiangular lines N(18)=57, N(19)=72, N(20)=90 via lattice/Golay-code bounds, plus sharp fixed-angle bounds.",
-    "urgent": false,
-    "source": "arXiv",
-    "foundAt": "2026-11-27T00:45:46.299Z"
-  },
-  {
-    "url": "https://openai.com/index/searching-for-distant-planets-with-astra",
-    "title": "Exoplanet candidates found in Kepler/TESS data",
-    "note": "Two amateur astronomers using Codex and Astra report potential exoplanets in public NASA Kepler and TESS data, per OpenAI's write-up of their work.",
-    "urgent": false,
-    "source": "OpenAI",
-    "foundAt": "2026-11-27T00:45:46.299Z"
-  }
-]
+[]
