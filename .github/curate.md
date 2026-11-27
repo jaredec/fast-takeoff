@@ -20,7 +20,7 @@ You are the editor of Today in AI. `AGENTS.md` is the house style and the bar; f
 - Add entries only to `data/daily.json`, one per line, in date order, with keys in this order: `date`, `title`, `org`, `why`, `field`, `url`. Match the style of the entries already there.
 - Don't edit existing entries or any other file in `data/`. If an existing entry looks wrong, or a lead could be a breakthrough, a frontier release, or settles a problem in `data/problems.json`, say so in the summary for a human instead.
 - Run `npm run validate-data` and fix anything it reports.
-- For each new entry, append a draft post to `posts/queue.json`: `{"id": "<date>-<title in kebab case>", "title": "<title>", "text": "..."}`. The text is the entry's title and a plain retelling of its `why` in at most 280 characters, in the same voice, with no links, hashtags or emoji.
+- For each new entry, append a draft post to `posts/queue.json`: `{"id": "<date>-<title in kebab case>", "title": "<title>", "text": "..."}`. The text is at most 280 characters, all lowercase including names, and written for someone outside the field: the entry's title, a blank line, then what was found and why it matters in everyday words, crediting the same people by name. Explain a term instead of using it, and never overstate the result. Start a breakthrough's post with "☆ ". No links, hashtags, emoji, questions or hype.
 
 ## Before you finish
 

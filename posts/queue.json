@@ -2,6 +2,6 @@
   {
     "id": "2026-11-25-equiangular-lines-in-dimensions-18-to-20",
     "title": "Equiangular lines in dimensions 18 to 20",
-    "text": "Equiangular lines in dimensions 18 to 20: Valjakas Djaljapayan, Zhen-Qi Liao and Wei-Hsuan Yu, working with GPT-6, show the maximum number of equiangular lines in dimensions 18, 19 and 20 is exactly 57, 72 and 90. The best published upper bounds had been 59, 74 and 94."
+    "text": "equiangular lines in dimensions 18 to 20\n\nno one knew how many lines can pass through one point in 18, 19 or 20 dimensions with every pair meeting at the same angle. valjakas djaljapayan, zhen-qi liao and wei-hsuan yu, working with gpt-6, prove it is 57, 72 and 90."
   }
 ]
