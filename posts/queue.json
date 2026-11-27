@@ -1,1 +1,7 @@
-[]
+[
+  {
+    "id": "2026-11-24-fourier-transform-complexity",
+    "title": "Fourier transform complexity",
+    "text": "The fewest steps needed to compute a Fourier transform of N numbers grow like N times the square root of log N, fewer than the fast Fourier transform's N log N.\n\nSolved by OpenAI"
+  }
+]
